@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #1b2223;
+    color: #f4fefd;
+}
+
+header {
+    height: auto;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #2a2b38;
+    border-bottom: 1px solid #12f8ad;
+    display: flex;
+    color: #f4fefd;
+}
+
+header h3 {
+  padding-left: 20px;
+}
+
+header button,
+#hideshow-menu-button {
+    background-color: #2a2b38;
+    color: #12f8ad;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 550;
+    border: none;
+    cursor: pointer;
+    transition: .5s;
+    letter-spacing: .5px;
+    border-radius: 5px;
+}
+
+header button:hover,
+#hideshow-menu-button:hover {
+    background-color: #12f8ad;
+    color: #2a2b38;
+    transition: .5s;
+}
+
+header button:focus {
+  outline: none;
+}
+
+main {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    margin: 10px 0px;
+}
+
+ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+#side-menu {
+    min-width: 300px;
+    background-color: #12f8ad;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+#side-menu ul li {
+    padding: 7px;
+    cursor: pointer;
+    color: #2a2b38;
+    transition: .3s;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 550;
+    letter-spacing: .5px;
+    margin-right: 45px;
+}
+
+#side-menu ul li:hover {
+    background-color: #2a2b38;
+    color: #f4fefd;
+    transition: .3s;
+}
+
+.menu-icon {
+  top: 0;
+  left: 18px;
+  height: 48px;
+  font-size: 24px;
+  line-height: 48px;
+  text-align: left;
+  transition: all 200ms linear;
+}
+
+.main-content {
+    width: 100%;
+    right: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: #3a4f50;
+    border: #3a4f50 solid 3px;
+    min-height: 100vh;
+}
+
+footer {
+    color: #f4fefd;
+    width: 100%;
+    height: 50px;
+    padding-top: 10px;
+    text-align: center;
+    border-top: 1px solid #12f8ad;
+    bottom: 0;
+}

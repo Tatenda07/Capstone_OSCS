@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+
+  //show or hide side menu
+  displayMenu = true;
+
+  toogleMenu() {
+    this.displayMenu = !this.displayMenu;
+  }
 }
