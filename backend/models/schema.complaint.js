@@ -23,21 +23,21 @@ const complaintSchema = new Schema({
         required: true
     },
     complaint_status: {
-            type: Number,
-            min: 0,
-            max: 3,
-            /*
-             *  0 = In queue
-             *  1 = Received by CSC personnel
-             *  2 = Pending SSO response
-             *  3 = Resolved
-             */
-            validate: {
-                validator: Number.isInteger,
-                message: "{VALUE} is not an integer value",
-            },
-            default: 0
+        type: Number,
+        min: 0,
+        max: 3,
+        /*
+         *  0 = In queue
+         *  1 = Received by CSC personnel
+         *  2 = Pending SSO response
+         *  3 = Resolved
+         */
+        validate: {
+            validator: Number.isInteger,
+            message: "{VALUE} is not an integer value",
         },
+        default: 0
+    },
 },
 {
     // Additional Configuration for the createdAt and updateAt fields.

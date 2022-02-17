@@ -10,8 +10,8 @@ exports.addComplaint = async (req, res, next) => {
     try {
         let newComplaint = await Complaint.create(req.body);
 
-        res.status(200).send({
-            message: 'Complaint created',
+        res.status(201).send({
+            message: 'Complaint created!',
             payload: newComplaint
         })
     } catch (err) {
@@ -23,12 +23,18 @@ exports.addComplaint = async (req, res, next) => {
 // get all complaints 
 exports.getAllComplaints = async (req, res, next) => {
     try {
-        // find all Client Proposal and sort by id in descending order
+        // find all complaints and sort by id in descending order
         let getAllComplaints = await Complaint.find().sort({ _id: -1 });
 
-        res.status(200).send({
-            payload: getAllComplaints
-        })
+        if (getAllComplaints.length === 0) {
+            res.status(200).send({
+                message: 'There are no complaints from the students at the moment.'
+            })
+        } else {
+            res.status(200).send({
+                payload: getAllComplaints
+            })
+        }        
     } catch (err) {
         err.statusCode === undefined ? err.statusCode = 500 : '';
         return next(err);
@@ -40,9 +46,15 @@ exports.getStudentComplaints = async (req, res, next) => {
     try {
         let getStudentComplaints = await Complaint.find({ student_id: req.params.student_id }).sort({ _id: -1 });
 
-        res.status(200).send({
-            payload: getStudentComplaints
-        })
+        if (getStudentComplaints.length === 0) {
+            res.status(200).send({
+                message: `There are no complaints from student with id: ${req.params.student_id}`
+            })
+        } else {
+            res.status(200).send({
+                payload: getStudentComplaints
+            })
+        }
     } catch (err) {
         err.statusCode === undefined ? err.statusCode = 500 : '';
         return next(err);
@@ -54,9 +66,15 @@ exports.getSingleComplaint = async (req, res, next) => {
     try {
         let getSingleComplaint = await Complaint.findOne({ _id: req.params.id });
 
-        res.status(200).send({
-            payload: getSingleComplaint
-        })
+        if (getSingleComplaint === null) {
+            res.status(404).send({
+                message: 'Complaint not found.'
+            })
+        } else {
+            res.status(200).send({
+                payload: getSingleComplaint
+            })
+        }
     } catch (err) {
         err.statusCode === undefined ? err.statusCode = 500 : '';
         return next(err);
@@ -68,7 +86,7 @@ exports.updateComplaint = (req, res, next) => {
     //check if Complaint exists in the database
     Complaint.exists({ _id: req.params.id }).then((result) => {
         if (!result) {
-            return res.status(400).send(`No complaint found with given id:${req.params.id}`);
+            return res.status(404).send('Complaint not found.');
         } else {
             //fetch Complaint document
             Complaint.findById(req.params.id, (err, post) => {

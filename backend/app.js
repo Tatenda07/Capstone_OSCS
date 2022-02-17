@@ -32,9 +32,11 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(process.env.PORT || 5000, () => 
-    console.log(`Running at port http://localhost:${process.env.PORT || 5000}/`)
+    console.log(`Server running at port http://localhost:${process.env.PORT || 5000}/`)
 );
 
 // Express Routing Table
 // http://localhost:5000/complaint/
 app.use('/complaint', require('./routes/complaint'));
+// http://localhost:5000/user/
+app.use('/user', require('./routes/user'));
