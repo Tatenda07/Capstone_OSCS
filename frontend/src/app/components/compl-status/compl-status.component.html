@@ -1,1 +1,19 @@
-<p>compl-status works!</p>
+<h3>Complaints List</h3>
+<table style="border: 2px solid red; padding: 10px;">
+  <thead>
+    <tr style="border-left: 2px blue solid">
+      <th style="border-left: 2px blue solid">Complaint Header</th>
+      <th style="border-left: 2px blue solid">Complaint</th>
+      <th style="border-left: 2px blue solid">Student Name</th>
+      <th style="border-left: 2px blue solid">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let complaint of complaintService.allComplaints">
+      <td style="border-left: 2px blue solid">{{ complaint.complaint_header }}</td>
+      <td style="border-left: 2px blue solid">{{ complaint.complaint_body }}</td>
+      <td style="border-left: 2px blue solid">{{ complaint.student_name }}</td>
+      <td style="border-left: 2px blue solid">{{ complaint.complaint_status }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,4 +1,5 @@
 // NPM Packages
+const passport = require('passport');
 const _ = require('lodash');
 
 // mongoose schema
@@ -14,9 +15,39 @@ exports.addUser = async (req, res, next) => {
             payload: newUser
         })
     } catch (err) {
-        err.statusCode === undefined ? err.statusCode = 500 : '';
-        return next(err);
+        if (err.code === 11000) {
+            // duplicate email address on account sign up
+            res.status(422).send(['The entered email is already registered with an existing account. Please sign up with a different email address.']);
+        } else {
+            // other account validation errors
+            err.statusCode === undefined ? err.statusCode = 500 : '';
+            return next(err);
+        }
+        
     }
+}
+
+// authenticate user on login
+exports.authentication = async (req, res) => {
+    // call for passport authentication
+    await passport.authenticate('local', (err, user, info) => {
+        // error from passport middleware
+        if (err) return res.status(400).json(err);
+        //registered user
+        else if (user) return res.status(200).json({ "token": user.generateJwt() });
+        //unknown user or wrong password
+        else return res.status(404).json(info);
+    })(req, res);
+}
+
+// get user profile
+exports.userProfile = async (req, res) => {
+    User.findOne({ _id: req._id }, (user) => {
+        if (!user)
+            return res.status(404).json({ status: false, message: 'User record not found.' });
+        else
+        return res.status(200).json({ status: true, userProfile : _.pick(user,['first_name', 'last_name', 'middle_initial', 'email', 'phone_number','role']) }); //lodash function '_.pick'
+    });
 }
 
 // get all users 
@@ -25,9 +56,9 @@ exports.getAllUsers = async (req, res, next) => {
         // find all users and sort by id in descending order
         let getAllUsers = await User.find().sort({ _id: -1 });
 
-        res.status(200).send({
-            payload: getAllUsers
-        })
+        res.status(200).send(
+            getAllUsers
+        )
     } catch (err) {
         err.statusCode === undefined ? err.statusCode = 500 : '';
         return next(err);

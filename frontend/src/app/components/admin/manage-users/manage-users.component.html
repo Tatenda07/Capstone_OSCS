@@ -1,0 +1,86 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<main>
+  <div class="header">
+    <h2> ToDo List </h2>
+    <p class="currentDate"> {{currentDate | date:'fullDate'}} </p>
+  </div>
+
+  <div class="task-wrapper">
+    <div class="form-div" *ngIf='!showHideUsersForm'>
+      <div class="col s7 custom">
+        <form #userForm="ngForm" (ngSubmit)="onSubmitUser(userForm)" autocomplete="off">
+            <p class="title">Add or Edit User</p>
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="userService.selectedUser._id">
+            <div class="row">
+              <div class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="first_name" type="text" name="first_name" #first_name="ngModel" [(ngModel)]="userService.selectedUser.first_name" required>
+                    <label>Task</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="last_name" type="text" name="last_name" #last_name="ngModel" [(ngModel)]="userService.selectedUser.last_name">
+                    <label>Task Description</label>
+                  </div>
+                </div>
+
+                <div class="buttons">
+                  <div class="single-button">
+                    <button class="btn" type="button" (click)="resetUsersForm()">Cancel</button>
+                  </div>
+
+                  <div class="single-button">
+                    <button class="btn" type="submit" [disabled]="!userForm.valid">Submit</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="table-div">
+      <h3 class="empty-list-text" *ngIf="userService.usersList.length === 0">
+        There are no users here! Contact the Admin to create users.
+      </h3>
+
+      <table class="responsive-table highlight" *ngIf="userService.usersList.length !== 0">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Role</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.first_name }} {{ user.middle_initial }} {{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone_number }}</td>
+            <td>{{ user.role }}</td>
+            <td>
+              <!-- edit button -->
+              <a class="action-btn edit" title="Edit Task">
+                <i class="material-icons" (click)="onEditUser(user)">edit</i>
+              </a>
+              <!-- delete button -->
+              <a class="action-btn delete" title="Delete Task">
+                <i class="material-icons" (click)="onDeleteUser(user._id)">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <div class="add-task">
+        <a class="btn-floating" (click)=toggleDisplayDivIf() title="Add new Task"><i class="material-icons">add</i></a>
+      </div> -->
+    </div>
+  </div>
+</main>

@@ -1,0 +1,19 @@
+<h3>Manage Complaints</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Complaint Header</th>
+      <th>Complaint</th>
+      <th>Student Name</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let complaint of complaintService.allComplaints">
+      <td>{{ complaint.complaint_header }}</td>
+      <td>{{ complaint.complaint_body }}</td>
+      <td>{{ complaint.student_name }}</td>
+      <td>{{ complaint.complaint_status }}</td>
+    </tr>
+  </tbody>
+</table>

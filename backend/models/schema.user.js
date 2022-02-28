@@ -54,7 +54,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
         enum: [
-            'admin',
+            'Admin',
             'SSO Personel',
             'CSC Personel'
         ]

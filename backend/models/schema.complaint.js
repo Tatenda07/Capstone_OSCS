@@ -14,6 +14,10 @@ const complaintSchema = new Schema({
         type: Number,
         requred: true
     },
+    student_name: {
+        type: String,
+        required: true
+    },
     complaint_header: {
         type: String,
         required: true
@@ -25,12 +29,13 @@ const complaintSchema = new Schema({
     complaint_status: {
         type: Number,
         min: 0,
-        max: 3,
+        max: 4,
         /*
          *  0 = In queue
          *  1 = Received by CSC personnel
-         *  2 = Pending SSO response
-         *  3 = Resolved
+         *  2 = Complaint has been moderated by CSC personnel
+         *  3 = Pending SSO response
+         *  4 = Resolved
          */
         validate: {
             validator: Number.isInteger,
@@ -38,6 +43,10 @@ const complaintSchema = new Schema({
         },
         default: 0
     },
+    resolution_id: {
+        type: Number,
+        default: undefined
+    }
 },
 {
     // Additional Configuration for the createdAt and updateAt fields.

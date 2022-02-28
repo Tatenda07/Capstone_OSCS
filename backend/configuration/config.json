@@ -1,0 +1,10 @@
+{
+    "development": {
+        "JWT_SECRET": "AUPOSMSCapstone",
+        "JWT_EXP": "1d" 
+    },
+    "production": {
+        "JWT_SECRET": "AUPOSMSCapstone",
+        "JWT_EXP": "1d" 
+    }
+}

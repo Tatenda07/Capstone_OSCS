@@ -9,6 +9,8 @@ const { createConnection } = require("mongoose");
 
 // Initialization of Express Framework
 const app = express();
+// cors middlewear
+app.use(cors());
 
 // Connect to MongoDB Atlas Database
 connectDB();
