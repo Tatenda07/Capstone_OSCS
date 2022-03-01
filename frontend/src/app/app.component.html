@@ -9,7 +9,7 @@
   <main class="wrapper">
    <div id='side-menu' *ngIf="!displayMenu">
       <ul>
-         <li><i class="menu-icon uil uil-estate"></i> Home</li>
+         <li routerLink="/home"><i class="menu-icon uil uil-estate"></i> Home</li>
          <li><i class="menu-icon uil uil-fast-mail"></i> Submit Complaint</li>
          <li routerLink="/compl-status"><i class="menu-icon uil uil-envelope-question"></i> Complaint Status</li>
          <li><i class="menu-icon uil uil-question-circle"></i> FAQ</li>
@@ -17,6 +17,7 @@
          <li><i class="menu-icon uil uil-info-circle"></i> Help</li>
          <li routerLink="/about"><i class="menu-icon uil uil-comment-info-alt"></i> About Us</li>
          <li routerLink="/login" (click)="toogleMenu()"><i class="menu-icon uil uil-signout"></i> Sign Out</li>
+         <li routerLink="/manage-users" (click)="toogleMenu()"><i class="menu-icon uil uil-signout"></i> Manage Users </li>
        </ul>
    </div>
 
