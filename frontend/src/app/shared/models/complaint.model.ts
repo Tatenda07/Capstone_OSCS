@@ -4,7 +4,7 @@ export class Complaint {
   student_name! : string;
   complaint_header! : string;
   complaint_body! : string;
-  complaint_status! : string;
+  complaint_status! : number;
   resolution_id! : string;
   createdAt! : string;
   updatedAt! : string;

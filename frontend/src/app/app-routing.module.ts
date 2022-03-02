@@ -10,7 +10,7 @@ import { ManageUsersComponent } from './components/admin/manage-users/manage-use
 import { ManageComplaintsComponent } from './components/admin/manage-complaints/manage-complaints.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/manage-users', pathMatch: 'full'},
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginSignupComponent },
   { path: 'about', component: AboutComponent },
   { path: 'compl-status', component: ComplStatusComponent},

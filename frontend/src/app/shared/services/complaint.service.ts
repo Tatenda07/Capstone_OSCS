@@ -35,4 +35,11 @@ export class ComplaintService {
   editComplaint(complaint : Complaint) {
     return this.http.patch(this.baseURL + `/${complaint._id}`, complaint);
   }
+
+  //moderate complaint
+  moderateComplaint(complaint : Complaint) {
+    // change complaint status to moderated
+    complaint.complaint_status = 2;
+    return this.http.patch(this.baseURL + `/${complaint._id}`, complaint);
+  }
 }
