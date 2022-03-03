@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ManageUsersComponent } from './components/admin/manage-users/manage-users.component';
 import { ManageComplaintsComponent } from './components/admin/manage-complaints/manage-complaints.component';
 import { FaqComponent } from './components/faq/faq.component';
+import { HelpComponent } from './components/help/help.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -18,7 +19,9 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'manage-users', component: ManageUsersComponent},
   { path: 'manage-complaints', component: ManageComplaintsComponent},
-  { path: 'faq', component: FaqComponent}
+  { path: 'faq', component: FaqComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'help', component: HelpComponent}
 ];
 
 @NgModule({

@@ -17,9 +17,8 @@ import { ManageUsersComponent } from './components/admin/manage-users/manage-use
 import { ManageComplaintsComponent } from './components/admin/manage-complaints/manage-complaints.component';
 import { FaqComponent } from './components/faq/faq.component';
 
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HelpComponent } from './help/help.component';
+import { HelpComponent } from './components/help/help.component';
 
 @NgModule({
   declarations: [
