@@ -17,7 +17,11 @@
       <td>{{ complaint.complaint_header }}</td>
       <td>{{ complaint.complaint_body }}</td>
       <td>{{ complaint.student_name }}</td>
-      <td>{{ complaint.complaint_status }}</td>
+      <td *ngIf="complaint.complaint_status === 0">In queue</td>
+      <td *ngIf="complaint.complaint_status === 1">Received by CSC personnel</td>
+      <td *ngIf="complaint.complaint_status === 2">Moderated</td>
+      <td *ngIf="complaint.complaint_status === 3">Pending SSO response</td>
+      <td *ngIf="complaint.complaint_status === 4">Resolved</td>
     </tr>
   </tbody>
 </table>
