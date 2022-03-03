@@ -5,7 +5,7 @@ import { AboutComponent } from './components/about/about.component';
 import { LoginSignupComponent } from './components/login-signup/login-signup.component';
 import { ComplStatusComponent } from './components/compl-status/compl-status.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './components/Home/home.component';
 import { ManageUsersComponent } from './components/admin/manage-users/manage-users.component';
 import { ManageComplaintsComponent } from './components/admin/manage-complaints/manage-complaints.component';
 import { FaqComponent } from './components/faq/faq.component';
