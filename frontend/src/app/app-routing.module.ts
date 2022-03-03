@@ -8,6 +8,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { ManageUsersComponent } from './components/admin/manage-users/manage-users.component';
 import { ManageComplaintsComponent } from './components/admin/manage-complaints/manage-complaints.component';
+import { FaqComponent } from './components/faq/faq.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'compl-status', component: ComplStatusComponent},
   { path: 'home', component: HomeComponent},
   { path: 'manage-users', component: ManageUsersComponent},
-  { path: 'manage-complaints', component: ManageComplaintsComponent}
+  { path: 'manage-complaints', component: ManageComplaintsComponent},
+  { path: 'faq', component: FaqComponent}
 ];
 
 @NgModule({
