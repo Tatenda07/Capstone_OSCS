@@ -1,19 +1,23 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<div class="container">
 <h3>Complaints List</h3>
-<table style="border: 2px solid red; padding: 10px;">
+<table class="main-table" style="overflow: scroll;">
+
   <thead>
-    <tr style="border-left: 2px blue solid">
-      <th style="border-left: 2px blue solid">Complaint Header</th>
-      <th style="border-left: 2px blue solid">Complaint</th>
-      <th style="border-left: 2px blue solid">Student Name</th>
-      <th style="border-left: 2px blue solid">Status</th>
+    <tr>
+      <th>Complaint Header</th>
+      <th>Complaint</th>
+      <th>Student Name</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let complaint of complaintService.allComplaints">
-      <td style="border-left: 2px blue solid">{{ complaint.complaint_header }}</td>
-      <td style="border-left: 2px blue solid">{{ complaint.complaint_body }}</td>
-      <td style="border-left: 2px blue solid">{{ complaint.student_name }}</td>
-      <td style="border-left: 2px blue solid">{{ complaint.complaint_status }}</td>
+      <td>{{ complaint.complaint_header }}</td>
+      <td>{{ complaint.complaint_body }}</td>
+      <td>{{ complaint.student_name }}</td>
+      <td>{{ complaint.complaint_status }}</td>
     </tr>
   </tbody>
 </table>
