@@ -19,6 +19,7 @@ import { FaqComponent } from './components/faq/faq.component';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ManageUsersComponent,
     ManageComplaintsComponent,
     FaqComponent,
+    HelpComponent,
   ],
   imports: [
     BrowserModule,
