@@ -9,9 +9,11 @@ main{
   text-align: center;
 }
 
-.complaint-wrapper {
+.complaint-wrapper,
+.user-wrapper {
   display: flex;
   padding: 0px 10px;
+  overflow: hidden;
 }
 
 .form-div {

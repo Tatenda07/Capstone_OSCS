@@ -16,8 +16,8 @@ exports.addUser = async (req, res, next) => {
         })
     } catch (err) {
         if (err.code === 11000) {
-            // duplicate email address on account sign up
-            res.status(422).send(['The entered email is already registered with an existing account. Please sign up with a different email address.']);
+            // duplicate email address or phone number on account sign up
+            res.status(422).send(['The entered email or phone number is already registered with an existing account. Please sign up with a different phone number and email address.']);
         } else {
             // other account validation errors
             err.statusCode === undefined ? err.statusCode = 500 : '';
