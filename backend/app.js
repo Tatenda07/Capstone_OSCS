@@ -42,3 +42,5 @@ app.listen(process.env.PORT || 5000, () =>
 app.use('/complaint', require('./routes/complaint'));
 // http://localhost:5000/user/
 app.use('/user', require('./routes/user'));
+// http://localhost:5000/student/
+app.use('/student', require('./routes/student'));

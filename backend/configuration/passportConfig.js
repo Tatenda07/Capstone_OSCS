@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 require('../models/schema.user')
 
 const User = mongoose.model('User');
+const Student = mongoose.model('Student')
 
+// user authentication
 passport.use(
     new localStrategy({ usernameField: 'email' },
         (username, password, done) => {
@@ -23,5 +25,28 @@ passport.use(
                         return done(null, user);
                 });
         }
+    )
+);
+
+// student auhentication
+passport.use(
+    new localStrategy({ usernameField: 'student_id'},
+        (username, password, done) => {
+            Student.findOne({ student_id: username},
+                (err, student) => {
+                    if (err)
+                        return done(err);
+                    // unknown student
+                    else if (!student)
+                        return done(null, false, { message: 'Student ID is not registered' });
+                    // wrong password
+                    else if (!student.verifyPassword(password))
+                        return done(null, false, { message: 'Wrong password'});
+                    //student authentication succeeded
+                    else
+                        return done(null, student);
+                })
+        }
+
     )
 );

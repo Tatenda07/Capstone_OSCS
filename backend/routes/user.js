@@ -5,7 +5,7 @@ const router = express.Router();
 // JWT Helper
 const jwtHelper = require('../configuration/jwtHelper');
 
-// import complaints controller
+// import users controller
 const userController = require('../controllers/user');
 
 // HTTP Request Route: POST - http://localhost:5000/user
