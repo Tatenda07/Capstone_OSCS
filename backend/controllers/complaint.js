@@ -107,32 +107,6 @@ exports.updateComplaint = (req, res, next) => {
     });
 }
 
-// // moderate complaint: moderated complaint by a CSC personnel 
-// exports.moderateComplaint = (req, res, next) => {
-//     //check if Complaint exists in the database
-//     Complaint.exists({ _id: req.params.id }).then((result) => {
-//         if (!result) {
-//             return res.status(404).send('Complaint not found.');
-//         } else {
-//             //fetch Complaint document
-//             Complaint.findById(req.params.id, (err, post) => {
-//                 if (err) return next(err);
-
-//                 //update Complaint using lodash
-//                 _.assign(post, req.body);
-//                 post.save((err) => {
-//                     if(err) return next(err);
-
-//                     return res.status(200).json({
-//                         message: "Complaint has been moderated!",
-//                         payload: post
-//                     });
-//                 })
-//             });
-//         }
-//     });
-// }
-
 // delete complaint
 exports.deleteComplaint = async (req, res, next) => {
     try {

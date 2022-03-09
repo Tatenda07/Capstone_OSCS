@@ -70,7 +70,6 @@ const studentSchema = new Schema({
     },
     role: {
         type: String,
-        required: true,
         enum: [
             'Student'
         ],

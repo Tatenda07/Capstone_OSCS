@@ -20,9 +20,6 @@ router.get('/studentComplaints/:student_id', complaintController.getStudentCompl
 // HTTP Request Route: PATCH - http://localhost:5000/complaint/id
 router.patch('/:id', complaintController.updateComplaint);
 
-// // HTTP Request Route: PATCH - http://localhost:5000/complaint/moderate/id
-// router.patch('/moderate/:id', complaintController.moderateComplaint);
-
 // HTTP Request Route: DELETE - http://localhost:5000/complaint/id
 router.delete('/:id', complaintController.deleteComplaint);
 

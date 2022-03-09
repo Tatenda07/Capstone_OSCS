@@ -10,18 +10,20 @@ import { ManageUsersComponent } from './components/admin/manage-users/manage-use
 import { ManageComplaintsComponent } from './components/admin/manage-complaints/manage-complaints.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { HelpComponent } from './components/help/help.component';
+import { ManageStudentsComponent } from './components/admin/manage-students/manage-students.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginSignupComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'compl-status', component: ComplStatusComponent},
-  { path: 'home', component: HomeComponent},
-  { path: 'manage-users', component: ManageUsersComponent},
-  { path: 'manage-complaints', component: ManageComplaintsComponent},
-  { path: 'faq', component: FaqComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'help', component: HelpComponent}
+  { path: 'compl-status', component: ComplStatusComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'manage-users', component: ManageUsersComponent },
+  { path: 'manage-complaints', component: ManageComplaintsComponent },
+  { path: 'faq', component: FaqComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'help', component: HelpComponent },
+  { path: 'manage-students', component: ManageStudentsComponent }
 ];
 
 @NgModule({

@@ -26,6 +26,11 @@ export class ComplaintService {
     return this.http.get(this.baseURL);
   }
 
+  //get all complaints from a specific student
+  getStudentComplaints(student_id: string) {
+    return this.http.get(this.baseURL + `/studentComplaints/${student_id}`);
+  }
+
   //delete complaint
   deleteComplaint(_id: string) {
     return this.http.delete(this.baseURL + `/${_id}`);
