@@ -21,6 +21,7 @@ import { FaqComponent } from './components/faq/faq.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HelpComponent } from './components/help/help.component';
 import { ManageStudentsComponent } from './components/admin/manage-students/manage-students.component';
+import { ComplaintsComponent } from './components/complaints/complaints.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ManageStudentsComponent } from './components/admin/manage-students/mana
     FaqComponent,
     HelpComponent,
     ManageStudentsComponent,
+    ComplaintsComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import { ManageStudentsComponent } from './components/admin/manage-students/mana
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
+    
   ],
   providers: [ ],
   bootstrap: [AppComponent]

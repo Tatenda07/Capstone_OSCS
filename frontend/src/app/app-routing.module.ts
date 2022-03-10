@@ -11,6 +11,7 @@ import { ManageComplaintsComponent } from './components/admin/manage-complaints/
 import { FaqComponent } from './components/faq/faq.component';
 import { HelpComponent } from './components/help/help.component';
 import { ManageStudentsComponent } from './components/admin/manage-students/manage-students.component';
+import { ComplaintsComponent } from './components/complaints/complaints.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -24,6 +25,14 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'help', component: HelpComponent },
   { path: 'manage-students', component: ManageStudentsComponent }
+  { path: 'compl-status', component: ComplStatusComponent},
+  { path: 'home', component: HomeComponent},
+  { path: 'manage-users', component: ManageUsersComponent},
+  { path: 'manage-complaints', component: ManageComplaintsComponent},
+  { path: 'faq', component: FaqComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'help', component: HelpComponent},
+  {path: 'complaints', component: ComplaintsComponent}
 ];
 
 @NgModule({
