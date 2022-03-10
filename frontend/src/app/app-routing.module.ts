@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'faq', component: FaqComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'help', component: HelpComponent },
-  { path: 'manage-students', component: ManageStudentsComponent }
+  { path: 'manage-students', component: ManageStudentsComponent },
   { path: 'compl-status', component: ComplStatusComponent},
   { path: 'home', component: HomeComponent},
   { path: 'manage-users', component: ManageUsersComponent},
