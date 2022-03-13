@@ -1,0 +1,37 @@
+<html>
+
+<body>
+  <header>
+   <button id='hideshow-menu-button' (click)="toogleMenu()"><i class="uil uil-bars"></i> Menu</button>
+   <h3>AUP Student Complaint Management System</h3>
+  </header>
+
+  <main class="wrapper">
+   <div id='side-menu' *ngIf="!displayMenu">
+      <ul>
+         <li routerLink="/home"><i class="menu-icon uil uil-estate"></i> Home</li>
+         <li routerLink="/complaints"><i class="menu-icon uil uil-fast-mail"></i> Submit Complaint</li>
+         <li routerLink="/compl-status"><i class="menu-icon uil uil-envelope-question"></i> Complaint Status</li>
+         <li routerLink="/faq"><i class="menu-icon uil uil-question-circle"></i> FAQ</li>
+         <li routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li>
+         <li routerLink="/help"><i class="menu-icon uil uil-info-circle"></i> Help</li>
+         <li routerLink="/about"><i class="menu-icon uil uil-comment-info-alt"></i> About Us</li>
+         <li routerLink="/login" (click)="toogleMenu()"><i class="menu-icon uil uil-signout"></i> Sign Out</li>
+         <li routerLink="/manage-users" (click)="toogleMenu()"><i class="menu-icon uil uil-signout"></i> Manage Users </li>
+       </ul>
+   </div>
+
+   <div class="main-content">
+    <router-outlet></router-outlet>
+   </div>
+  </main>
+
+  <footer>
+       AUP Online Student Complaint Management System &copy;
+  </footer>
+
+  <script src="js/main.js"></script>
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</body>
+
+</html>
