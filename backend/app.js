@@ -44,3 +44,5 @@ app.use('/complaint', require('./routes/complaint'));
 app.use('/user', require('./routes/user'));
 // http://localhost:5000/student/
 app.use('/student', require('./routes/student'));
+// http://localhost:5000/resolution
+app.use('/resolution', require('./routes/resolution'));
