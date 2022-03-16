@@ -12,6 +12,7 @@ import { FaqComponent } from './components/faq/faq.component';
 import { HelpComponent } from './components/help/help.component';
 import { ManageStudentsComponent } from './components/admin/manage-students/manage-students.component';
 import { ComplaintsComponent } from './components/complaints/complaints.component';
+import { ResolutionComponent } from './components/SSO-dashboard/resolution/resolution.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'faq', component: FaqComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'help', component: HelpComponent},
-  {path: 'complaints', component: ComplaintsComponent}
+  {path: 'complaints', component: ComplaintsComponent},
+  { path: 'resolutions', component: ResolutionComponent }
 ];
 
 @NgModule({

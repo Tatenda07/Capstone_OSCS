@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HelpComponent } from './components/help/help.component';
 import { ManageStudentsComponent } from './components/admin/manage-students/manage-students.component';
 import { ComplaintsComponent } from './components/complaints/complaints.component';
+import { ResolutionComponent } from './components/SSO-dashboard/resolution/resolution.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ComplaintsComponent } from './components/complaints/complaints.componen
     HelpComponent,
     ManageStudentsComponent,
     ComplaintsComponent,
+    ResolutionComponent,
   ],
   imports: [
     BrowserModule,
