@@ -8,7 +8,8 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 @Component({
   selector: 'app-complaints',
   templateUrl: './complaints.component.html',
-  styleUrls: ['./complaints.component.css']
+  styleUrls: ['./complaints.component.css'],
+  providers: [ComplaintService]
 })
 export class ComplaintsComponent implements OnInit {
   viewComplaintsForm = false;
@@ -17,19 +18,31 @@ export class ComplaintsComponent implements OnInit {
   constructor(
     public complaintService: ComplaintService,
     private notificationService : NotificationService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {
-    this.resetComplaintForm();
+    this.resetcomplaintForm();
     this.refreshComplaintsList();
   }
 
   // reset complaints form
-  resetComplaintForm(form ?: NgForm) {
+  resetcomplaintForm(form ?: NgForm) {
     if (form)
       form.reset();
 
+    this.complaintService.selectedComplaint ={
+      _id: '',
+      student_id: '',
+      student_name: '',
+      complaint_header: '',
+      complaint_body: '',
+      complaint_status: 1,
+      resolution_id: '',
+      createdAt: '',
+      updatedAt: ''
+    }
+    this.viewComplaintsForm = false;
     this.refreshComplaintsList();
   }
   refreshComplaintsList() {
@@ -41,7 +54,7 @@ export class ComplaintsComponent implements OnInit {
   onSubmitComplaint(form : NgForm) {
     // add new complaint
     this.complaintService.postComplaint(form.value).subscribe((res) => {
-      this.resetComplaintForm(form);
+      this.resetcomplaintForm(form);
       this.refreshComplaintsList();
       this.notificationService.showSuccess("Complaint has been submitted successfully", "Complaint Management");
     });
@@ -49,3 +62,4 @@ export class ComplaintsComponent implements OnInit {
   }
 
 }
+
