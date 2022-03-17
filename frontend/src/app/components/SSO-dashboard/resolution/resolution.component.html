@@ -2,25 +2,25 @@
 
 <main>
   <div class="header">
-    <h4> Resolutions List </h4>
-    <button class="btn add-new-user" (click)="toogleDisplayResolutionsForm()">Add New Resolution</button>
+    <h4> Resolve Complaints </h4>
   </div>
 
 <div class="complaint-wrapper">
   <div class="form-div" *ngIf='viewResolutionForm'>
+    <div class="complaint-display" *ngIf="resolutionService.selectedResolution._id === ''">
+      <h5>Complaint:</h5>
+      <h6>{{complaintService.selectedComplaint.complaint_header}}</h6>
+      <p class="body-text">{{complaintService.selectedComplaint.complaint_body}}</p>
+    </div>
+
     <div class="col s7 custom">
       <form #manageResolutionsForm="ngForm" (ngSubmit)="onSubmitResolution(manageResolutionsForm)" autocomplete="off">
-          <p class="title">Resolutions Form</p>
+          <p class="title" *ngIf="resolutionService.selectedResolution._id === ''">Add Resolution to the Complaint</p>
+          <p class="title" *ngIf="resolutionService.selectedResolution._id !== ''">Update Resolution</p>
           <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="resolutionService.selectedResolution._id">
+          <input id="complaint_id" type="hidden" name="complaint_id" #complaint_id="ngModel" [(ngModel)]="resolutionService.selectedResolution.complaint_id">
           <div class="row">
             <div class="col s12">
-              <label class="display-label">Complaint ID</label>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="complaint_id" type="text" name="complaint_id" #complaint_id="ngModel" [(ngModel)]="resolutionService.selectedResolution.complaint_id" required>
-                </div>
-              </div>
-
               <label class="display-label">Respondent ID</label>
               <div class="row">
                 <div class="input-field col s12">
@@ -57,19 +57,73 @@
     </div>
   </div>
 
-  <div class="table-div">
-    <h3 class="empty-list-text" *ngIf="resolutionService.allResolutions.length === 0">
-      There are no complaints from the students currently.
-    </h3>
+  <div class="view-complaint-and-resolution" *ngIf="viewComplaintResolution">
+    <div class="complaint">
+      <h5>Complaint:</h5>
+      <h6>{{complaintService.selectedComplaint.complaint_header}}</h6>
+      <p class="body-text">{{complaintService.selectedComplaint.complaint_body}}</p>
+    </div>
 
+    <div class="resolution">
+      <h5>Resolution:</h5>
+      <h6>{{resolutionService.selectedResolution.resolution_header}}</h6>
+      <p class="body-text">{{resolutionService.selectedResolution.resolution_body}}</p>
+    </div>
+    <button (click)="toggleViewComplaintResolution()">Close</button>
+  </div>
+
+  <div class="table-div">
+    <div class="header">
+      <h5> Complaints List </h5>
+    </div>
+    <!-- complaits table -->
+    <table class="responsive-table highlight" *ngIf="complaintService.allComplaints.length !== 0">
+      <thead>
+        <tr>
+          <th>Complaint Header</th>
+          <th>Complaint</th>
+          <th>Status</th>
+          <th>Student ID</th>
+          <th>Student Name</th>
+          <th>Posted On</th>
+          <th>Last Updated</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let complaint of complaintService.allComplaints">
+          <td>{{ complaint.complaint_header }}</td>
+          <td>{{ complaint.complaint_body }}</td>
+          <td *ngIf="complaint.complaint_status === 0">In queue</td>
+          <td *ngIf="complaint.complaint_status === 1">Received by CSC personnel</td>
+          <td *ngIf="complaint.complaint_status === 2">Moderated</td>
+          <td *ngIf="complaint.complaint_status === 3">Pending SSO response</td>
+          <td *ngIf="complaint.complaint_status === 4">Resolved</td>
+          <td>{{ complaint.student_id }}</td>
+          <td>{{ complaint.student_name }}</td>
+          <td>{{ complaint.createdAt | date:'medium' }}</td>
+          <td>{{ complaint.updatedAt | date:'medium' }}</td>
+          <td>
+            <button (click)="viewComplaint(complaint)" *ngIf="complaint.complaint_status !== 4">Add Resolution</button>
+            <button (click)="toggleViewComplaintResolution()" *ngIf="complaint.complaint_status === 4">View Resolution</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="header">
+      <h5> Resolutions Lists </h5>
+    </div>
+
+    <!-- resolutions table -->
     <table class="responsive-table highlight" *ngIf="resolutionService.allResolutions.length !== 0">
       <thead>
         <tr>
           <th>Resolution ID</th>
           <th>Complaint ID</th>
           <th>Respondent ID</th>
-          <th>Resolution Hearder</th>
-          <th>Resolution Body</th>
+          <th>Resolution Header</th>
+          <th>Resolution</th>
           <th>Posted On</th>
           <th>Last Updated</th>
           <th></th>
@@ -86,11 +140,11 @@
           <td>{{ resolution.updatedAt | date:'medium' }}</td>
           <td>
             <!-- edit button -->
-            <a class="action-btn edit" title="Edit Complaint">
+            <a class="action-btn edit" title="Edit Resolution">
               <i class="material-icons" (click)="onEditResolution(resolution)">edit</i>
             </a>
             <!-- delete button -->
-            <a class="action-btn delete" title="Delete Complaint">
+            <a class="action-btn delete" title="Delete Resolution">
               <i class="material-icons" (click)="onDeleteResolution(resolution._id)">delete</i>
             </a>
           </td>

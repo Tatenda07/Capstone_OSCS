@@ -4,6 +4,7 @@ const _ = require('lodash');
 
 // mongoose schema
 const Complaint = require('../models/schema.complaint');
+const Resolution = require('../models/schema.resolution');
 
 // add new complaint
 exports.addComplaint = async (req, res, next) => {
@@ -110,10 +111,15 @@ exports.updateComplaint = (req, res, next) => {
 // delete complaint
 exports.deleteComplaint = async (req, res, next) => {
     try {
-        await Complaint.findByIdAndDelete({ _id: req.params.id });
+        let deletedComplaint = await Complaint.findByIdAndDelete({ _id: req.params.id });
+
+        // delete resolution to the complaint if any
+        if (deletedComplaint.resolution_id !== undefined) {
+           let deleteResolution = await Resolution.findOneAndDelete({ _id: deletedComplaint.resolution_id })
+        }
 
         res.status(200).send({
-            message: "Your complaint has been deleted."
+            message: "Complaint (and Resolution, if any) has been deleted."
         })
     } catch (err) {
         err.statusCode === undefined ? err.statusCode = 500 : '';

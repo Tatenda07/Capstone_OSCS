@@ -4,11 +4,29 @@ const _ = require('lodash');
 
 // mongoose schema
 const Resolution = require('../models/schema.resolution');
+const Complaint = require('../models/schema.complaint');
 
 // add new resolution
 exports.addResolution = async (req, res, next) => {
     try {
         let newResolution = await Resolution.create(req.body);
+
+        // link the resolution to the complaint 
+        let resolvedComplaint = await Complaint.findByIdAndUpdate(
+            {
+                _id: newResolution.complaint_id
+            },
+            {
+                $set: {
+                    resolution_id: newResolution._id,
+                    complaint_status: 4,
+                    updatedAt: moment().utc("Asia/Singapore").format()
+                }
+            },
+            {
+                new: true
+            }
+        );
 
         res.status(201).send({
             message: 'Resolution added!',
@@ -90,7 +108,24 @@ exports.updateResolution = (req, res, next) => {
 // delete resolution
 exports.deleteResolution = async (req, res, next) => {
     try {
-        await Resolution.findByIdAndDelete({ _id: req.params.id });
+        let deletedResolution = await Resolution.findByIdAndDelete({ _id: req.params.id });
+
+        // remove resolution link to the complaint 
+        let unresolvedComplaint = await Complaint.findByIdAndUpdate(
+            {
+                _id: deletedResolution.complaint_id
+            },
+            {
+                $set: {
+                    resolution_id: undefined,
+                    complaint_status: 3,
+                    updatedAt: moment().utc("Asia/Singapore").format()
+                }
+            },
+            {
+                new: true
+            }
+        );
 
         res.status(200).send({
             message: "Resolution deleted."

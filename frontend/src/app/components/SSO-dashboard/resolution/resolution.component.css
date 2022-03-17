@@ -1,1 +1,5 @@
-@import '../../compl-status/compl-status.component.css'
+@import '../../compl-status/compl-status.component.css';
+
+.body-text {
+  font-size: 14px;
+}

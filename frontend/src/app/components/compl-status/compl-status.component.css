@@ -15,7 +15,7 @@ main{
 }
 
 .form-div {
-  flex: 1;
+  flex: 2;
   padding-right: 10px;
 }
 
@@ -66,10 +66,14 @@ main{
 }
 
 .table-div {
-  flex: 2;
+  flex: 6;
   padding: 9px;
   border-radius: 10px;
   overflow: hidden;
+}
+
+.view-complaint-and-resolution {
+  flex: 1;
 }
 
 a.action-btn{

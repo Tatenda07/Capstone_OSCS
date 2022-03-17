@@ -25,18 +25,18 @@ export class ComplStatusComponent implements OnInit {
       this.resetComplaintForm();
       this.refreshComplaintsList();
     }
-  
+
     // hide or display complaints form
     toogleDisplayComplaintForm() {
       this.viewComplaintsForm = !this.viewComplaintsForm;
     }
-  
+
     // get all complaints from the database
     showComplaints() {
       this.complaintService.getComplaint().subscribe((data: any) => this.complaints = data);
       console.log(this.complaints);
     }
-  
+
     // reset complaints form
     resetComplaintForm(form ?: NgForm) {
       if (form)
@@ -55,7 +55,7 @@ export class ComplStatusComponent implements OnInit {
       this.viewComplaintsForm = false;
       this.refreshComplaintsList();
     }
-  
+
     // on submit complaint
     onSubmitComplaint(form : NgForm) {
       //update complaint and change the status to moderated
@@ -64,22 +64,22 @@ export class ComplStatusComponent implements OnInit {
         this.refreshComplaintsList();
         this.notificationService.showSuccess("Complaint has been moderated successfully", "Complaint Management");
       });
-  
+
     }
-  
+
     //on edit complaint
-    onEditTask(complaint : Complaint) {
+    onEditComplaint(complaint : Complaint) {
       this.complaintService.selectedComplaint = complaint;
       this.viewComplaintsForm = true;
     }
-  
+
     // refresh complaints list
     refreshComplaintsList() {
       this.complaintService.getComplaint().subscribe((res) => {
         this.complaintService.allComplaints = res as Complaint[];
       });
     }
-  
+
     //delete complaint
     onDeleteComplaint(_id : string) {
       if(confirm('Are you sure you want to delete this complaint?') == true) {
@@ -89,6 +89,5 @@ export class ComplStatusComponent implements OnInit {
         });
       }
     }
-  
+
   }
-  
