@@ -1,20 +1,44 @@
+<main>
+    <div class = "header">
+        <h4> User Profile</h4>
+    </div>
+
+    <div class = "profile-wrapper">
+        <div class = "form-div"></div> 
+    </div>
+</main>
+
+
 <div class = "container">
     <div class = "profile">
+        <br>
         <div class = "row user-menu-container square">
             <!--<div class = "col-md-7 user-details">-->
                <!-- <div class = "row coralbg white">*/-->
                     <div class = "col-md-6 no-pad" style="width: 100px; float:left; height:100px">
                         <h1> Welcome *Name* </h1>
+                        <!-- upload profile image-->
+                        <form action="/action_page.php">
+                            <label for="img">Select image:</label>
+                            <input type="file" id="img" name="img" accept="image/*">
+                            <input type="submit">
+                            <button> Edit </button>
+                        </form>
                         <hr>
+                        <h4> Username: </h4>
                     </div>
-                </div>
 
+                   
+                </div>
+                
             </div>
             <div class = "col-md-4 no-pad" style="width: 100px; float:right; height:100px; margin:10px">
                 <h3> Submitted Complaints</h3>
                 <hr>
+               
                 
             </div>
         </div>
     <!--</div>
 </div>-->
+
