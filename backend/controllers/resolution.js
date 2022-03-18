@@ -69,9 +69,9 @@ exports.getSingleResolution = async (req, res, next) => {
                 message: 'Resolution not found.'
             })
         } else {
-            res.status(200).send({
-                payload: getSingleResolution
-            })
+            res.status(200).send(
+                getSingleResolution
+            )
         }
     } catch (err) {
         err.statusCode === undefined ? err.statusCode = 500 : '';

@@ -17,6 +17,7 @@ export class ResolutionComponent implements OnInit {
   viewResolutionForm = false;
   viewComplaintResolution = false;
   resolutions: any;
+  specificResolution: any;
 
   constructor(
     public resolutionService: ResolutionService,
@@ -102,13 +103,13 @@ export class ResolutionComponent implements OnInit {
   // view complaint to be resolved
   viewComplaint(complaint: Complaint) {
     this.complaintService.selectedComplaint = complaint;
-    this.viewResolutionForm = true;
   }
 
-  // view resolved complaint
-  viewResolvedComplaint(resolution: Resolution, complaint: Complaint) {
-    this.resolutionService.selectedResolution = resolution;
-    this.complaintService.selectedComplaint = complaint;
+  // view resolution
+  viewResolution(_id : string) {
+    this.resolutionService.getSingleResolution(_id).subscribe((res) => {
+      this.specificResolution = res;
+    });
     this.viewComplaintResolution = true;
   }
 

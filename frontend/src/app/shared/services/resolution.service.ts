@@ -24,6 +24,11 @@ export class ResolutionService {
     return this.http.get(this.baseURL);
   }
 
+  //get single resolution
+  getSingleResolution(_id: string) {
+    return this.http.get(this.baseURL + `/${_id}`);
+  }
+
   //delete resolution
   deleteResolution(_id: string) {
     return this.http.delete(this.baseURL + `/${_id}`);

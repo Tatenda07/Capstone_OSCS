@@ -66,8 +66,8 @@
 
     <div class="resolution">
       <h5>Resolution:</h5>
-      <h6>{{resolutionService.selectedResolution.resolution_header}}</h6>
-      <p class="body-text">{{resolutionService.selectedResolution.resolution_body}}</p>
+      <h6>{{specificResolution.resolution_header}}</h6>
+      <p class="body-text">{{specificResolution.resolution_body}}</p>
     </div>
     <button (click)="toggleViewComplaintResolution()">Close</button>
   </div>
@@ -103,9 +103,11 @@
           <td>{{ complaint.student_name }}</td>
           <td>{{ complaint.createdAt | date:'medium' }}</td>
           <td>{{ complaint.updatedAt | date:'medium' }}</td>
-          <td>
-            <button (click)="viewComplaint(complaint)" *ngIf="complaint.complaint_status !== 4">Add Resolution</button>
-            <button (click)="toggleViewComplaintResolution()" *ngIf="complaint.complaint_status === 4">View Resolution</button>
+          <td *ngIf="complaint.complaint_status !== 4">
+              <button (click)="viewComplaint(complaint);viewResolutionForm = true">Add Resolution</button>
+          </td>
+          <td *ngIf="complaint.complaint_status === 4">
+            <button (click)="viewComplaint(complaint);viewResolution(complaint.resolution_id)">View Resolution</button>
           </td>
         </tr>
       </tbody>
