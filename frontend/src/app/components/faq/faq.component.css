@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-/* @import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"); */
 
 main{
   height: 100vh;
@@ -7,87 +6,66 @@ main{
 
 .header {
   text-align: center;
+  padding: 20px;
 }
 
-section{
-  display: flex;
-  padding: 5px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.container{
-    width:60%;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    background: #12f8ad;
-}
-
-.accordion-item{
-    background-color: #283042;
-    border-radius: .4rem;
-    margin: 1rem;
-    padding: .6rem;
-    box-shadow: .5rem 2px .5rem rgba(0,0,0,.1);
-
-}
-
-.accordion-link{
-    font-size: 1.2rem;
-    color: rgba(255,255,255,.8);
-    text-decoration: none;
-    background-color: #283042;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: .8rem 0;
-
-}
-
-.accordion-link i{
-    color: #e7d5ff;
-    padding: .5rem;
-}
-
-.accordion-link .uil-minus-circle{
-    display: none;
-}
-
-.answer{
-    max-height: 0;
+.accordion {
+    max-width: 1100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
     overflow: hidden;
-    position: relative;
-    background-color: #212838;
-    transition: max-height 650ms;
+    font-family: 'Poppins', sans-serif;
+    background: #009578;
 }
 
-.answer::before{
+.accordion__label,
+.accordion__content {
+    padding: 14px 20px;
+}
+
+.accordion__label{
+    display: block;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+   transition: background 0.1s;  
+}
+
+.accordion__label:hover{
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.accordion__label::after {
     content: "";
     position: absolute;
-    width: .6rem;
-    height: 90%;
-    background-color: #8fc460;
     top: 50%;
-    left: 0;
     transform: translateY(-50%);
-}
-
-.answer p{
-    color: rgba(255,255,255,.6);
-    font-size: 1.4rem;
-    padding: 2rem;
-}
-
-.accordion-item:target .answer{
-    max-height: 20rem;
-
-}
-
-.accordion-item:target .accordion-link .uil-plus-circle{
+    right: 20px;
+    width: 12px;
+    height: 6px;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="50" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 100,0 50,50" style="fill:%23FFFFFF99;" /></svg>');
+    background-size: contain;
+    transition: transform 0.4s;
+  }
+  
+  .accordion__content {
+    background: #ffffff;
+    color: #283042;
+    line-height: 1.6;
+    font-size: 0.95em;
     display: none;
-}
-
-.accordion-item:target .accordion-link .uil-minus-circle{
+  }
+  
+  .accordion__input {
+    display: none;
+  }
+  
+  .accordion__input:checked ~ .accordion__content {
     display: block;
-}
+  }
+  
+  .accordion__input:checked ~ .accordion__label::after {
+    transform: translateY(-50%) rotate(0.5turn);
+  }
+  

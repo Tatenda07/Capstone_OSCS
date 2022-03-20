@@ -11,7 +11,7 @@
                     <div class="card">
                       <div class="center-wrap">
                           <div class="form-group">
-                            <input type="text" name="full_name" #full_name="ngModel"[(ngModel)]="complaintService" required
+                            <input type="text" #full_name="ngModel"[(ngModel)]="complaintService" required
                               class="form-style"
                               placeholder="Your Full name"
                               id="full_name"
@@ -19,21 +19,21 @@
                             <i class="input-icon uil uil-user"></i>
                           </div>
                           <div class="form-group mt-2">
-                            <input type="text" name="school_ID" #school_ID="ngModel"[(ngModel)]="complaintService" required
+                            <input type="text" #school_ID="ngModel"[(ngModel)]="complaintService" required
                               class="form-style"
                               placeholder="Your school ID"
                               id="school_ID" autocomplete="none">
                             <i class="input-icon uil uil-at"></i>
                           </div>
                           <div class="form-group mt-2">
-                            <input type="text" name="compl_header" #compl_header="ngModel"[(ngModel)]="complaintService" required
+                            <input type="text" #compl_header="ngModel"[(ngModel)]="complaintService" required
                               class="form-style"
                               placeholder="Complaint Header"
                               id="compl_header" autocomplete="none">
                             <i class="input-icon uil-comment-alt-message"></i>
                           </div>
                           <div class="form-group mt-2">
-                            <input type="text" name="compl_body" #compl_body="ngModel"[(ngModel)]="complaintService" required
+                            <input type="text" #compl_body="ngModel"[(ngModel)]="complaintService" required
                               class="compl-style"
                               placeholder="Your Complaint"
                               id="compl_body" autocomplete="none">
