@@ -62,7 +62,7 @@ export class ComplStatusComponent implements OnInit {
       this.complaintService.moderateComplaint(form.value).subscribe((res) => {
         this.resetComplaintForm(form);
         this.refreshComplaintsList();
-        this.notificationService.showSuccess("Complaint has been moderated successfully", "Complaint Management");
+        this.notificationService.showSuccess("Complaint has been updated successfully", "Complaint Management");
       });
 
     }

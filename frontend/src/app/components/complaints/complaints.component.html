@@ -11,38 +11,42 @@
                     <div class="card">
                       <div class="center-wrap">
                           <div class="form-group">
-                            <input type="text" #full_name="ngModel"[(ngModel)]="complaintService" required
+                            <input type="text" #student_name="ngModel" [(ngModel)]="complaintService.selectedComplaint.student_name" required
                               class="form-style"
                               placeholder="Your Full name"
-                              id="full_name"
+                              id="student_name"
+                              name="student_name"
                               autocomplete="none">
                             <i class="input-icon uil uil-user"></i>
                           </div>
                           <div class="form-group mt-2">
-                            <input type="text" #school_ID="ngModel"[(ngModel)]="complaintService" required
+                            <input type="text" #student_id="ngModel" [(ngModel)]="complaintService.selectedComplaint.student_id" required
                               class="form-style"
                               placeholder="Your school ID"
-                              id="school_ID" autocomplete="none">
+                              name="student_id"
+                              id="student_id" autocomplete="none">
                             <i class="input-icon uil uil-at"></i>
                           </div>
                           <div class="form-group mt-2">
-                            <input type="text" #compl_header="ngModel"[(ngModel)]="complaintService" required
+                            <input type="text" #complaint_header="ngModel" [(ngModel)]="complaintService.selectedComplaint.complaint_header" required
                               class="form-style"
                               placeholder="Complaint Header"
-                              id="compl_header" autocomplete="none">
+                              name="complaint_header"
+                              id="complaint_header" autocomplete="none">
                             <i class="input-icon uil-comment-alt-message"></i>
                           </div>
                           <div class="form-group mt-2">
-                            <input type="text" #compl_body="ngModel"[(ngModel)]="complaintService" required
+                            <input type="text" #complaint_body="ngModel" [(ngModel)]="complaintService.selectedComplaint.complaint_body" required
                               class="compl-style"
                               placeholder="Your Complaint"
-                              id="compl_body" autocomplete="none">
+                              name="complaint_body"
+                              id="complaint_body" autocomplete="none">
                           </div>
                           <div class="buttons">
                             <div class="single-button cancel">
                               <button class="btn" type="button" (click)="resetcomplaintForm()">Cancel</button>
                             </div>
-          
+
                             <div class="single-button submit">
                               <button class="btn" type="submit" [disabled]="!complaintForm.valid">Submit</button>
                             </div>
@@ -58,4 +62,4 @@
 </div>
 </div>
 </body>
-  
+

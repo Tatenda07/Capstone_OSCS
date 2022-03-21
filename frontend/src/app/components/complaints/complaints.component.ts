@@ -12,7 +12,7 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
   providers: [ComplaintService]
 })
 export class ComplaintsComponent implements OnInit {
-  viewComplaintsForm = false;
+  //viewComplaintsForm = false;
   complaints: any;
 
   constructor(
@@ -23,7 +23,7 @@ export class ComplaintsComponent implements OnInit {
 
   ngOnInit() {
     this.resetcomplaintForm();
-    this.refreshComplaintsList();
+    //this.refreshComplaintsList();
   }
 
   // reset complaints form
@@ -31,7 +31,7 @@ export class ComplaintsComponent implements OnInit {
     if (form)
       form.reset();
 
-    this.complaintService.selectedComplaint ={
+    this.complaintService.selectedComplaint = {
       _id: '',
       student_id: '',
       student_name: '',
@@ -42,21 +42,22 @@ export class ComplaintsComponent implements OnInit {
       createdAt: '',
       updatedAt: ''
     }
-    this.viewComplaintsForm = false;
-    this.refreshComplaintsList();
+    //this.viewComplaintsForm = false;
+    //this.refreshComplaintsList();
   }
-  refreshComplaintsList() {
-    this.complaintService.getComplaint().subscribe((res) => {
-      this.complaintService.allComplaints = res as Complaint[];
-    });
-  }
+  // refreshComplaintsList() {
+  //   this.complaintService.getComplaint().subscribe((res) => {
+  //     this.complaintService.allComplaints = res as Complaint[];
+  //   });
+  // }
 
   onSubmitComplaint(form : NgForm) {
     // add new complaint
     this.complaintService.postComplaint(form.value).subscribe((res) => {
       this.resetcomplaintForm(form);
-      this.refreshComplaintsList();
+      //this.refreshComplaintsList();
       this.notificationService.showSuccess("Complaint has been submitted successfully", "Complaint Management");
+      this.router.navigateByUrl('/compl-status');
     });
 
   }
