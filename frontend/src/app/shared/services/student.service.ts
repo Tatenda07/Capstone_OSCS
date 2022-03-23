@@ -29,17 +29,17 @@ export class StudentService {
 
   //delete student
   deleteStudent(_id: string) {
-    return this.http.delete(this.baseURL + `/${_id}`);
+    return this.http.delete(this.baseURL + `/${_id}`, this.noAuthHeader);
   }
 
   //edit student infrmation in the database (patch method)
   editStudent(student : Student) {
-    return this.http.patch(this.baseURL + `/${student._id}`, student);
+    return this.http.patch(this.baseURL + `/${student._id}`, student, this.noAuthHeader);
   }
 
   //login student
   login(authCredentials: any) {
-    return this.http.post(this.baseURL + '/authenticate', authCredentials);
+    return this.http.post(this.baseURL + '/authenticate', authCredentials, this.noAuthHeader);
   }
 
   //get student profile

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 
 import { AboutComponent } from './components/about/about.component';
 import { LoginSignupComponent } from './components/login-signup/login-signup.component';
@@ -19,21 +20,21 @@ const routes: Routes = [
   { path: 'login', component: LoginSignupComponent },
   { path: 'about', component: AboutComponent },
   { path: 'compl-status', component: ComplStatusComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'manage-users', component: ManageUsersComponent },
   { path: 'manage-complaints', component: ManageComplaintsComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'help', component: HelpComponent },
   { path: 'manage-students', component: ManageStudentsComponent },
-  { path: 'compl-status', component: ComplStatusComponent},
+  { path: 'compl-status', component: ComplStatusComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent},
   { path: 'manage-users', component: ManageUsersComponent},
   { path: 'manage-complaints', component: ManageComplaintsComponent},
   { path: 'faq', component: FaqComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'help', component: HelpComponent},
-  {path: 'complaints', component: ComplaintsComponent},
+  { path: 'profile', component: ProfileComponent },
+  { path: 'help', component: HelpComponent },
+  { path: 'complaints', component: ComplaintsComponent, canActivate: [AuthGuard] },
   { path: 'resolutions', component: ResolutionComponent }
 ];
 

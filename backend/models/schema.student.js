@@ -9,6 +9,15 @@ const moment = require('moment-timezone');
 const autoIncrement = require("mongoose-auto-increment");
 const validator = require('validator');
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken');
+const { createConnection } = require("mongoose");
+const url = `mongodb+srv://Joelson:Joe7MongoDB@initial-cluster.vie6y.mongodb.net/Capstone-OSCMS?retryWrites=true&w=majority`;
+
+// database URI connection required by autoIncrement
+const connection = createConnection(url);
+
+// initialize mongoose-auto-increment
+autoIncrement.initialize(connection);
 
 const studentSchema = new Schema({
     student_id: {
@@ -26,7 +35,7 @@ const studentSchema = new Schema({
     middle_initial: {
         type: String,
         maxlength: 5,
-        default: 'N/A'
+        default: undefined
     },
     college: {
         type: String,
@@ -135,6 +144,14 @@ studentSchema.pre('save', function (next) {
 studentSchema.methods.verifyPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 };
+
+studentSchema.methods.generateJwt = function () {
+    return jwt.sign({ _id: this._id, role: this.role },
+        process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXP
+        }
+    );
+}
 
 // Auto-increment plugin that implements interger Object_id that increments automatically. 
 studentSchema.plugin(autoIncrement.plugin, 'student');

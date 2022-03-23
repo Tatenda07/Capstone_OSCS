@@ -1,16 +1,21 @@
+//config files
+require('./configuration/config');
+require('./configuration/passportConfig');
 // NPM Packages
 const express = require("express");
 const cors = require("cors");
 const url = `mongodb+srv://Joelson:Joe7MongoDB@initial-cluster.vie6y.mongodb.net/Capstone-OSCMS?retryWrites=true&w=majority`;
 const connectDB = require("./db");
-const connectionURL = require("./db");
 const autoIncrement = require("mongoose-auto-increment");
 const { createConnection } = require("mongoose");
+const passport = require('passport')
 
 // Initialization of Express Framework
 const app = express();
 // cors middlewear
 app.use(cors());
+//passport middlewear
+app.use(passport.initialize());
 
 // Connect to MongoDB Atlas Database
 connectDB();
@@ -32,6 +37,10 @@ app.use((err, req, res, next) => {
         res.status(422).send(valErrors);
     }
 });
+
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "*")
+//   });
 
 app.listen(process.env.PORT || 5000, () => 
     console.log(`Server running at port http://localhost:${process.env.PORT || 5000}/`)

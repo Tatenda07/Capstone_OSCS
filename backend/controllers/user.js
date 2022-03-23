@@ -30,7 +30,7 @@ exports.addUser = async (req, res, next) => {
 // authenticate user on login
 exports.authentication = async (req, res) => {
     // call for passport authentication
-    await passport.authenticate('local', (err, user, info) => {
+    await passport.authenticate('user-local', (err, user, info) => {
         // error from passport middleware
         if (err) return res.status(400).json(err);
         //registered user

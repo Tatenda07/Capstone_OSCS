@@ -14,6 +14,8 @@ export class ComplaintService {
 
   allComplaints!: Complaint[];
 
+  singleStudentComplaints!: Complaint[];
+
   constructor(private http: HttpClient) { }
 
   //add new complaint

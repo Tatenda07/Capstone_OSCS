@@ -1,13 +1,11 @@
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
-const mongoose = require('mongoose');
-require('../models/schema.user')
 
-const User = mongoose.model('User');
-const Student = mongoose.model('Student')
+const User = require('../models/schema.user');
+const Student = require('../models/schema.student');
 
 // user authentication
-passport.use(
+passport.use('user-local',
     new localStrategy({ usernameField: 'email' },
         (username, password, done) => {
             User.findOne({ email: username },
@@ -29,7 +27,7 @@ passport.use(
 );
 
 // student auhentication
-passport.use(
+passport.use('student-local',
     new localStrategy({ usernameField: 'student_id'},
         (username, password, done) => {
             Student.findOne({ student_id: username},

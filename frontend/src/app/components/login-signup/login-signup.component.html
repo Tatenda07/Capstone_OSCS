@@ -11,67 +11,142 @@
                 <div class="card-3d-wrapper">
                   <div class="card-front">
                     <div class="center-wrap">
-                      <div class="section text-center">
+                      <form class="section text-center" #signInForm="ngForm" (ngSubmit)="signInForm.valid && onLogin(signInForm)">
+                        <!-- Error message -->
+                        <div class="alert" *ngIf="serverErrorMessages">
+                          {{serverErrorMessages}}
+                        </div>
                         <h4 class="mb-4 pb-3">Log In</h4>
                         <div class="form-group">
-                          <input type="email" name="logemail"
+                          <input type="number" name="student_id" #student_id="ngModel" [(ngModel)]="model.student_id"
                             class="form-style"
-                            placeholder="Your Email"
-                            id="logemail"
+                            placeholder="Student ID"
+                            id="student_id"
                             autocomplete="none">
                           <i class="input-icon uil uil-at"></i>
                         </div>
                         <div class="form-group mt-2">
-                          <input type="password" name="logpass"
+                          <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password"
                             class="form-style"
                             placeholder="Your Password"
-                            id="logpass" autocomplete="none">
+                            id="password" autocomplete="none">
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <a href="#" class="btn mt-4">submit</a>
+                        <div class="buttons">
+                          <div class="single-button cancel">
+                            <button class="btn-cancel" (click)="resetLogInForm()" type="button">Cancel</button>
+                          </div>
+
+                          <div class="single-button submit">
+                            <button class="btn" type="submit" [disabled]="!signInForm.valid">Submit</button>
+                          </div>
+                        </div>
                         <p class="mb-0 mt-4">
-                          <a href="#0" class="link">Forgot your password?</a>
+                          <a href="#" class="link">Forgot your password?</a>
                         </p>
-                      </div>
+                      </form>
                     </div>
                   </div>
-                  <div class="card-back">
+                  <div class="card-back" id="card-back">
                     <div class="center-wrap">
-                      <div class="section text-center">
+                      <form class="section text-center" #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSignUp(signUpForm)">
                         <h4 class="mb-4 pb-3">Sign Up</h4>
+                        <div class="form-group mt-2">
+                          <select style="margin-bottom: 10px;" name="college" id="college" [(ngModel)]="studentService.selectedStudent.college" required>
+                            <option value="" disabled selected hidden>Select College</option>
+                            <option value="Business">College of Bisiness</option>
+                            <option value="Science and Technology">College of Science and Technology</option>
+                            <option value="Nursing">College of Nursing</option>
+                            <option value="Arts and Humanities">College of Arts and Humanities</option>
+                            <option value="Dentistry">College of Dentisty</option>
+                            <option value="Education">College of Education</option>
+                            <option value="Theology">College of Theology</option>
+                            <option value="Medicine">College of Medicine</option>
+                            <option value="Health">College of Health</option>
+                          </select>
+                          <i class="input-icon uil uil-lock-alt"></i>
+                        </div>
                         <div class="form-group">
-                          <input type="text" name="logname"
+                          <input type="text" name="first_name" #first_name="ngModel" [(ngModel)]="studentService.selectedStudent.first_name"
                             class="form-style"
-                            placeholder="Your Full Name"
-                            id="logname"
-                            autocomplete="none">
+                            placeholder="First Name"
+                            id="first_name"
+                            autocomplete="none"
+                            required>
                           <i class="input-icon uil uil-user"></i>
                         </div>
                         <div class="form-group mt-2">
-                          <input type="email" name="logemail"
+                          <input type="text" name="middle_initial" #middle_initial="ngModel" [(ngModel)]="studentService.selectedStudent.middle_initial"
                             class="form-style"
-                            placeholder="Your Email"
-                            id="logemail" autocomplete="none">
-                          <i class="input-icon uil uil-at"></i>
+                            placeholder="Middle Initial(s) [Leave blank if none]"
+                            id="middle_initial" autocomplete="none"
+                            maxlength="5">
+                          <i class="input-icon uil uil-user"></i>
                         </div>
                         <div class="form-group mt-2">
-                          <input type="password" name="logpass"
+                          <input type="text" name="last_name" #last_name="ngModel" [(ngModel)]="studentService.selectedStudent.last_name"
                             class="form-style"
-                            placeholder="Your Password"
-                            id="logpass"
-                            autocomplete="none">
-                          <i class="input-icon uil uil-lock-alt"></i>
+                            placeholder="Last Name"
+                            id="last_name"
+                            autocomplete="none"
+                            required>
+                          <i class="input-icon uil uil-user"></i>
                         </div>
                         <div class="form-group mt-2">
-                          <input type="password" name="logpass"
+                          <input type="number" name="student_id" #student_id="ngModel" [(ngModel)]="studentService.selectedStudent.student_id"
                             class="form-style"
-                            placeholder="Confirm Password"
-                            id="logpass"
-                            autocomplete="none">
+                            placeholder="Student ID"
+                            id="student_id"
+                            autocomplete="none"
+                            required>
+                            <i class="input-icon uil uil-at"></i>
+                        </div>
+                        <div class="form-group mt-2">
+                          <input type="email" name="email" #email="ngModel" [(ngModel)]="studentService.selectedStudent.email"
+                            class="form-style"
+                            placeholder="Email"
+                            id="email"
+                            autocomplete="none"
+                            required>
+                            <i class="input-icon uil uil-at"></i>
+                        </div>
+                        <div class="form-group mt-2">
+                          <input type="text" name="phone_number" #phone_number="ngModel" [(ngModel)]="studentService.selectedStudent.phone_number"
+                            class="form-style"
+                            placeholder="Phone Number"
+                            id="phone_number"
+                            autocomplete="none"
+                            required>
+                          <i class="input-icon uil uil-mobile-android"></i>
+                        </div>
+                        <div class="form-group mt-2">
+                          <input type="password" name="password" #password="ngModel" [(ngModel)]="studentService.selectedStudent.password"
+                            class="form-style"
+                            placeholder="Password"
+                            id="password"
+                            autocomplete="none"
+                            required>
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <a href="#" class="btn mt-4">submit</a>
-                      </div>
+                        <!-- confirm password -->
+                        <!-- <div class="form-group mt-2">
+                          <input type="password" name="confirm_password" #confirm_password="ngModel" [(ngModel)]="model.student_id"
+                            class="form-style"
+                            placeholder="Confirm Passwrd"
+                            id="confirm_password"
+                            autocomplete="none">
+                          <i class="input-icon uil uil-lock-alt"></i>
+                        </div> -->
+                        <div class="buttons">
+                          <div class="single-button cancel">
+                            <button class="btn-cancel" (click)="resetSignUpForm()" type="button">Cancel</button>
+                          </div>
+
+                          <div class="single-button submit">
+                            <button class="btn" type="submit" [disabled]="!signUpForm.valid">Submit</button>
+                          </div>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>

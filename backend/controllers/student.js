@@ -30,7 +30,7 @@ exports.addStudent = async (req, res, next) => {
 // authenticate student on login
 exports.authentication = async (req, res) => {
     // call for passport authentication
-    await passport.authenticate('local', (err, student, info) => {
+    await passport.authenticate('student-local', (err, student, info) => {
         // error from passport middleware
         if (err) return res.status(400).json(err);
         //registered user
@@ -42,9 +42,9 @@ exports.authentication = async (req, res) => {
 
 // get student profile
 exports.studentProfile = async (req, res) => {
-    Student.findOne({ _id: req._id }, (student) => {
+    Student.findOne({ _id: req._id } , (err, student) => {
         if (!student)
-            return res.status(404).json({ status: false, message: 'Student record not found.' });
+            return res.status(404).json({ status: false, message: `No student record found with id ${req._id}` });
         else
             return res.status(200).json({ status: true, studentProfile : _.pick(student,['first_name', 'last_name', 'middle_initial', 'email', 'phone_number','role', 'college','student_id']) }); //lodash function '_.pick'
     });
@@ -76,7 +76,7 @@ exports.getSingleStudent = async (req, res, next) => {
             })
         } else {
             res.status(200).send({
-                payload: getSingleStudent
+                 payload: getSingleStudent
             })
         }
     } catch (err) {

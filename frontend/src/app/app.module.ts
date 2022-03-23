@@ -26,6 +26,9 @@ import { ResolutionComponent } from './components/SSO-dashboard/resolution/resol
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,9 +59,13 @@ import { environment } from '../environments/environment';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     })
-    
+
   ],
-  providers: [ ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  },AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
