@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { StudentService } from 'src/app/shared/services/student.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 
@@ -14,7 +15,9 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private studentService: StudentService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.studentService.getStudentProfile().subscribe((res: any) => {

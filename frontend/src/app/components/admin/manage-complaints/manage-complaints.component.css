@@ -1687,9 +1687,10 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
 
 /* personal mobile responsive */
 @media only screen and (max-width: 888px) {
-  .complaint-wrapper {
+  .complaint-wrapper,
+  .user-wrapper {
     display: block;
-    margin: 5px;
+    margin: 1px;
   }
 
   .form-div {

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { NotificationService } from 'src/app/shared/services/notification.service';
-
-import { Student } from 'src/app/shared/models/student.model';
 import { StudentService } from 'src/app/shared/services/student.service';
 
 @Component({
@@ -30,6 +28,8 @@ export class LoginSignupComponent implements OnInit {
   ngOnInit(): void {
     this.resetLogInForm();
     this.resetSignUpForm();
+    if (this.studentService.isLoggedIn())
+      this.router.navigateByUrl('/home');
   }
 
   //reset Sign Up form (this is the method for the cancel button on the Sign Up form)
@@ -79,7 +79,7 @@ export class LoginSignupComponent implements OnInit {
  onSignUp(form : NgForm) {
   this.studentService.postStudent(form.value).subscribe((res) => {
     this.resetSignUpForm(form);
-    this.router.navigate(['/login']);
+    this.router.navigateByUrl('/login');
     this.notificationService.showSuccess("Account registered successfully. You may now login with your account.", "New Student Registration");
   });
  }

@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
-html,
-body {
-    height: 100%;
+.main-content-wrapper {
+    min-height: 100vh;
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background-color: #1b2223;
@@ -114,4 +113,44 @@ footer {
     text-align: center;
     border-top: 1px solid #12f8ad;
     bottom: 0;
+}
+
+/* mobile responsiveness */
+@media only screen and (max-width: 888px) {
+  header {
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .main-content-wrapper {
+    overflow: hidden;
+  }
+
+  .nav-bar-text {
+    font-size: 1rem;
+  }
+
+  #hideshow-menu-button {
+    padding: 5px;
+    min-width: 80px;
+  }
+
+  header h3 {
+    padding-left: 10px;
+  }
+
+  .main-content {
+    margin-left: 0;
+    margin-right: 2px;
+  }
+
+  #side-menu {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  footer {
+    font-size: .7rem;
+  }
 }
