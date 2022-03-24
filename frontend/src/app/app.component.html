@@ -9,13 +9,13 @@
   <main class="wrapper">
    <div id='side-menu' *ngIf="!displayMenu">
       <ul>
-         <li routerLink="/home"><i class="menu-icon uil uil-estate"></i> Home</li>
-         <li routerLink="/complaints"><i class="menu-icon uil uil-fast-mail"></i> Submit Complaint</li>
-         <li routerLink="/compl-status"><i class="menu-icon uil uil-envelope-question"></i> Complaint Status</li>
-         <li routerLink="/faq"><i class="menu-icon uil uil-question-circle"></i> FAQ</li>
-         <li routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li>
-         <li routerLink="/help"><i class="menu-icon uil uil-info-circle"></i> Help</li>
-         <li routerLink="/about"><i class="menu-icon uil uil-comment-info-alt"></i> About Us</li>
+         <li (click)="toogleMenu()" routerLink="/home"><i class="menu-icon uil uil-estate"></i> Home</li>
+         <li (click)="toogleMenu()" routerLink="/complaints"><i class="menu-icon uil uil-fast-mail"></i> Submit Complaint</li>
+         <li (click)="toogleMenu()" routerLink="/compl-status"><i class="menu-icon uil uil-envelope-question"></i> Complaint Status</li>
+         <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-question-circle"></i> FAQ</li>
+         <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li>
+         <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-info-circle"></i> Help</li>
+         <li (click)="toogleMenu()" routerLink="/about"><i class="menu-icon uil uil-comment-info-alt"></i> About Us</li>
          <li (click)="toogleMenu();onLogout()"><i class="menu-icon uil uil-signout"></i> Sign Out</li>
          <li routerLink="/manage-users" (click)="toogleMenu()"><i class="menu-icon uil uil-signout"></i> Manage Users </li>
        </ul>
