@@ -69,6 +69,7 @@ export class LoginSignupComponent implements OnInit {
     this.studentService.login(form.value).subscribe((res: any) => {
       this.studentService.setToken(res.token);
       this.router.navigateByUrl('/home');
+      this.notificationService.showInfo("Account login success!", "AUP-Online Student Complaint Management System");
     }, (err) => {
       this.serverErrorMessages = err.error.message;
     });

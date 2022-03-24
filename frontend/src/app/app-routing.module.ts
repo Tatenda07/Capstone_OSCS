@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'manage-users', component: ManageUsersComponent},
   { path: 'manage-complaints', component: ManageComplaintsComponent},
   { path: 'faq', component: FaqComponent},
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'help', component: HelpComponent },
   { path: 'complaints', component: ComplaintsComponent, canActivate: [AuthGuard] },
   { path: 'resolutions', component: ResolutionComponent }
