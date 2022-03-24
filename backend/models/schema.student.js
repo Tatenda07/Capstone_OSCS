@@ -22,7 +22,8 @@ autoIncrement.initialize(connection);
 const studentSchema = new Schema({
     student_id: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     },
     first_name: {
         type: String,

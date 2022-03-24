@@ -16,6 +16,9 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 export class ComplStatusComponent implements OnInit {
   viewComplaintsForm = false;
   viewComplaintResolution = false;
+  viewResolutionDiv = false;
+  viewComplaintDiv = false;
+
   myComplaints: any;
   studentProfile: any
   specificResolution: any;
@@ -40,11 +43,6 @@ export class ComplStatusComponent implements OnInit {
     toogleDisplayComplaintForm() {
       this.viewComplaintsForm = !this.viewComplaintsForm;
     }
-
-    // hide or display complaint and resolution
-  toggleViewComplaintResolution() {
-    this.viewComplaintResolution = !this.viewComplaintResolution;
-  }
 
     // get all complaints from the database
     showComplaints() {
@@ -106,6 +104,7 @@ export class ComplStatusComponent implements OnInit {
       this.specificResolution = res;
     });
     this.viewComplaintResolution = true;
+    this.viewResolutionDiv = true;
   }
 
     //delete complaint

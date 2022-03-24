@@ -8,7 +8,7 @@
     <div class="form-div" *ngIf='!showHideStudentsForm'>
       <div class="col s7 custom">
         <form #studentForm="ngForm" (ngSubmit)="onSubmitStudent(studentForm)" autocomplete="off">
-            <input type="text" name="_id" #_id="ngModel" [(ngModel)]="studentService.selectedStudent._id" readonly>
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="studentService.selectedStudent._id" readonly>
             <p class="title" *ngIf="studentService.selectedStudent._id === ''">Add New User</p>
             <p class="title" *ngIf="studentService.selectedStudent._id !== ''">Edit User</p>
 
@@ -17,8 +17,8 @@
                 <label class="display-label">Student ID</label>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input *ngIf="studentService.selectedStudent._id !== ''" id="student_id" type="text" name="student_id" #student_id="ngModel" [(ngModel)]="studentService.selectedStudent.student_id" readonly>
-                    <input *ngIf="studentService.selectedStudent._id === ''" id="student_id" type="text" name="student_id" #student_id="ngModel" [(ngModel)]="studentService.selectedStudent.student_id" required>
+                    <input *ngIf="studentService.selectedStudent._id !== ''" id="student_id" type="number" name="student_id" #student_id="ngModel" [(ngModel)]="studentService.selectedStudent.student_id" readonly>
+                    <input *ngIf="studentService.selectedStudent._id === ''" id="student_id" type="number" name="student_id" #student_id="ngModel" [(ngModel)]="studentService.selectedStudent.student_id" required>
                   </div>
                 </div>
 
