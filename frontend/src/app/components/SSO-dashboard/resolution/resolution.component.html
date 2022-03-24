@@ -77,7 +77,7 @@
       <h5> Complaints List </h5>
     </div>
     <!-- complaits table -->
-    <table class="responsive-table highlight" *ngIf="complaintService.allComplaints.length !== 0">
+    <table class="responsive-table highlight" *ngIf="complaintService.allComplaints?.length !== 0">
       <thead>
         <tr>
           <th>Complaint Header</th>
@@ -118,7 +118,7 @@
     </div>
 
     <!-- resolutions table -->
-    <table class="responsive-table highlight" *ngIf="resolutionService.allResolutions.length !== 0">
+    <table class="responsive-table highlight" *ngIf="resolutionService.allResolutions?.length !== 0">
       <thead>
         <tr>
           <th>Resolution ID</th>

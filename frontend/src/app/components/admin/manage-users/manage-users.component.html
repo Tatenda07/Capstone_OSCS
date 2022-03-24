@@ -86,11 +86,11 @@
     </div>
 
     <div class="table-div">
-      <h3 class="empty-list-text" *ngIf="userService.usersList.length === 0">
+      <h3 class="empty-list-text" *ngIf="userService.usersList?.length === 0">
         There are no users here! Contact the Admin to create users.
       </h3>
 
-      <table class="responsive-table highlight" *ngIf="userService.usersList.length !== 0">
+      <table class="responsive-table highlight" *ngIf="userService.usersList?.length !== 0">
         <thead>
           <tr>
             <th>Full Name</th>

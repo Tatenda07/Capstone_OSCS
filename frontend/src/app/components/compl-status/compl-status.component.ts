@@ -3,25 +3,35 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Complaint } from 'src/app/shared/models/complaint.model';
 import { ComplaintService } from 'src/app/shared/services/complaint.service';
+import { StudentService } from 'src/app/shared/services/student.service';
+import { ResolutionService } from 'src/app/shared/services/resolution.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
   selector: 'app-compl-status',
   templateUrl: './compl-status.component.html',
   styleUrls: ['./compl-status.component.css'],
-  providers: [ComplaintService]
+  providers: [ComplaintService, StudentService, ResolutionService]
 })
 export class ComplStatusComponent implements OnInit {
   viewComplaintsForm = false;
-  complaints: any;
+  viewComplaintResolution = false;
+  myComplaints: any;
+  studentProfile: any
+  specificResolution: any;
 
   constructor(
     public complaintService: ComplaintService,
     private notificationService : NotificationService,
+    private studentService : StudentService,
+    public resolutionService : ResolutionService,
     private router: Router
     ) { }
 
     ngOnInit() {
+      this.studentService.getStudentProfile().subscribe((res: any) => {
+        this.studentProfile = res['studentProfile']
+      });
       this.resetComplaintForm();
       this.refreshComplaintsList();
     }
@@ -31,10 +41,14 @@ export class ComplStatusComponent implements OnInit {
       this.viewComplaintsForm = !this.viewComplaintsForm;
     }
 
+    // hide or display complaint and resolution
+  toggleViewComplaintResolution() {
+    this.viewComplaintResolution = !this.viewComplaintResolution;
+  }
+
     // get all complaints from the database
     showComplaints() {
-      this.complaintService.getComplaint().subscribe((data: any) => this.complaints = data);
-      console.log(this.complaints);
+      this.complaintService.getComplaint().subscribe((data: any) => this.myComplaints = data);
     }
 
     // reset complaints form
@@ -79,6 +93,20 @@ export class ComplStatusComponent implements OnInit {
         this.complaintService.allComplaints = res as Complaint[];
       });
     }
+
+    // view complaint to be resolved
+  viewComplaint(complaint: Complaint) {
+    this.complaintService.selectedComplaint = complaint;
+    this.viewComplaintResolution = true;
+  }
+
+  // view resolution
+  viewResolution(_id : string) {
+    this.resolutionService.getSingleResolution(_id).subscribe((res) => {
+      this.specificResolution = res;
+    });
+    this.viewComplaintResolution = true;
+  }
 
     //delete complaint
     onDeleteComplaint(_id : string) {

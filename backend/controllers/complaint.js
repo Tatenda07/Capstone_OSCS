@@ -52,9 +52,9 @@ exports.getStudentComplaints = async (req, res, next) => {
                 message: `There are no complaints from student with id: ${req.params.student_id}`
             })
         } else {
-            res.status(200).send({
-                payload: getStudentComplaints
-            })
+            res.status(200).send(
+                getStudentComplaints
+            )
         }
     } catch (err) {
         err.statusCode === undefined ? err.statusCode = 500 : '';

@@ -42,7 +42,7 @@ exports.authentication = async (req, res) => {
 
 // get student profile
 exports.studentProfile = async (req, res) => {
-    Student.findOne({ _id: req._id } , (err, student) => {
+    Student.findOne({ _id: req._id }, (err, student) => {
         if (!student)
             return res.status(404).json({ status: false, message: `No student record found with id ${req._id}` });
         else
