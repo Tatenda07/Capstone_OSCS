@@ -22,6 +22,8 @@ export class ComplaintsComponent implements OnInit {
     private router: Router,
   ) { }
 
+  serverErrorMessages!: string;
+
   ngOnInit() {
     this.resetcomplaintForm();
     this.studentService.getStudentProfile().subscribe((res: any) => {
@@ -52,10 +54,20 @@ export class ComplaintsComponent implements OnInit {
     form.value.student_name = this.studentProfile.first_name + ' ' + this.studentProfile.last_name;
     form.value.student_id = this.studentProfile.student_id;
     // add new complaint
-    this.complaintService.postComplaint(form.value).subscribe((res) => {
-      this.resetcomplaintForm(form);
-      this.notificationService.showSuccess("Complaint has been submitted successfully", "Complaint Management");
-      this.router.navigateByUrl('/compl-status');
+    this.complaintService.postComplaint(form.value).subscribe({
+      next: (res) => {
+        this.resetcomplaintForm(form);
+        this.notificationService.showSuccess("Complaint has been submitted successfully", "Complaint Management");
+        this.router.navigateByUrl('/compl-status');
+      },
+      error: (err) => {
+        if (err.status === 0) {
+          this.serverErrorMessages = 'Server connection failed. Please check your internet connection.'
+        } else {
+          this.serverErrorMessages = err.error.message;
+        }
+        this.notificationService.showError(this.serverErrorMessages, "Complaint Management Error")
+      }
     });
 
   }

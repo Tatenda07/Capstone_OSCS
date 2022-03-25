@@ -75,7 +75,11 @@ export class LoginSignupComponent implements OnInit {
         this.notificationService.showInfo("Account login success!", "AUP-Online Student Complaint Management System");
       },
       error: (err) => {
-        this.serverErrorMessages = err.error.message;
+        if (err.status === 0) {
+          this.serverErrorMessages = 'Server connection failed. Please check your internet connection.'
+        } else {
+          this.serverErrorMessages = err.error.message;
+        }
         //setTimeout(() => this.serverErrorMessages = '', 4000);
         this.notificationService.showError(this.serverErrorMessages, "Authentication Error")
       }
@@ -95,10 +99,10 @@ export class LoginSignupComponent implements OnInit {
         this.serverErrorMessages = err.error.join('<br/>');
       }
       else if (err.status === 0) {
-        this.serverErrorMessages = 'Server connection failed. Please check your server connection.'
+        this.serverErrorMessages = 'Server connection failed. Please check your internet connection.'
       }
       else if (err.status === 500) {
-        this.serverErrorMessages = 'Internal server error. Please check if your phone number or email are valid.'
+        this.serverErrorMessages = 'Internal server validation error. Please check if your phone number or email are valid.'
       }
       else {
         this.serverErrorMessages = 'Something went wrong. Please contact admin.';
