@@ -17,14 +17,14 @@ export class AuthInterceptor implements HttpInterceptor {
         headers: req.headers.set("Authorization", "Bearer " + this.studentService.getToken())
       });
       return next.handle(clonedreq).pipe(
-        tap(
-          event => { },
-          err => {
+        tap({
+          next: (event) => {},
+          error: (err) => {
             if (err.error.auth === false) {
               this.router.navigateByUrl('/login');
             }
           }
-        )
+        })
       );
     }
   }

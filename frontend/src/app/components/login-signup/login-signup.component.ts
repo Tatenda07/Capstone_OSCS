@@ -68,25 +68,29 @@ export class LoginSignupComponent implements OnInit {
 
   // login student
   onLogin(form : NgForm) {
-    this.studentService.login(form.value).subscribe((res: any) => {
-      this.studentService.setToken(res.token);
-      this.router.navigateByUrl('/home');
-      this.notificationService.showInfo("Account login success!", "AUP-Online Student Complaint Management System");
-    }, (err) => {
-      this.serverErrorMessages = err.error.message;
-      //setTimeout(() => this.serverErrorMessages = '', 4000);
-      this.notificationService.showError(this.serverErrorMessages, "Authentication Error")
+    this.studentService.login(form.value).subscribe({
+      next: (res: any) => {
+        this.studentService.setToken(res.token);
+        this.router.navigateByUrl('/home');
+        this.notificationService.showInfo("Account login success!", "AUP-Online Student Complaint Management System");
+      },
+      error: (err) => {
+        this.serverErrorMessages = err.error.message;
+        //setTimeout(() => this.serverErrorMessages = '', 4000);
+        this.notificationService.showError(this.serverErrorMessages, "Authentication Error")
+      }
     });
   }
 
  // sign-up student: create new account
  onSignUp(form : NgForm) {
-  this.studentService.postStudent(form.value).subscribe(
-    res => {
+  this.studentService.postStudent(form.value).subscribe({
+    next: (res) => {
       this.resetSignUpForm(form);
       this.router.navigateByUrl('/login');
       this.notificationService.showSuccess("Account registered successfully. You may now login with your account.", "New Student Registration");
-    }, err => {
+    },
+    error: (err) => {
       if (err.status === 422) {
         this.serverErrorMessages = err.error.join('<br/>');
       }
@@ -100,7 +104,8 @@ export class LoginSignupComponent implements OnInit {
         this.serverErrorMessages = 'Something went wrong. Please contact admin.';
       }
       this.notificationService.showError(this.serverErrorMessages, "Sign up Error")
-    });
+    }
+  });
  }
 
 }
