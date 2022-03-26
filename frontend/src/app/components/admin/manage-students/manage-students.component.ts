@@ -70,7 +70,7 @@ export class ManageStudentsComponent implements OnInit {
   }
 
   onSubmitStudent(form : NgForm) {
-    //add new user
+    //add new student
     if (form.value._id == "") {
       this.studentService.postStudent(form.value).subscribe((res) => {
         this.resetStudentsForm(form);
@@ -78,7 +78,7 @@ export class ManageStudentsComponent implements OnInit {
         this.notificationService.showSuccess("New student registered successfully.", "Student Management");
       });
 
-    //update existing user
+    //update existing student
     } else {
       this.studentService.editStudent(form.value).subscribe((res) => {
         this.resetStudentsForm(form);

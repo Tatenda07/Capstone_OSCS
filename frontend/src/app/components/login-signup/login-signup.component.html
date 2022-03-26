@@ -13,9 +13,9 @@
                     <div class="center-wrap">
                       <form class="section text-center" #signInForm="ngForm" (ngSubmit)="signInForm.valid && onLogin(signInForm)">
                         <!-- Error message -->
-                        <div class="alert" *ngIf="serverErrorMessages">
+                        <!-- <div class="alert" *ngIf="serverErrorMessages">
                           {{serverErrorMessages}}
-                        </div>
+                        </div> -->
                         <h4 class="mb-4 pb-3">Log In</h4>
                         <div class="form-group">
                           <input type="number" name="student_id" #student_id="ngModel" [(ngModel)]="model.student_id"

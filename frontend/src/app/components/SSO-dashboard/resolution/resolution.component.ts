@@ -111,6 +111,7 @@ export class ResolutionComponent implements OnInit {
       this.specificResolution = res;
     });
     this.viewComplaintResolution = true;
+    this.viewResolutionForm = false;
   }
 
   // refresh complaints list

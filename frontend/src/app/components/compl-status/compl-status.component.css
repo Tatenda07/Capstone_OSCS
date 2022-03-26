@@ -142,6 +142,48 @@ td {
   border-bottom: 1px solid #d3d3d3;
 }
 
+.view-complaint-btn {
+  background-color: #2a2b38;
+  color: #12f8ad;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: .5s;
+  letter-spacing: .5px;
+  border-radius: 5px;
+}
+
+.view-complaint-btn:hover {
+    background-color: #12f8ad;
+    color: #2a2b38;
+    transition: .5s;
+}
+
+.view-resolution-btn, .close-btn {
+  background-color: #12f8ad;
+  color: #2a2b38;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: .5s;
+  letter-spacing: .5px;
+  border-radius: 5px;
+}
+
+.view-resolution-btn:hover, .close-btn:hover {
+  background-color: #2a2b38;
+  color: #12f8ad;
+  transition: .5s;
+}
+
+table button:focus {
+  outline: none;
+}
+
 .edit {
   color: green;
 }

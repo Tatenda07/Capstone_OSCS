@@ -16,14 +16,14 @@
               <label class="display-label">Student Name</label>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="student_name" type="text" name="student_name" #student_name="ngModel" [(ngModel)]="complaintService.selectedComplaint.student_name" disabled>
+                  <input id="student_name" type="text" name="student_name" #student_name="ngModel" [(ngModel)]="complaintService.selectedComplaint.student_name" readonly>
                 </div>
               </div>
 
               <label class="display-label">Student ID</label>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="student_id" type="text" name="student_id" #student_id="ngModel" [(ngModel)]="complaintService.selectedComplaint.student_id" disabled>
+                  <input id="student_id" type="text" name="student_id" #student_id="ngModel" [(ngModel)]="complaintService.selectedComplaint.student_id" readonly>
                 </div>
               </div>
 
@@ -56,9 +56,28 @@
     </div>
   </div>
 
-  <div class="table-div">
+  <div class="view-complaint-and-resolution" *ngIf="viewComplaintResolution">
+    <div class="complaint">
+      <h5>Complaint:</h5>
+      <h6>{{complaintService.selectedComplaint.complaint_header}}</h6>
+      <p class="body-text">{{complaintService.selectedComplaint.complaint_body}}</p>
+    </div>
 
-    <table class="responsive-table highlight" *ngIf="complaintService.allComplaints.length !== 0">
+    <div class="resolution" *ngIf="viewResolutionDiv">
+      <h5>Resolution:</h5>
+      <h6>{{specificResolution.resolution_header}}</h6>
+      <p class="body-text">{{specificResolution.resolution_body}}</p>
+    </div>
+    <button class="close-btn" (click)="viewComplaintResolution = false">Close</button>
+  </div>
+
+  <div class="table-div">
+    <h5>My Complaints</h5>
+    <h3 class="empty-list-text" *ngIf="complaintService.allComplaints?.length === 0">
+      There are no complaints from any students currently. If you have any complaints let us know <a routerLink="/complaints">here</a>
+    </h3>
+
+    <table class="responsive-table highlight" *ngIf="complaintService.allComplaints?.length !== 0">
       <thead>
         <tr>
           <th>Complaint Header</th>
@@ -74,20 +93,24 @@
       </thead>
       <tbody>
         <tr *ngFor="let complaint of complaintService.allComplaints">
-          <td>{{ complaint.complaint_header }}</td>
-          <td>{{ complaint.complaint_body }}</td>
-          <td *ngIf="complaint.complaint_status === 0">In queue</td>
-          <td *ngIf="complaint.complaint_status === 1">Received by CSC personnel</td>
-          <td *ngIf="complaint.complaint_status === 2">Moderated</td>
-          <td *ngIf="complaint.complaint_status === 3">Pending SSO response</td>
-          <td *ngIf="complaint.complaint_status === 4">Resolved</td>
-          <td *ngIf="complaint.resolution_id === undefined">Not yet resolved</td>
-          <td *ngIf="complaint.resolution_id !== undefined">View resolution</td>
-          <td>{{ complaint.student_id }}</td>
-          <td>{{ complaint.student_name }}</td>
-          <td>{{ complaint.createdAt | date:'medium' }}</td>
-          <td>{{ complaint.updatedAt | date:'medium' }}</td>
-          <td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id">{{ complaint.complaint_header }}</td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id">{{ complaint.complaint_body }}</td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 0">In queue</td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 1">Received by CSC personnel</td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 2">Moderated</td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 3">Pending SSO response</td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 4">Resolved</td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.resolution_id === undefined">
+            <button class="view-complaint-btn" (click)="viewComplaint(complaint); viewResolutionDiv = false">View Complaint</button>
+          </td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.resolution_id !== undefined">
+            <button class="view-resolution-btn" (click)="viewComplaint(complaint);viewResolution(complaint.resolution_id)">View Resolution</button>
+          </td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id">{{ complaint.student_id }}</td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id">{{ complaint.student_name }}</td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id">{{ complaint.createdAt | date:'medium' }}</td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id">{{ complaint.updatedAt | date:'medium' }}</td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status < 2">
             <!-- edit button -->
             <a class="action-btn edit" title="Edit Complaint">
               <i class="material-icons" (click)="onEditComplaint(complaint)">edit</i>
@@ -101,11 +124,8 @@
       </tbody>
     </table>
 
-    <h3 class="empty-list-text" *ngIf="complaintService.allComplaints.length === 0">
-      There are no complaints from the students currently.
-    </h3>
-
-    <table class="responsive-table highlight" *ngIf="complaintService.allComplaints.length !== 0">
+    <h5 style="margin-top: 20px;">Other Students' Complaints</h5>
+    <table class="responsive-table highlight" *ngIf="complaintService.allComplaints?.length !== 0">
       <thead>
         <tr>
           <th>Complaint Header</th>
@@ -116,34 +136,27 @@
           <th>Student Name</th>
           <th>Posted On</th>
           <th>Last Updated</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let complaint of complaintService.allComplaints">
-          <td>{{ complaint.complaint_header }}</td>
-          <td>{{ complaint.complaint_body }}</td>
-          <td *ngIf="complaint.complaint_status === 0">In queue</td>
-          <td *ngIf="complaint.complaint_status === 1">Received by CSC personnel</td>
-          <td *ngIf="complaint.complaint_status === 2">Moderated</td>
-          <td *ngIf="complaint.complaint_status === 3">Pending SSO response</td>
-          <td *ngIf="complaint.complaint_status === 4">Resolved</td>
-          <td *ngIf="complaint.resolution_id === undefined">Not yet resolved</td>
-          <td *ngIf="complaint.resolution_id !== undefined">View resolution</td>
-          <td>{{ complaint.student_id }}</td>
-          <td>{{ complaint.student_name }}</td>
-          <td>{{ complaint.createdAt | date:'medium' }}</td>
-          <td>{{ complaint.updatedAt | date:'medium' }}</td>
-          <td>
-            <!-- edit button -->
-            <a class="action-btn edit" title="Edit Complaint">
-              <i class="material-icons" (click)="onEditComplaint(complaint)">edit</i>
-            </a>
-            <!-- delete button -->
-            <a class="action-btn delete" title="Delete Complaint">
-              <i class="material-icons" (click)="onDeleteComplaint(complaint._id)">delete</i>
-            </a>
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id">{{ complaint.complaint_header }}</td>
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id">{{ complaint.complaint_body }}</td>
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.complaint_status === 0">In queue</td>
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.complaint_status === 1">Received by CSC personnel</td>
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.complaint_status === 2">Moderated</td>
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.complaint_status === 3">Pending SSO response</td>
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.complaint_status === 4">Resolved</td>
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.resolution_id === undefined">
+            <button class="view-complaint-btn" (click)="viewComplaint(complaint); viewResolutionDiv = false">View Complaint</button>
           </td>
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.resolution_id !== undefined">
+            <button class="view-resolution-btn" (click)="viewComplaint(complaint);viewResolution(complaint.resolution_id)">View Resolution</button>
+          </td>
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id">{{ complaint.student_id }}</td>
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id">{{ complaint.student_name }}</td>
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id">{{ complaint.createdAt | date:'medium' }}</td>
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id">{{ complaint.updatedAt | date:'medium' }}</td>
         </tr>
       </tbody>
     </table>

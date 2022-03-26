@@ -69,7 +69,7 @@
       <h6>{{specificResolution.resolution_header}}</h6>
       <p class="body-text">{{specificResolution.resolution_body}}</p>
     </div>
-    <button (click)="toggleViewComplaintResolution()">Close</button>
+    <button class="close-btn" (click)="toggleViewComplaintResolution()">Close</button>
   </div>
 
   <div class="table-div">
@@ -77,7 +77,7 @@
       <h5> Complaints List </h5>
     </div>
     <!-- complaits table -->
-    <table class="responsive-table highlight" *ngIf="complaintService.allComplaints.length !== 0">
+    <table class="responsive-table highlight" *ngIf="complaintService.allComplaints?.length !== 0">
       <thead>
         <tr>
           <th>Complaint Header</th>
@@ -104,10 +104,10 @@
           <td>{{ complaint.createdAt | date:'medium' }}</td>
           <td>{{ complaint.updatedAt | date:'medium' }}</td>
           <td *ngIf="complaint.complaint_status !== 4">
-              <button (click)="viewComplaint(complaint);viewResolutionForm = true">Add Resolution</button>
+              <button class="view-complaint-btn" (click)="viewComplaint(complaint);viewResolutionForm = true">Add Resolution</button>
           </td>
           <td *ngIf="complaint.complaint_status === 4">
-            <button (click)="viewComplaint(complaint);viewResolution(complaint.resolution_id)">View Resolution</button>
+            <button class="view-resolution-btn" (click)="viewComplaint(complaint);viewResolution(complaint.resolution_id)">View Resolution</button>
           </td>
         </tr>
       </tbody>
@@ -118,7 +118,7 @@
     </div>
 
     <!-- resolutions table -->
-    <table class="responsive-table highlight" *ngIf="resolutionService.allResolutions.length !== 0">
+    <table class="responsive-table highlight" *ngIf="resolutionService.allResolutions?.length !== 0">
       <thead>
         <tr>
           <th>Resolution ID</th>

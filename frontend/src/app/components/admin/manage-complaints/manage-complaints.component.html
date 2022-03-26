@@ -58,11 +58,11 @@
     </div>
 
     <div class="table-div">
-      <h3 class="empty-list-text" *ngIf="complaintService.allComplaints.length === 0">
+      <h3 class="empty-list-text" *ngIf="complaintService.allComplaints?.length === 0">
         There are no complaints from the students currently.
       </h3>
 
-      <table class="responsive-table highlight" *ngIf="complaintService.allComplaints.length !== 0">
+      <table class="responsive-table highlight" *ngIf="complaintService.allComplaints?.length !== 0">
         <thead>
           <tr>
             <th>Complaint Header</th>
