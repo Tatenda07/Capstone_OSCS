@@ -71,7 +71,7 @@ export class ComplStatusComponent implements OnInit {
     // on submit complaint
     onSubmitComplaint(form : NgForm) {
       //update complaint and change the status to moderated
-      this.complaintService.moderateComplaint(form.value).subscribe((res) => {
+      this.complaintService.editComplaint(form.value).subscribe((res) => {
         this.resetComplaintForm(form);
         this.refreshComplaintsList();
         this.notificationService.showSuccess("Complaint has been updated successfully", "Complaint Management");

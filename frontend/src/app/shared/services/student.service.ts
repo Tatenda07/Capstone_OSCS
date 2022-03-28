@@ -77,4 +77,10 @@ export class StudentService {
     else
       return false;
   }
+
+  roleStudent () {
+    var studentPayload = this.getStudentPayload();
+    var role = studentPayload.role;
+    return role;
+  }
 }

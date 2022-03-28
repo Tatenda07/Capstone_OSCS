@@ -15,6 +15,7 @@ export class ManageUsersComponent implements OnInit {
   showHideUsersForm = false;
   users: any;
   userDetails: any;
+  serverErrorMessages!: string;
 
   constructor(
     private router: Router,
@@ -78,10 +79,20 @@ export class ManageUsersComponent implements OnInit {
   onSubmitUser(form : NgForm) {
     //add new user
     if (form.value._id == "") {
-      this.userService.postUser(form.value).subscribe((res) => {
-        this.resetUsersForm(form);
-        this.showUsers();
-        this.notificationService.showSuccess("New user added successfully.", "User Management");
+      this.userService.postUser(form.value).subscribe({
+        next: (res) => {
+          this.resetUsersForm(form);
+          this.showUsers();
+          this.notificationService.showSuccess("New user added successfully.", "User Management");
+        },
+        error: (err) => {
+          if (err.status === 0) {
+            this.serverErrorMessages = 'Server connection failed. Please check your internet connection.'
+          } else {
+            this.serverErrorMessages = err.error.message
+          }
+          this.notificationService.showError(this.serverErrorMessages, "User Management Error")
+        }
       });
 
     //update existing user
@@ -102,12 +113,6 @@ export class ManageUsersComponent implements OnInit {
         this.notificationService.showInfo("User has been deleted.", "User Management");
       });
     }
-  }
-
-  //user logout
-  onLogout() {
-    this.userService.deleteToken();
-    this.router.navigate(['/login']);
   }
 
 }

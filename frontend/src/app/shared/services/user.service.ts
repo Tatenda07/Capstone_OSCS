@@ -88,4 +88,10 @@ export class UserService {
     else
       return false;
   }
+
+  userRole () {
+    var userPayload = this.getUserPayload();
+    var role = userPayload.role;
+    return role;
+  }
 }

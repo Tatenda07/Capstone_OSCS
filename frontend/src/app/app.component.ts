@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { StudentService } from './shared/services/student.service';
+import { UserService } from './shared/services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [StudentService]
+  providers: [StudentService, UserService]
 })
 export class AppComponent {
   title = 'frontend';
@@ -14,7 +15,7 @@ export class AppComponent {
   //show or hide side menu
   displayMenu = true;
 
-  constructor(private studentService: StudentService, private router: Router) { }
+  constructor(public studentService: StudentService, public userService: UserService, private router: Router) { }
 
   toogleMenu() {
     this.displayMenu = !this.displayMenu;
@@ -22,6 +23,6 @@ export class AppComponent {
 
   onLogout() {
     this.studentService.deleteToken();
-    this.router.navigate(['/login']);
+    this.toogleMenu();
   }
 }

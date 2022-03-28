@@ -15,6 +15,7 @@ export class ManageStudentsComponent implements OnInit {
   showHideStudentsForm = false;
   students: any;
   studentDetails: any;
+  serverErrorMessages!: string;
 
   constructor(
     private router: Router,
@@ -72,10 +73,20 @@ export class ManageStudentsComponent implements OnInit {
   onSubmitStudent(form : NgForm) {
     //add new student
     if (form.value._id == "") {
-      this.studentService.postStudent(form.value).subscribe((res) => {
-        this.resetStudentsForm(form);
-        this.refreshStudentsList();
-        this.notificationService.showSuccess("New student registered successfully.", "Student Management");
+      this.studentService.postStudent(form.value).subscribe({
+        next: (res) => {
+          this.resetStudentsForm(form);
+          this.refreshStudentsList();
+          this.notificationService.showSuccess("New student registered successfully.", "Student Management");
+        },
+        error: (err) => {
+          if (err.status === 0) {
+            this.serverErrorMessages = 'Server connection failed. Please check your internet connection.'
+          } else {
+            this.serverErrorMessages = err.error.message;
+          }
+          this.notificationService.showError(this.serverErrorMessages, "Student Management Error")
+        }
       });
 
     //update existing student
@@ -96,12 +107,6 @@ export class ManageStudentsComponent implements OnInit {
         this.notificationService.showInfo("Student account has been deleted.", "Student Management");
       });
     }
-  }
-
-  //student logout
-  onLogout() {
-    this.studentService.deleteToken();
-    this.router.navigate(['/login']);
   }
 
 }

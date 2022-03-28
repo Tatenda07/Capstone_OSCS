@@ -27,7 +27,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 import { AuthGuard } from './auth/auth.guard';
-import { AuthInterceptor } from './auth/auth.interceptor';
+import { UserAuthGuard } from './auth/user-auth.guard';
+import { AuthInterceptor, UserAuthInterceptor } from './auth/auth.interceptor';
+import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     ManageStudentsComponent,
     ComplaintsComponent,
     ResolutionComponent,
+    AdminLoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,11 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  },AuthGuard],
+  },{
+    provide: HTTP_INTERCEPTORS,
+    useClass: UserAuthInterceptor,
+    multi: true
+  },AuthGuard, UserAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

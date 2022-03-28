@@ -23,7 +23,7 @@ export class LoginSignupComponent implements OnInit {
   model = {
     student_id :'',
     password:''
-  };
+  }
 
   serverErrorMessages!: string;
 

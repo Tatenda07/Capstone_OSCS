@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth/auth.guard';
+import { AuthGuard, UserAuthGuard } from './auth/auth.guard';
+import { RoleGuard, StudentRoleGuard } from './auth/role.guard';
 
 import { AboutComponent } from './components/about/about.component';
 import { LoginSignupComponent } from './components/login-signup/login-signup.component';
@@ -14,28 +15,23 @@ import { HelpComponent } from './components/help/help.component';
 import { ManageStudentsComponent } from './components/admin/manage-students/manage-students.component';
 import { ComplaintsComponent } from './components/complaints/complaints.component';
 import { ResolutionComponent } from './components/SSO-dashboard/resolution/resolution.component';
+import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginSignupComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'compl-status', component: ComplStatusComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'manage-users', component: ManageUsersComponent },
-  { path: 'manage-complaints', component: ManageComplaintsComponent },
-  { path: 'faq', component: FaqComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'help', component: HelpComponent },
-  { path: 'manage-students', component: ManageStudentsComponent },
-  { path: 'compl-status', component: ComplStatusComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: HomeComponent},
-  { path: 'manage-users', component: ManageUsersComponent},
-  { path: 'manage-complaints', component: ManageComplaintsComponent},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard, StudentRoleGuard] },
+  { path: 'manage-users', component: ManageUsersComponent, canActivate: [UserAuthGuard, RoleGuard], data: {allowedRoles: ['Admin']} },
+  { path: 'manage-complaints', component: ManageComplaintsComponent, canActivate: [UserAuthGuard, RoleGuard], data: {allowedRoles: ['Admin','CSC Personnel']} },
+  { path: 'manage-students', component: ManageStudentsComponent, canActivate: [UserAuthGuard, RoleGuard], data: {allowedRoles: ['Admin']} },
+  { path: 'compl-status', component: ComplStatusComponent, canActivate: [AuthGuard, StudentRoleGuard] },
   { path: 'faq', component: FaqComponent},
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard, StudentRoleGuard] },
   { path: 'help', component: HelpComponent },
-  { path: 'complaints', component: ComplaintsComponent, canActivate: [AuthGuard] },
-  { path: 'resolutions', component: ResolutionComponent }
+  { path: 'complaints', component: ComplaintsComponent, canActivate: [AuthGuard, StudentRoleGuard] },
+  { path: 'resolutions', component: ResolutionComponent, canActivate: [UserAuthGuard, RoleGuard], data: {allowedRoles: ['Admin', 'SSO Personnel']} },
+  { path: 'admin-login', component: AdminLoginComponent}
 ];
 
 @NgModule({
