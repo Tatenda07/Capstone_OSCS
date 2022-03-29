@@ -11,7 +11,7 @@
      <!-- Student menu items -->
       <ul *ngIf="studentService.roleStudent() === 'Student'">
         <li (click)="toogleMenu()" routerLink="/home"><i class="menu-icon uil uil-estate"></i> Home</li>
-        <li (click)="toogleMenu()" routerLink="/complaints"><i class="menu-icon uil uil-fast-mail"></i> Submit Complaint</li>
+        <li (click)="toogleMenu()" routerLink="/complaints"><i class="menu-icon uil uil-fast-mail" style="font-size: 28px;"></i> Submit Complaint</li>
         <li (click)="toogleMenu()" routerLink="/compl-status"><i class="menu-icon uil uil-envelope-question"></i> Complaint Status</li>
         <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-question-circle"></i> FAQ</li>
         <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li>
@@ -22,7 +22,7 @@
 
       <!-- SSO Personnel menu items -->
       <ul *ngIf="userService.userRole() === 'SSO Personnel'">
-        <li (click)="toogleMenu()" routerLink="/resolutions"><i class="menu-icon uil uil-envelope-question"></i> Resolutions</li>
+        <li (click)="toogleMenu()" routerLink="/resolutions"><i class="menu-icon uil uil-envelope-check"></i> Resolve Complaints</li>
         <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-question-circle"></i> FAQ</li>
         <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
         <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-info-circle"></i> Help</li>
@@ -32,7 +32,7 @@
 
       <!-- CSC Personnel menu items -->
       <ul *ngIf="userService.userRole() === 'CSC Personnel'">
-        <li (click)="toogleMenu()" routerLink="/manage-complaints"><i class="menu-icon uil uil-envelope-question"></i> Manage Complaints</li>
+        <li (click)="toogleMenu()" routerLink="/manage-complaints"><i class="menu-icon uil uil-envelopes"></i> Manage Complaints</li>
         <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-question-circle"></i> FAQ</li>
         <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
         <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-info-circle"></i> Help</li>
@@ -42,10 +42,10 @@
 
       <!-- Admin user menu items -->
       <ul *ngIf="userService.userRole() === 'Admin'">
-        <li (click)="toogleMenu()" routerLink="/manage-users"><i class="menu-icon uil uil-signout"></i> Manage Users </li>
-        <li (click)="toogleMenu()" routerLink="/manage-students"><i class="menu-icon uil uil-signout"></i> Manage Students </li>
-        <li (click)="toogleMenu()" routerLink="/manage-complaints"><i class="menu-icon uil uil-signout"></i> Manage Complaints </li>
-        <li (click)="toogleMenu()" routerLink="/resolutions"><i class="menu-icon uil uil-signout"></i> Resolutions </li>
+        <li (click)="toogleMenu()" routerLink="/manage-users"><i class="menu-icon uil uil-user"></i> Manage Users </li>
+        <li (click)="toogleMenu()" routerLink="/manage-students"><i class="menu-icon uil uil-book-reader"></i> Manage Students </li>
+        <li (click)="toogleMenu()" routerLink="/manage-complaints"><i class="menu-icon uil uil-envelopes"></i> Manage Complaints </li>
+        <li (click)="toogleMenu()" routerLink="/resolutions"><i class="menu-icon uil uil-envelope-check"></i> Resolutions </li>
         <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-question-circle"></i> FAQ</li>
         <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
         <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-info-circle"></i> Help</li>

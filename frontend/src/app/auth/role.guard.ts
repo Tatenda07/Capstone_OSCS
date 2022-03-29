@@ -39,7 +39,7 @@ export class StudentRoleGuard implements CanActivate {
   constructor(private studentService: StudentService, private notificationService: NotificationService ,private router: Router) {}
 
   canActivate() {
-    let role = this.studentService.roleStudent();
+    const role = this.studentService.roleStudent();
     if (role === 'Student') {
       return true;
     }

@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { StudentService } from 'src/app/shared/services/student.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-login-signup',
   templateUrl: './login-signup.component.html',
   styleUrls: ['./login-signup.component.css'],
-  providers: [StudentService]
+  providers: [StudentService, UserService]
 })
 export class LoginSignupComponent implements OnInit {
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -16,6 +17,7 @@ export class LoginSignupComponent implements OnInit {
 
   constructor(
     public studentService: StudentService,
+    private userService: UserService,
     private notificationService: NotificationService,
     private router: Router
     ) { }
@@ -30,8 +32,10 @@ export class LoginSignupComponent implements OnInit {
   ngOnInit(): void {
     this.resetLogInForm();
     this.resetSignUpForm();
-    if (this.studentService.isLoggedIn())
+    if (this.studentService.isLoggedIn()) {
+      this.notificationService.showInfo('You you are already logged in.','Account Status');
       this.router.navigateByUrl('/home');
+    }
   }
 
   //reset Sign Up form (this is the method for the cancel button on the Sign Up form)

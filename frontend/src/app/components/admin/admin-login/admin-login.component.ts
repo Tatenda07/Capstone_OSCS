@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { UserService } from 'src/app/shared/services/user.service';
+import { StudentService } from 'src/app/shared/services/student.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -16,6 +17,7 @@ export class AdminLoginComponent implements OnInit {
 
   constructor(
     public userService: UserService,
+    private studentService: StudentService,
     private notificationService: NotificationService,
     private router: Router
   ) { }
@@ -28,6 +30,19 @@ export class AdminLoginComponent implements OnInit {
   serverErrorMessages!: string;
 
   ngOnInit(): void {
+    this.resetLogInForm();
+    if (this.userService.isLoggedIn() && this.userService.userRole() === 'Admin') {
+      this.notificationService.showInfo('You you are already logged in.','Account Status');
+      this.router.navigateByUrl('/manage-users');
+    }
+    if (this.userService.isLoggedIn() && this.userService.userRole() === 'SSO Personnel') {
+      this.notificationService.showInfo('You you are already logged in.','Account Status');
+      this.router.navigateByUrl('/resolutions');
+    }
+    if (this.userService.isLoggedIn() && this.userService.userRole() === 'CSC Personnel') {
+      this.notificationService.showInfo('You you are already logged in.','Account Status');
+      this.router.navigateByUrl('/manage-complaints');
+    }
   }
 
   // reset Login form when cancel button is clicked
