@@ -12,9 +12,9 @@ a { cursor: pointer; transition: all 200ms linear; }
 
 a:hover { text-decoration: none; }
 
-.link { color: #2a2b38; }
+.link { text-decoration: underline; color: #2a2b38; }
 
-.link:hover { text-decoration: underline; }
+.link:hover { text-decoration: underline; color: #262ea0; }
 
 p { font-weight: 500; font-size: 14px; line-height: 1.7; }
 
