@@ -162,3 +162,7 @@ footer {
     font-size: .7rem;
   }
 }
+
+.ios-menu {
+  width: 14px;
+}
