@@ -1,5 +1,8 @@
 @import '../../compl-status/compl-status.component.css';
 
-.body-text {
-  font-size: 14px;
+.action-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
 }

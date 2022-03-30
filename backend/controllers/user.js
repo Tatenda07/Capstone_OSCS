@@ -16,8 +16,8 @@ exports.addUser = async (req, res, next) => {
         })
     } catch (err) {
         if (err.code === 11000) {
-            // duplicate email address or phone number on account sign up
-            res.status(422).send(['The entered email or phone number is already registered with an existing account. Please sign up with a different phone number and email address.']);
+            // duplicate username, email address or phone number on account sign up
+            res.status(422).send(['The entered username, email or phone number is already registered with an existing account. Please sign up with a different username, phone number and/or email address.']);
         } else {
             // other account validation errors
             err.statusCode === undefined ? err.statusCode = 500 : '';
@@ -46,7 +46,7 @@ exports.userProfile = async (req, res) => {
         if (!user)
             return res.status(404).json({ status: false, message: 'User record not found.' });
         else
-        return res.status(200).json({ status: true, userProfile : _.pick(user,['first_name', 'last_name', 'middle_initial', 'email', 'phone_number','role']) }); //lodash function '_.pick'
+        return res.status(200).json({ status: true, userProfile : _.pick(user,['_id','first_name', 'last_name', 'middle_initial', 'username', 'email', 'phone_number','role']) }); //lodash function '_.pick'
     });
 }
 

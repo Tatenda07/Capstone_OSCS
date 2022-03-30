@@ -3,6 +3,7 @@ export class User {
   first_name! : string;
   last_name! : string;
   middle_initial! : string;
+  username! : string;
   email! : string;
   phone_number! : string;
   role! : string;

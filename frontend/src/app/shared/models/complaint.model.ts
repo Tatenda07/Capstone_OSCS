@@ -5,6 +5,7 @@ export class Complaint {
   complaint_header! : string;
   complaint_body! : string;
   complaint_status! : number;
+  moderated_by! : string | undefined;
   resolution_id! : string;
   createdAt! : string;
   updatedAt! : string;

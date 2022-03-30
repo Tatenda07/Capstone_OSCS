@@ -14,8 +14,13 @@ const resolutionSchema = new Schema({
         type: Number,
         requred: true
     },
+    // respondent user_id
     user_id: {
         type: Number,
+        required: true
+    },
+    respondent_username: {
+        type: String,
         required: true
     },
     resolution_header: {
@@ -26,6 +31,10 @@ const resolutionSchema = new Schema({
         type: String,
         required: true
     },
+    updated_by: {
+        type: String,
+        default: undefined
+    }
 },
 {
     // Additional Configuration for the createdAt and updateAt fields.

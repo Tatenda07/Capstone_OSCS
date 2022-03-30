@@ -18,16 +18,12 @@
           <p class="title" *ngIf="resolutionService.selectedResolution._id === ''">Add Resolution to the Complaint</p>
           <p class="title" *ngIf="resolutionService.selectedResolution._id !== ''">Update Resolution</p>
           <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="resolutionService.selectedResolution._id">
+          <input id="respondent_username" type="hidden" name="respondent_username" #respondent_username="ngModel" [(ngModel)]="resolutionService.selectedResolution.respondent_username">
           <input id="complaint_id" type="hidden" name="complaint_id" #complaint_id="ngModel" [(ngModel)]="resolutionService.selectedResolution.complaint_id">
+          <input id="updated_by" type="hidden" name="updated_by" #updated_by="ngModel" [(ngModel)]="resolutionService.selectedResolution.updated_by">
+          <input id="user_id" type="hidden" name="user_id" #user_id="ngModel" [(ngModel)]="resolutionService.selectedResolution.user_id">
           <div class="row">
             <div class="col s12">
-              <label class="display-label">Respondent ID</label>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="user_id" type="text" name="user_id" #user_id="ngModel" [(ngModel)]="resolutionService.selectedResolution.user_id" required>
-                </div>
-              </div>
-
               <label class="display-label">Resolution Header</label>
               <div class="row">
                 <div class="input-field col s12">
@@ -61,15 +57,33 @@
     <div class="complaint">
       <h5>Complaint:</h5>
       <h6>{{complaintService.selectedComplaint.complaint_header}}</h6>
-      <p class="body-text">{{complaintService.selectedComplaint.complaint_body}}</p>
+      <p class="body-text">
+        {{complaintService.selectedComplaint.complaint_body}} <br/>
+        <i class="body-datestamp">Complaint posted by {{complaintService.selectedComplaint.student_name}} on {{complaintService.selectedComplaint.createdAt | date:'medium'}}</i> <br/>
+        <i class="body-datestamp" *ngIf="complaintService.selectedComplaint.moderated_by !== undefined">Complaint moderated by {{complaintService.selectedComplaint.moderated_by}} on {{complaintService.selectedComplaint.updatedAt | date:'medium'}}</i>
+      </p>
     </div>
 
     <div class="resolution">
       <h5>Resolution:</h5>
       <h6>{{specificResolution.resolution_header}}</h6>
-      <p class="body-text">{{specificResolution.resolution_body}}</p>
+      <p class="body-text">
+        {{specificResolution.resolution_body}} <br/>
+        <i class="body-datestamp">Resolution posted by {{specificResolution.respondent_username}} on {{specificResolution.createdAt | date:'medium'}}</i> <br/>
+        <i class="body-datestamp" *ngIf="specificResolution.updated_by !== undefined">Resolution updated by {{specificResolution.updated_by}} on {{specificResolution.updatedAt | date:'medium'}}</i>
+      </p>
     </div>
-    <button class="close-btn" (click)="toggleViewComplaintResolution()">Close</button>
+    <div class="action-buttons">
+      <button class="close-btn" (click)="viewComplaintResolution = false">Close</button>
+      <!-- edit button -->
+      <a class="action-btn edit" title="Edit Resolution">
+        <i class="material-icons" (click)="onEditResolution(specificResolution)">edit</i>
+      </a>
+      <!-- delete button -->
+      <a class="action-btn delete" title="Delete Resolution">
+        <i class="material-icons" (click)="onDeleteResolution(specificResolution._id)">delete</i>
+      </a>
+    </div>
   </div>
 
   <div class="table-div">
@@ -96,7 +110,7 @@
           <td>{{ complaint.complaint_body }}</td>
           <td *ngIf="complaint.complaint_status === 0">In queue</td>
           <td *ngIf="complaint.complaint_status === 1">Received by CSC personnel</td>
-          <td *ngIf="complaint.complaint_status === 2">Moderated</td>
+          <td *ngIf="complaint.complaint_status === 2">Moderated by {{complaint.moderated_by}}</td>
           <td *ngIf="complaint.complaint_status === 3">Pending SSO response</td>
           <td *ngIf="complaint.complaint_status === 4">Resolved</td>
           <td>{{ complaint.student_id }}</td>
@@ -121,21 +135,20 @@
     <table class="responsive-table highlight" *ngIf="resolutionService.allResolutions?.length !== 0">
       <thead>
         <tr>
-          <th>Resolution ID</th>
           <th>Complaint ID</th>
-          <th>Respondent ID</th>
+          <th>Respondent</th>
           <th>Resolution Header</th>
           <th>Resolution</th>
           <th>Posted On</th>
           <th>Last Updated</th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let resolution of resolutionService.allResolutions">
-          <td>{{ resolution._id }}</td>
           <td>{{ resolution.complaint_id }}</td>
-          <td>{{ resolution.user_id }}</td>
+          <td>{{ resolution.respondent_username }}</td>
           <td>{{ resolution.resolution_header }}</td>
           <td>{{ resolution.resolution_body }}</td>
           <td>{{ resolution.createdAt | date:'medium' }}</td>
@@ -150,6 +163,7 @@
               <i class="material-icons" (click)="onDeleteResolution(resolution._id)">delete</i>
             </a>
           </td>
+          <td *ngIf="resolution.updated_by !== undefined">Last updated by {{ resolution.updated_by }}</td>
         </tr>
       </tbody>
     </table>

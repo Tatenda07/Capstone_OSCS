@@ -3,20 +3,28 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Complaint } from 'src/app/shared/models/complaint.model';
 import { ComplaintService } from 'src/app/shared/services/complaint.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { ResolutionService } from 'src/app/shared/services/resolution.service';
 
 @Component({
   selector: 'app-manage-complaints',
   templateUrl: './manage-complaints.component.html',
   styleUrls: ['./manage-complaints.component.css'],
-  providers: [ComplaintService]
+  providers: [ComplaintService, UserService]
 })
 export class ManageComplaintsComponent implements OnInit {
   viewComplaintsForm = false;
+  viewComplaintResolution = false;
+  viewResolutionDiv = false;
+  specificResolution: any;
   complaints: any;
+  userProfile: any;
 
   constructor(
     public complaintService: ComplaintService,
+    private resolutionService: ResolutionService,
+    private userService: UserService,
     private notificationService : NotificationService,
     private router: Router
     ) { }
@@ -24,11 +32,9 @@ export class ManageComplaintsComponent implements OnInit {
   ngOnInit() {
     this.resetComplaintForm();
     this.refreshComplaintsList();
-  }
-
-  // hide or display complaints form
-  toogleDisplayComplaintForm() {
-    this.viewComplaintsForm = !this.viewComplaintsForm;
+    this.userService.getUserProfile().subscribe((res: any) => {
+      this.userProfile = res['userProfile']
+    });
   }
 
   // get all complaints from the database
@@ -48,6 +54,7 @@ export class ManageComplaintsComponent implements OnInit {
       complaint_header: "",
       complaint_body: "",
       complaint_status: 2,
+      moderated_by: undefined,
       resolution_id: "",
       createdAt: "",
       updatedAt: ""
@@ -58,6 +65,8 @@ export class ManageComplaintsComponent implements OnInit {
 
   // on submit complaint
   onSubmitComplaint(form : NgForm) {
+    // atumatically attach moderator username to the complaint
+    form.value.moderated_by = this.userProfile.username;
     //update complaint and change the status to moderated
     this.complaintService.moderateComplaint(form.value).subscribe((res) => {
       this.resetComplaintForm(form);
@@ -68,7 +77,7 @@ export class ManageComplaintsComponent implements OnInit {
   }
 
   //on edit complaint
-  onEditTask(complaint : Complaint) {
+  onEditComplaint(complaint : Complaint) {
     this.complaintService.selectedComplaint = complaint;
     this.viewComplaintsForm = true;
   }
@@ -85,9 +94,25 @@ export class ManageComplaintsComponent implements OnInit {
     if(confirm('Are you sure you want to delete this complaint?') == true) {
       this.complaintService.deleteComplaint(_id).subscribe((res) => {
         this.refreshComplaintsList();
+        this.viewComplaintResolution = false;
         this.notificationService.showInfo("Complaint has been deleted", "Complaints Management");
       });
     }
+  }
+
+  // view complaint to be resolved
+  viewComplaint(complaint: Complaint) {
+    this.complaintService.selectedComplaint = complaint;
+  }
+
+  // view resolution
+  viewResolution(_id : string) {
+    this.resolutionService.getSingleResolution(_id).subscribe((res) => {
+      this.specificResolution = res;
+    });
+    this.viewComplaintResolution = true;
+    this.viewResolutionDiv = true;
+    this.viewComplaintsForm = false;
   }
 
 }

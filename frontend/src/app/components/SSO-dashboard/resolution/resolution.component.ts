@@ -6,6 +6,7 @@ import { Complaint } from 'src/app/shared/models/complaint.model';
 import { ResolutionService } from 'src/app/shared/services/resolution.service';
 import { ComplaintService } from 'src/app/shared/services/complaint.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-resolution',
@@ -18,10 +19,12 @@ export class ResolutionComponent implements OnInit {
   viewComplaintResolution = false;
   resolutions: any;
   specificResolution: any;
+  userProfile: any;
 
   constructor(
     public resolutionService: ResolutionService,
     public complaintService: ComplaintService,
+    private userService: UserService,
     private notificationService: NotificationService,
     private router: Router
   ) { }
@@ -30,16 +33,9 @@ export class ResolutionComponent implements OnInit {
     this.resetResolutionForm();
     this.refreshResolutionsList();
     this.refreshComplaintsList();
-  }
-
-  // hide or display complaints form
-  toogleDisplayResolutionsForm() {
-    this.viewResolutionForm = !this.viewResolutionForm;
-  }
-
-  // hide or display complaint and resolution
-  toggleViewComplaintResolution() {
-    this.viewComplaintResolution = !this.viewComplaintResolution;
+    this.userService.getUserProfile().subscribe((res: any) => {
+      this.userProfile = res['userProfile']
+    })
   }
 
   // get all resolutions from the database
@@ -58,6 +54,8 @@ export class ResolutionComponent implements OnInit {
       user_id: "",
       resolution_header: "",
       resolution_body: "",
+      respondent_username: "",
+      updated_by: undefined,
       createdAt: "",
       updatedAt: ""
     }
@@ -70,18 +68,23 @@ export class ResolutionComponent implements OnInit {
     // add new resolution
     if (form.value._id === ""){
       form.value.complaint_id = this.complaintService.selectedComplaint._id;
+      form.value.user_id = this.userProfile._id;
+      form.value.respondent_username = this.userProfile.username;
       this.resolutionService.postResolution(form.value).subscribe((res) => {
         this.resetResolutionForm(form);
         this.refreshResolutionsList();
         this.refreshComplaintsList();
+        this.viewComplaintResolution = false;
         this.notificationService.showSuccess("New Resolution added successfully", "Resolutions Management");
       });
     // update existing resolution
     } else {
+      form.value.updated_by = this.userProfile.username;
       this.resolutionService.editResolution(form.value).subscribe((res) => {
         this.resetResolutionForm(form);
         this.refreshResolutionsList();
         this.refreshComplaintsList();
+        this.viewComplaintResolution = false;
         this.notificationService.showSuccess("Resolution has been updated successfully", "Resolutions Management");
       });
     }
@@ -127,6 +130,7 @@ export class ResolutionComponent implements OnInit {
       this.resolutionService.deleteResolution(_id).subscribe((res) => {
         this.refreshResolutionsList();
         this.refreshComplaintsList();
+        this.viewComplaintResolution = false;
         this.notificationService.showInfo("Resolution has been deleted", "Resolutions Management");
       });
     }

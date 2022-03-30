@@ -36,6 +36,13 @@
                   </div>
                 </div>
 
+                <label class="display-label">Username</label>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="username" type="text" name="username" #username="ngModel" [(ngModel)]="userService.selectedUser.username" required>
+                  </div>
+                </div>
+
                 <label class="display-label">email</label>
                 <div class="row">
                   <div class="input-field col s12">
@@ -94,6 +101,7 @@
         <thead>
           <tr>
             <th>Full Name</th>
+            <th>Username</th>
             <th>Email</th>
             <th>Phone Number</th>
             <th>Role</th>
@@ -105,6 +113,7 @@
         <tbody>
           <tr *ngFor="let user of users">
             <td>{{ user.first_name }} {{ user.middle_initial }} {{ user.last_name }}</td>
+            <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.phone_number }}</td>
             <td>{{ user.role }}</td>
@@ -112,11 +121,11 @@
             <td>{{ user.updatedAt | date:'medium' }}</td>
             <td>
               <!-- edit button -->
-              <a class="action-btn edit" title="Edit Task">
+              <a class="action-btn edit" title="Edit User">
                 <i class="material-icons" (click)="onEditUser(user)">edit</i>
               </a>
               <!-- delete button -->
-              <a class="action-btn delete" title="Delete Task">
+              <a class="action-btn delete" title="Delete User">
                 <i class="material-icons" (click)="onDeleteUser(user._id)">delete</i>
               </a>
             </td>

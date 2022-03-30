@@ -13,6 +13,7 @@ export class UserService {
     first_name: '',
     last_name: '',
     middle_initial: '',
+    username: '',
     email: '',
     phone_number: '',
     password: '',

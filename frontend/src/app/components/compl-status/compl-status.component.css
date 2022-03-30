@@ -42,6 +42,13 @@ main{
   padding: 5px;
 }
 
+.action-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+}
+
 .single-button {
   flex: 2;
   text-align: center;
@@ -63,6 +70,16 @@ main{
 .display-label {
   color: #0e2f23;
   font-size: 12px;
+}
+
+.body-text {
+  font-size: 14px;
+}
+
+.body-datestamp {
+  font-size: 10px;
+  font: optional;
+  color: #b1afaf;
 }
 
 .table-div {

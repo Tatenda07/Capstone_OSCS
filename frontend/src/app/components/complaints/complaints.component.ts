@@ -43,6 +43,7 @@ export class ComplaintsComponent implements OnInit {
       complaint_header: '',
       complaint_body: '',
       complaint_status: 1,
+      moderated_by: '',
       resolution_id: '',
       createdAt: '',
       updatedAt: ''

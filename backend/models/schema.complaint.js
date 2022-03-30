@@ -43,6 +43,10 @@ const complaintSchema = new Schema({
         },
         default: 0
     },
+    moderated_by: {
+        type: String,
+        default: undefined
+    },
     resolution_id: {
         type: Number,
         default: undefined

@@ -60,6 +60,7 @@ export class ComplStatusComponent implements OnInit {
         complaint_header: "",
         complaint_body: "",
         complaint_status: 2,
+        moderated_by: "",
         resolution_id: "",
         createdAt: "",
         updatedAt: ""
@@ -112,6 +113,7 @@ export class ComplStatusComponent implements OnInit {
       if(confirm('Are you sure you want to delete this complaint?') == true) {
         this.complaintService.deleteComplaint(_id).subscribe((res) => {
           this.refreshComplaintsList();
+          this.viewComplaintResolution = false;
           this.notificationService.showInfo("Complaint has been deleted", "Complaints Management");
         });
       }

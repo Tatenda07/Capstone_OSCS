@@ -34,6 +34,11 @@ const userSchema = new Schema({
         maxlength: 5,
         default: undefined
     },
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
     email: {
         type: String,
         lowercase: true,

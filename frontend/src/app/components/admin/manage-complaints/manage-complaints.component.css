@@ -67,6 +67,47 @@ main{
   font-size: 12px;
 }
 
+.view-complaint-and-resolution {
+  flex: 1;
+  margin-right: 5px;
+}
+
+.body-text {
+  font-size: 14px;
+}
+
+.body-datestamp {
+  font-size: 10px;
+  font: optional;
+  color: #b1afaf;
+}
+
+.view-resolution-btn, .close-btn {
+  background-color: #2a2b38;
+  color: #12f8ad;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: .5s;
+  letter-spacing: .5px;
+  border-radius: 5px;
+}
+
+.view-resolution-btn:hover, .close-btn:hover {
+    background-color: #12f8ad;
+    color: #2a2b38;
+    transition: .5s;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+}
+
 .table-div {
   flex: 2;
   padding: 5px;
