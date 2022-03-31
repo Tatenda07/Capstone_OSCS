@@ -101,6 +101,16 @@ main{
     transition: .5s;
 }
 
+.send-btn {
+  background-color: #3744f7;
+  color: white;
+}
+
+.send-btn:hover {
+  background-color: white;
+  color: #3744f7;
+}
+
 .action-buttons {
   display: flex;
   justify-content: space-around;

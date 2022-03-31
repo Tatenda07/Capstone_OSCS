@@ -71,7 +71,7 @@ export class ManageComplaintsComponent implements OnInit {
     this.complaintService.moderateComplaint(form.value).subscribe((res) => {
       this.resetComplaintForm(form);
       this.refreshComplaintsList();
-      this.notificationService.showSuccess("Complaint has been moderated successfully", "Complaint Management");
+      this.notificationService.showSuccess("Complaint has been moderated successfully.", "Complaint Management");
     });
 
   }
@@ -95,7 +95,7 @@ export class ManageComplaintsComponent implements OnInit {
       this.complaintService.deleteComplaint(_id).subscribe((res) => {
         this.refreshComplaintsList();
         this.viewComplaintResolution = false;
-        this.notificationService.showInfo("Complaint has been deleted", "Complaints Management");
+        this.notificationService.showInfo("Complaint has been deleted", "Complaint Management");
       });
     }
   }
@@ -113,6 +113,14 @@ export class ManageComplaintsComponent implements OnInit {
     this.viewComplaintResolution = true;
     this.viewResolutionDiv = true;
     this.viewComplaintsForm = false;
+  }
+
+  // change status to 'Pending SSO response' when the complaint is sent to the SSO dashboard
+  sendToSSO(complaint : Complaint) {
+    this.complaintService.sendComplaintToSSO(complaint).subscribe((res) => {
+      this.refreshComplaintsList();
+      this.notificationService.showInfo("Complaint has been sent to SSO dashboard.","Complaint Management");
+    })
   }
 
 }

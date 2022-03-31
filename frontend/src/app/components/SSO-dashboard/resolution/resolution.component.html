@@ -106,21 +106,18 @@
       </thead>
       <tbody>
         <tr *ngFor="let complaint of complaintService.allComplaints">
-          <td>{{ complaint.complaint_header }}</td>
-          <td>{{ complaint.complaint_body }}</td>
-          <td *ngIf="complaint.complaint_status === 0">In queue</td>
-          <td *ngIf="complaint.complaint_status === 1">Received by CSC personnel</td>
-          <td *ngIf="complaint.complaint_status === 2">Moderated by {{complaint.moderated_by}}</td>
-          <td *ngIf="complaint.complaint_status === 3">Pending SSO response</td>
-          <td *ngIf="complaint.complaint_status === 4">Resolved</td>
-          <td>{{ complaint.student_id }}</td>
-          <td>{{ complaint.student_name }}</td>
-          <td>{{ complaint.createdAt | date:'medium' }}</td>
-          <td>{{ complaint.updatedAt | date:'medium' }}</td>
-          <td *ngIf="complaint.complaint_status !== 4">
+          <td *ngIf="complaint.complaint_status > 2">{{ complaint.complaint_header }}</td>
+          <td *ngIf="complaint.complaint_status > 2">{{ complaint.complaint_body }}</td>
+          <td *ngIf="complaint.complaint_status > 2 && complaint.complaint_status === 3">Pending SSO response</td>
+          <td *ngIf="complaint.complaint_status > 2 && complaint.complaint_status === 4">Resolved</td>
+          <td *ngIf="complaint.complaint_status > 2">{{ complaint.student_id }}</td>
+          <td *ngIf="complaint.complaint_status > 2">{{ complaint.student_name }}</td>
+          <td *ngIf="complaint.complaint_status > 2">{{ complaint.createdAt | date:'medium' }}</td>
+          <td *ngIf="complaint.complaint_status > 2">{{ complaint.updatedAt | date:'medium' }}</td>
+          <td *ngIf="complaint.complaint_status > 2 && complaint.complaint_status !== 4">
               <button class="view-complaint-btn" (click)="viewComplaint(complaint);viewResolutionForm = true">Add Resolution</button>
           </td>
-          <td *ngIf="complaint.complaint_status === 4">
+          <td *ngIf="complaint.complaint_status > 2 && complaint.complaint_status === 4">
             <button class="view-resolution-btn" (click)="viewComplaint(complaint);viewResolution(complaint.resolution_id)">View Resolution</button>
           </td>
         </tr>

@@ -38,15 +38,22 @@ export class ComplaintService {
     return this.http.delete(this.baseURL + `/${_id}`);
   }
 
-  //edit complaint
+  //edit complaint (for students)
   editComplaint(complaint : Complaint) {
     return this.http.patch(this.baseURL + `/${complaint._id}`, complaint);
   }
 
   //moderate complaint
   moderateComplaint(complaint : Complaint) {
-    // change complaint status to moderated
+    // change complaint status to 'Moderated'
     complaint.complaint_status = 2;
+    return this.http.patch(this.baseURL + `/${complaint._id}`, complaint);
+  }
+
+  // send complaint to SSO dashboard
+  sendComplaintToSSO(complaint : Complaint) {
+    // change complaint status to 'Pending SSO response'
+    complaint.complaint_status = 3;
     return this.http.patch(this.baseURL + `/${complaint._id}`, complaint);
   }
 }

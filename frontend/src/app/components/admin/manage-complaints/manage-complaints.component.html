@@ -89,6 +89,7 @@
         <a class="action-btn delete" title="Delete Complaint" *ngIf="complaintService.selectedComplaint.complaint_status < 3">
           <i class="material-icons" (click)="onDeleteComplaint(complaintService.selectedComplaint._id)">delete</i>
         </a>
+        <button class="view-resolution-btn send-btn" (click)="sendToSSO(complaintService.selectedComplaint)" *ngIf="complaintService.selectedComplaint.complaint_status < 3">Send to SSO</button>
       </div>
     </div>
 
@@ -139,6 +140,9 @@
               <a class="action-btn delete" title="Delete Complaint">
                 <i class="material-icons" (click)="onDeleteComplaint(complaint._id)">delete</i>
               </a>
+            </td>
+            <td *ngIf="complaint.complaint_status < 3">
+              <button class="view-resolution-btn send-btn" (click)="sendToSSO(complaint)">Send to SSO</button>
             </td>
           </tr>
         </tbody>

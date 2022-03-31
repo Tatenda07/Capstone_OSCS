@@ -116,7 +116,7 @@
           <td *ngIf="complaint.student_id === studentProfile?.student_id">{{ complaint.complaint_body }}</td>
           <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 0">In queue</td>
           <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 1">Received by CSC personnel</td>
-          <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 2">Moderated</td>
+          <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 2">Moderated by {{complaint.moderated_by}}</td>
           <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 3">Pending SSO response</td>
           <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 4">Resolved</td>
           <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status <= 3">
@@ -166,10 +166,10 @@
           <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.complaint_status === 2">Moderated</td>
           <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.complaint_status === 3">Pending SSO response</td>
           <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.complaint_status === 4">Resolved</td>
-          <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.resolution_id === undefined">
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.complaint_status <= 3">
             <button class="view-complaint-btn" (click)="viewComplaint(complaint); viewResolutionDiv = false">View Complaint</button>
           </td>
-          <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.resolution_id !== undefined">
+          <td *ngIf="complaint.student_id !== studentProfile?.student_id && complaint.complaint_status === 4">
             <button class="view-resolution-btn" (click)="viewComplaint(complaint);viewResolution(complaint.resolution_id)">View Resolution</button>
           </td>
           <td *ngIf="complaint.student_id !== studentProfile?.student_id">{{ complaint.student_id }}</td>
