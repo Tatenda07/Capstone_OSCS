@@ -244,3 +244,11 @@ p { font-weight: 500; font-size: 14px; line-height: 1.7; }
 .dark-text {
   color: #2a2b38;
 }
+
+/* mobile responsiveness */
+@media only screen and (max-width: 390px) {
+
+  .btn {
+    padding: 0 20px;
+  }
+}
