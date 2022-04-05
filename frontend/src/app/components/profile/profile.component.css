@@ -11,12 +11,13 @@ content {
     width: 80%;
     right: 0;     
 }
-h4 {
-    align-content: center;
+.header {
+    text-align: center;
+    padding: 20px;
 }
 .accordion {
     margin-left: 30rem;
-    margin-top: 15rem;
+    margin-top: 10rem;
     max-width: 1300px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
