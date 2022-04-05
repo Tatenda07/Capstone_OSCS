@@ -50,6 +50,21 @@ const complaintSchema = new Schema({
     resolution_id: {
         type: Number,
         default: undefined
+    },
+    // is the complaint is part of FAQ 
+    FAQ: {
+        type: Number,
+        min: 0,
+        max: 1,
+        /*
+         *  0 = Complaint is NOT part of frequently asked questions (FAQ) list
+         *  1 = Complaint is part of FAQ list
+         */
+        validate: {
+            validator: Number.isInteger,
+            message: "{VALUE} is not an integer value",
+        },
+        default: 0
     }
 },
 {

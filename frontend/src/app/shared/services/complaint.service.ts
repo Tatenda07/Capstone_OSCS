@@ -43,6 +43,11 @@ export class ComplaintService {
     return this.http.patch(this.baseURL + `/${complaint._id}`, complaint);
   }
 
+  //get single complaint
+  getSingleComplaint(_id: string) {
+    return this.http.get(this.baseURL + `/${_id}`)
+  }
+
   //moderate complaint
   moderateComplaint(complaint : Complaint) {
     // change complaint status to 'Moderated'
@@ -54,6 +59,18 @@ export class ComplaintService {
   sendComplaintToSSO(complaint : Complaint) {
     // change complaint status to 'Pending SSO response'
     complaint.complaint_status = 3;
+    return this.http.patch(this.baseURL + `/${complaint._id}`, complaint);
+  }
+
+  // add complaint to FAQ list
+  addToFAQ(complaint : Complaint) {
+    complaint.FAQ = 1;
+    return this.http.patch(this.baseURL + `/${complaint._id}`, complaint);
+  }
+
+  // remove complaint from FAQ list
+  removeFromFAQ(complaint : Complaint) {
+    complaint.FAQ = 0;
     return this.http.patch(this.baseURL + `/${complaint._id}`, complaint);
   }
 }

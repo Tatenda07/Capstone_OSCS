@@ -7,6 +7,7 @@ export class Complaint {
   complaint_status! : number;
   moderated_by! : string | undefined;
   resolution_id! : string;
+  FAQ! : number;
   createdAt! : string;
   updatedAt! : string;
 }

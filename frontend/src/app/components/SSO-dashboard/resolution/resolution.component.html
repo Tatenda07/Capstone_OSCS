@@ -86,6 +86,39 @@
     </div>
   </div>
 
+  <div class="view-complaint-and-resolution" *ngIf="viewResolutionComplaint">
+    <div class="complaint">
+      <h5>Complaint:</h5>
+      <h6>{{specificComplaint.complaint_header}}</h6>
+      <p class="body-text">
+        {{specificComplaint.complaint_body}} <br/>
+        <i class="body-datestamp">Complaint posted by {{specificComplaint.student_name}} on {{specificComplaint.createdAt | date:'medium'}}</i> <br/>
+        <i class="body-datestamp" *ngIf="specificComplaint.moderated_by !== undefined">Complaint moderated by {{specificComplaint.moderated_by}} on {{specificComplaint.updatedAt | date:'medium'}}</i>
+      </p>
+    </div>
+
+    <div class="resolution">
+      <h5>Resolution:</h5>
+      <h6>{{resolutionService.selectedResolution.resolution_header}}</h6>
+      <p class="body-text">
+        {{resolutionService.selectedResolution.resolution_body}} <br/>
+        <i class="body-datestamp">Resolution posted by {{resolutionService.selectedResolution.respondent_username}} on {{resolutionService.selectedResolution.createdAt | date:'medium'}}</i> <br/>
+        <i class="body-datestamp" *ngIf="resolutionService.selectedResolution.updated_by !== undefined">Resolution updated by {{resolutionService.selectedResolution.updated_by}} on {{resolutionService.selectedResolution.updatedAt | date:'medium'}}</i>
+      </p>
+    </div>
+    <div class="action-buttons">
+      <button class="close-btn" (click)="viewResolutionComplaint = false">Close</button>
+      <!-- edit button -->
+      <a class="action-btn edit" title="Edit Resolution">
+        <i class="material-icons" (click)="onEditResolution(resolutionService.selectedResolution)">edit</i>
+      </a>
+      <!-- delete button -->
+      <a class="action-btn delete" title="Delete Resolution">
+        <i class="material-icons" (click)="onDeleteResolution(resolutionService.selectedResolution._id)">delete</i>
+      </a>
+    </div>
+  </div>
+
   <div class="table-div">
     <div class="header">
       <h5> Complaints List </h5>
@@ -118,7 +151,7 @@
               <button class="view-complaint-btn" (click)="viewComplaint(complaint);viewResolutionForm = true">Add Resolution</button>
           </td>
           <td *ngIf="complaint.complaint_status > 2 && complaint.complaint_status === 4">
-            <button class="view-resolution-btn" (click)="viewComplaint(complaint);viewResolution(complaint.resolution_id)">View Resolution</button>
+            <button class="view-resolution-btn" (click)="viewComplaint(complaint);viewSpecificResolution(complaint.resolution_id)">View Resolution</button>
           </td>
         </tr>
       </tbody>
@@ -132,7 +165,7 @@
     <table class="responsive-table highlight" *ngIf="resolutionService.allResolutions?.length !== 0">
       <thead>
         <tr>
-          <th>Complaint ID</th>
+          <th>Complaint</th>
           <th>Respondent</th>
           <th>Resolution Header</th>
           <th>Resolution</th>
@@ -144,7 +177,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let resolution of resolutionService.allResolutions">
-          <td>{{ resolution.complaint_id }}</td>
+          <td><button class="view-resolution-btn" (click)="viewResolution(resolution);viewSpecificComplaint(resolution.complaint_id)">View Complaint</button></td>
           <td>{{ resolution.respondent_username }}</td>
           <td>{{ resolution.resolution_header }}</td>
           <td>{{ resolution.resolution_body }}</td>

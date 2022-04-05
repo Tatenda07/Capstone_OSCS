@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-main{
-  height: 100vh;
+.main {
+  min-height: 100vh;
 }
 
 .header {
@@ -23,16 +23,16 @@ main{
     padding: 14px 20px;
 }
 
-.accordion__label{
+.accordion__label {
     display: block;
     color: #ffffff;
     font-weight: 600;
     cursor: pointer;
     position: relative;
-   transition: background 0.1s;  
+   transition: background 0.1s;
 }
 
-.accordion__label:hover{
+.accordion__label:hover {
     background: rgba(0, 0, 0, 0.1);
 }
 
@@ -48,7 +48,7 @@ main{
     background-size: contain;
     transition: transform 0.4s;
   }
-  
+
   .accordion__content {
     background: #ffffff;
     color: #283042;
@@ -56,16 +56,28 @@ main{
     font-size: 0.95em;
     display: none;
   }
-  
+
   .accordion__input {
     display: none;
   }
-  
+
   .accordion__input:checked ~ .accordion__content {
     display: block;
   }
-  
+
   .accordion__input:checked ~ .accordion__label::after {
     transform: translateY(-50%) rotate(0.5turn);
   }
-  
+
+  .view-resolution-button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    background: #009578;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff;
+  }
+
+  .view-resolution-button:hover {
+    background: #0f7c66
+  }

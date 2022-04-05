@@ -55,6 +55,7 @@ export class ManageComplaintsComponent implements OnInit {
       complaint_body: "",
       complaint_status: 2,
       moderated_by: undefined,
+      FAQ: 0,
       resolution_id: "",
       createdAt: "",
       updatedAt: ""
@@ -120,6 +121,22 @@ export class ManageComplaintsComponent implements OnInit {
     this.complaintService.sendComplaintToSSO(complaint).subscribe((res) => {
       this.refreshComplaintsList();
       this.notificationService.showInfo("Complaint has been sent to SSO dashboard.","Complaint Management");
+    })
+  }
+
+  //add complaint to FAQ list
+  addToFAQ(complaint : Complaint) {
+    this.complaintService.addToFAQ(complaint).subscribe(() => {
+      this.refreshComplaintsList();
+      this.notificationService.showInfo("Complaint has been added to FAQ list.","Complaint Management");
+    })
+  }
+
+  // remove complaint from FAQ list
+  removeFromFAQ(complaint : Complaint) {
+    this.complaintService.removeFromFAQ(complaint).subscribe(() => {
+      this.refreshComplaintsList();
+      this.notificationService.showWarning("Complaint has been removed to FAQ list.","Complaint Management");
     })
   }
 

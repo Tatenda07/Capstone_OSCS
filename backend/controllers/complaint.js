@@ -72,9 +72,9 @@ exports.getSingleComplaint = async (req, res, next) => {
                 message: 'Complaint not found.'
             })
         } else {
-            res.status(200).send({
-                payload: getSingleComplaint
-            })
+            res.status(200).send(
+                getSingleComplaint
+            )
         }
     } catch (err) {
         err.statusCode === undefined ? err.statusCode = 500 : '';

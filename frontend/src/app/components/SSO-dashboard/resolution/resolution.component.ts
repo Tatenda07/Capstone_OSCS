@@ -17,8 +17,10 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class ResolutionComponent implements OnInit {
   viewResolutionForm = false;
   viewComplaintResolution = false;
+  viewResolutionComplaint = false;
   resolutions: any;
   specificResolution: any;
+  specificComplaint: any;
   userProfile: any;
 
   constructor(
@@ -109,11 +111,27 @@ export class ResolutionComponent implements OnInit {
   }
 
   // view resolution
-  viewResolution(_id : string) {
+  viewResolution(resolution : Resolution) {
+    this.resolutionService.selectedResolution = resolution;
+  }
+
+  // view specific resolution
+  viewSpecificResolution(_id : string) {
     this.resolutionService.getSingleResolution(_id).subscribe((res) => {
       this.specificResolution = res;
     });
     this.viewComplaintResolution = true;
+    this.viewResolutionComplaint = false;
+    this.viewResolutionForm = false;
+  }
+
+  // view specific complaint (resolved already)
+  viewSpecificComplaint(_id : string) {
+    this.complaintService.getSingleComplaint(_id).subscribe((res) => {
+    this.specificComplaint = res;
+    });
+    this.viewComplaintResolution = false;
+    this.viewResolutionComplaint = true;
     this.viewResolutionForm = false;
   }
 

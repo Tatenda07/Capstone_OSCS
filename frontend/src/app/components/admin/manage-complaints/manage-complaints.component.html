@@ -90,6 +90,8 @@
           <i class="material-icons" (click)="onDeleteComplaint(complaintService.selectedComplaint._id)">delete</i>
         </a>
         <button class="view-resolution-btn send-btn" (click)="sendToSSO(complaintService.selectedComplaint)" *ngIf="complaintService.selectedComplaint.complaint_status < 3">Send to SSO</button>
+        <button class="view-resolution-btn" (click)="addToFAQ(complaintService.selectedComplaint)" *ngIf="complaintService.selectedComplaint.complaint_status === 4 && complaintService.selectedComplaint.FAQ === 0">Add to FAQ</button>
+        <button class="view-resolution-btn" style="color: orange;" (click)="removeFromFAQ(complaintService.selectedComplaint)" *ngIf="complaintService.selectedComplaint.complaint_status === 4 && complaintService.selectedComplaint.FAQ === 1">Remove from FAQ</button>
       </div>
     </div>
 
@@ -131,6 +133,11 @@
             <td>{{ complaint.student_name }}</td>
             <td>{{ complaint.createdAt | date:'medium' }}</td>
             <td>{{ complaint.updatedAt | date:'medium' }}</td>
+            <td>
+              <button class="view-resolution-btn send-btn" *ngIf="complaint.complaint_status < 3" (click)="sendToSSO(complaint)">Send to SSO</button>
+              <button class="view-resolution-btn" *ngIf="complaint.complaint_status === 4 && complaint.FAQ === 0" (click)="addToFAQ(complaint)">Add to FAQ</button>
+              <button class="view-resolution-btn" style="color: orange;" *ngIf="complaint.complaint_status === 4 && complaint.FAQ === 1" (click)="removeFromFAQ(complaint)">Remove from FAQ</button>
+            </td>
             <td *ngIf="complaint.complaint_status < 3">
               <!-- edit button -->
               <a class="action-btn edit" title="Moderate Complaint">
@@ -140,9 +147,6 @@
               <a class="action-btn delete" title="Delete Complaint">
                 <i class="material-icons" (click)="onDeleteComplaint(complaint._id)">delete</i>
               </a>
-            </td>
-            <td *ngIf="complaint.complaint_status < 3">
-              <button class="view-resolution-btn send-btn" (click)="sendToSSO(complaint)">Send to SSO</button>
             </td>
           </tr>
         </tbody>

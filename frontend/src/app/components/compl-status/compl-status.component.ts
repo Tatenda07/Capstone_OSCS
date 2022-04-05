@@ -59,9 +59,10 @@ export class ComplStatusComponent implements OnInit {
         student_name: "",
         complaint_header: "",
         complaint_body: "",
-        complaint_status: 2,
-        moderated_by: "",
+        complaint_status: 0,
+        moderated_by: undefined,
         resolution_id: "",
+        FAQ: 0,
         createdAt: "",
         updatedAt: ""
       }
@@ -71,7 +72,7 @@ export class ComplStatusComponent implements OnInit {
 
     // on submit complaint
     onSubmitComplaint(form : NgForm) {
-      //update complaint and change the status to moderated
+      //update complaint
       this.complaintService.editComplaint(form.value).subscribe((res) => {
         this.resetComplaintForm(form);
         this.refreshComplaintsList();

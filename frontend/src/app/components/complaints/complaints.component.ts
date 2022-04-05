@@ -42,8 +42,9 @@ export class ComplaintsComponent implements OnInit {
       student_name: '',
       complaint_header: '',
       complaint_body: '',
-      complaint_status: 1,
-      moderated_by: '',
+      complaint_status: 0,
+      moderated_by: undefined,
+      FAQ: 0,
       resolution_id: '',
       createdAt: '',
       updatedAt: ''
