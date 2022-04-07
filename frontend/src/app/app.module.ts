@@ -30,6 +30,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { UserAuthGuard } from './auth/user-auth.guard';
 import { AuthInterceptor, UserAuthInterceptor } from './auth/auth.interceptor';
 import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AdminLoginComponent } from './components/admin/admin-login/admin-login.
     ComplaintsComponent,
     ResolutionComponent,
     AdminLoginComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,

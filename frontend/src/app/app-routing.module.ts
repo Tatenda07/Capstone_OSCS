@@ -16,6 +16,7 @@ import { ManageStudentsComponent } from './components/admin/manage-students/mana
 import { ComplaintsComponent } from './components/complaints/complaints.component';
 import { ResolutionComponent } from './components/SSO-dashboard/resolution/resolution.component';
 import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -25,13 +26,14 @@ const routes: Routes = [
   { path: 'manage-users', component: ManageUsersComponent, canActivate: [UserAuthGuard, RoleGuard], data: {allowedRoles: ['Admin']} },
   { path: 'manage-complaints', component: ManageComplaintsComponent, canActivate: [UserAuthGuard, RoleGuard], data: {allowedRoles: ['Admin','CSC Personnel']} },
   { path: 'manage-students', component: ManageStudentsComponent, canActivate: [UserAuthGuard, RoleGuard], data: {allowedRoles: ['Admin']} },
-  { path: 'compl-status', component: ComplStatusComponent, canActivate: [AuthGuard, StudentRoleGuard] },
+  { path: 'my-complaints', component: ComplStatusComponent, canActivate: [AuthGuard, StudentRoleGuard] },
   { path: 'faq', component: FaqComponent},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard, StudentRoleGuard] },
   { path: 'help', component: HelpComponent },
-  { path: 'complaints', component: ComplaintsComponent, canActivate: [AuthGuard, StudentRoleGuard] },
+  { path: 'submit-complaint', component: ComplaintsComponent, canActivate: [AuthGuard, StudentRoleGuard] },
   { path: 'resolutions', component: ResolutionComponent, canActivate: [UserAuthGuard, RoleGuard], data: {allowedRoles: ['Admin', 'SSO Personnel']} },
-  { path: 'admin-login', component: AdminLoginComponent}
+  { path: 'admin-login', component: AdminLoginComponent },
+  { path: '**', component: ErrorPageComponent }
 ];
 
 @NgModule({
