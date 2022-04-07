@@ -3,63 +3,6 @@
   <button id='hideshow-menu-button' (click)="toogleMenu()" *ngIf="studentService.isLoggedIn() || userService.isLoggedIn()"><i class="uil uil-bars"></i> Menu</button>
   <h3 class="nav-bar-text">AUP Online Student Complaint Management System</h3>
 </nav>
-<div class="main-content-wrapper">
-
-
-  <main class="wrapper">
-   <div id='side-menu' *ngIf="!displayMenu">
-     <!-- Student menu items -->
-      <ul *ngIf="studentService.roleStudent() === 'Student'">
-        <li (click)="toogleMenu()" routerLink="/home"><i class="menu-icon uil uil-estate"></i> Home</li>
-        <li (click)="toogleMenu()" routerLink="/complaints"><i class="menu-icon uil uil-fast-mail" style="font-size: 28px;"></i> Submit Complaint</li>
-        <li (click)="toogleMenu()" routerLink="/compl-status"><i class="menu-icon uil uil-envelope-question"></i> Complaint Status</li>
-        <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-question-circle"></i> FAQ</li>
-        <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li>
-        <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-info-circle"></i> Help</li>
-        <li (click)="toogleMenu()" routerLink="/about"><i class="menu-icon uil uil-comment-info-alt"></i> About Us</li>
-        <li (click)="onLogout()" routerLink="/login"><i class="menu-icon uil uil-signout"></i> Sign Out</li>
-      </ul>
-
-      <!-- SSO Personnel menu items -->
-      <ul *ngIf="userService.userRole() === 'SSO Personnel'">
-        <li (click)="toogleMenu()" routerLink="/resolutions"><i class="menu-icon uil uil-envelope-check"></i> Resolve Complaints</li>
-        <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-question-circle"></i> FAQ</li>
-        <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
-        <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-info-circle"></i> Help</li>
-        <li (click)="toogleMenu()" routerLink="/about"><i class="menu-icon uil uil-comment-info-alt"></i> About Us</li>
-        <li (click)="onLogout()" routerLink="/admin-login"><i class="menu-icon uil uil-signout"></i> Sign Out</li>
-      </ul>
-
-      <!-- CSC Personnel menu items -->
-      <ul *ngIf="userService.userRole() === 'CSC Personnel'">
-        <li (click)="toogleMenu()" routerLink="/manage-complaints"><i class="menu-icon uil uil-envelopes"></i> Manage Complaints</li>
-        <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-question-circle"></i> FAQ</li>
-        <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
-        <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-info-circle"></i> Help</li>
-        <li (click)="toogleMenu()" routerLink="/about"><i class="menu-icon uil uil-comment-info-alt"></i> About Us</li>
-        <li (click)="onLogout()" routerLink="/admin-login"><i class="menu-icon uil uil-signout"></i> Sign Out</li>
-      </ul>
-
-      <!-- Admin user menu items -->
-      <ul *ngIf="userService.userRole() === 'Admin'">
-        <li (click)="toogleMenu()" routerLink="/manage-users"><i class="menu-icon uil uil-user"></i> Manage Users </li>
-        <li (click)="toogleMenu()" routerLink="/manage-students"><i class="menu-icon uil uil-book-reader"></i> Manage Students </li>
-        <li (click)="toogleMenu()" routerLink="/manage-complaints"><i class="menu-icon uil uil-envelopes"></i> Manage Complaints </li>
-        <li (click)="toogleMenu()" routerLink="/resolutions"><i class="menu-icon uil uil-envelope-check"></i> Resolutions </li>
-        <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-question-circle"></i> FAQ</li>
-        <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
-        <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-info-circle"></i> Help</li>
-        <li (click)="toogleMenu()" routerLink="/about"><i class="menu-icon uil uil-comment-info-alt"></i> About Us</li>
-        <li (click)="onLogout()" routerLink="/admin-login"><i class="menu-icon uil uil-signout"></i> Sign Out</li>
-      </ul>
-   </div>
-
-   <div class="main-content">
-    <router-outlet></router-outlet>
-   </div>
-
-  </main>
-</div>
 
 <div class="w-100 position-absolute top-0" *ngIf="modalVersion">
   <div class="alert alert-secondary m-2">
@@ -86,6 +29,64 @@
 
   <script src="js/main.js"></script>
    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</div>
+
+<div class="main-content-wrapper">
+
+
+  <main class="wrapper">
+   <div id='side-menu' *ngIf="!displayMenu">
+     <!-- Student menu items -->
+      <ul *ngIf="studentService.roleStudent() === 'Student'">
+        <li (click)="toogleMenu()" routerLink="/home"><i class="menu-icon uil uil-estate"></i> Home</li>
+        <li (click)="toogleMenu()" routerLink="/submit-complaint"><i class="menu-icon uil uil-comment-alt-plus"></i> Submit Complaint</li>
+        <li (click)="toogleMenu()" routerLink="/my-complaints"><i class="menu-icon uil uil-comment-alt-lines"></i> My Complaints</li>
+        <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-comment-alt-question"></i> FAQ</li>
+        <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li>
+        <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-question-circle"></i> Help</li>
+        <li (click)="toogleMenu()" routerLink="/about"><i class="menu-icon uil uil-comment-info-alt"></i> About Us</li>
+        <li (click)="onLogout()" routerLink="/login"><i class="menu-icon uil uil-signout"></i> Sign Out</li>
+      </ul>
+
+      <!-- SSO Personnel menu items -->
+      <ul *ngIf="userService.userRole() === 'SSO Personnel'">
+        <li (click)="toogleMenu()" routerLink="/resolutions"><i class="menu-icon uil uil-comment-alt-verify"></i> Resolve Complaints</li>
+        <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-comment-alt-question"></i> FAQ</li>
+        <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
+        <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-question-circle"></i> Help</li>
+        <li (click)="toogleMenu()" routerLink="/about"><i class="menu-icon uil uil-comment-info-alt"></i> About Us</li>
+        <li (click)="onLogout()" routerLink="/admin-login"><i class="menu-icon uil uil-signout"></i> Sign Out</li>
+      </ul>
+
+      <!-- CSC Personnel menu items -->
+      <ul *ngIf="userService.userRole() === 'CSC Personnel'">
+        <li (click)="toogleMenu()" routerLink="/manage-complaints"><i class="menu-icon uil uil-comments-alt"></i> Manage Complaints</li>
+        <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-comment-alt-question"></i> FAQ</li>
+        <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
+        <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-question-circle"></i> Help</li>
+        <li (click)="toogleMenu()" routerLink="/about"><i class="menu-icon uil uil-comment-info-alt"></i> About Us</li>
+        <li (click)="onLogout()" routerLink="/admin-login"><i class="menu-icon uil uil-signout"></i> Sign Out</li>
+      </ul>
+
+      <!-- Admin user menu items -->
+      <ul *ngIf="userService.userRole() === 'Admin'">
+        <li (click)="toogleMenu()" routerLink="/manage-users"><i class="menu-icon uil uil-user"></i> Manage Users </li>
+        <li (click)="toogleMenu()" routerLink="/manage-students"><i class="menu-icon uil uil-book-reader"></i> Manage Students </li>
+        <li (click)="toogleMenu()" routerLink="/manage-complaints"><i class="menu-icon uil uil-comments-alt"></i> Manage Complaints </li>
+        <li (click)="toogleMenu()" routerLink="/resolutions"><i class="menu-icon uil uil-comment-alt-verify"></i> Resolutions </li>
+        <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-comment-alt-question"></i> FAQ</li>
+        <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
+        <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-question-circle"></i> Help</li>
+        <li (click)="toogleMenu()" routerLink="/about"><i class="menu-icon uil uil-comment-info-alt"></i> About Us</li>
+        <li (click)="onLogout()" routerLink="/admin-login"><i class="menu-icon uil uil-signout"></i> Sign Out</li>
+      </ul>
+   </div>
+
+   <div class="main-content">
+    <router-outlet></router-outlet>
+   </div>
+
+  </main>
 </div>
 
 <footer>
