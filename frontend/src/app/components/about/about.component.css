@@ -1,643 +1,72 @@
 
-.motora-container h1{
-    font-family:  'Montserrat', sans-serif;
-    text-align: center;
-    margin-top: 100px;
-    font-size: 75px;
-    
+.about-us{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+.who-we-are{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.who-we-are span{
+  width: 60%;
+  align-items: baseline;
+  text-align: center;
 
 }
 
-.motora-container p {
-    display: inline-block;
-    font-family:  'Montserrat', sans-serif;
-    text-align: center;
-    margin-left: 150px;
-    margin-right: 150px;
-    font-size: 25px;
+.cards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  color: black;
+}
+.card-img{
+  border-radius: 5px;
+  min-width: 100%;
+  position: relative;
+}
+.cards .card{
+  width: 16rem;
+  margin: 20px;
+  background: rgba(116, 216, 155, 0.507);
+}
+.card p{
+  font-size: 14px;
+  color: white;
 }
 
-.container  {
-
-    box-sizing: border-box;
-    font-family:  'Montserrat', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    flex-wrap: wrap;
+.card-img1{
+  width: 100%;
+  height: 15rem;
+  background-image: url('../../../assets/images/Joe.png');
+  background-size: cover;
+  background-position: center center;
 }
-
-.container .box {
-    position: relative;
-    width: 275px;
-    height: 275px;
-    overflow: hidden;
-    transition: 0.5s;
-    margin-top: 50px;
+.card-img2{
+  width: 100%;
+  height: 15rem;
+  background-image: url('../../../assets/images/Adeline Uwibambe.jpg');
+  background-size: cover;
+  background-position: center center;
 }
-
-.container .box:hover{
-    z-index: 1;
-    transform: scale(1.25);
-    box-shadow: 0 25px 40px rgba(0,0,0, 0.5);
+.card-img3{
+  width: 100%;
+  height: 15rem;
+  background-image: url('../../../assets/images/Antoinette.jpg');
+  background-size: cover;
+  background-position: center center;
 }
-
-.container .box .imgbox{
-    position:absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-
-}
-
-.container .box .imgbox img{
-    position:absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.container .box .content{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    display: flex;
-    padding-bottom: 20px;
-    align-items: flex-end;
-    
-}
-
-.container .box .content h2
-{
-    color: whitesmoke;
-    transition: 0.5s;
-    text-transform: uppercase;
-    font-size: 20px;
-    transform: translateY(200px);
-}
-
-.container .box:hover .content h2{
-    transform: translateY(0px);
-    transition-delay: 0.5s;
-    padding-left: 10px;
-}
-
-.container .box .content p
-{
-    color: whitesmoke;
-    transform: translateY(200px);
-    transition: 0.5s;
-    font-size: 10px;
-    padding:0  12px 12px 0;
-
-}
-
-.container .box:hover .content p{
-    transform: translateY(0px);
-    transition-delay: 0.6s;
-}
-
-.second-content {
-    font-family:  'Montserrat', sans-serif;
-    padding: 100px;
-}
-
-.second-content h3 {
-    font-family:  'Montserrat', sans-serif;
-    text-align: center;
-    font-size: 75px;
-}
-
-.second-content p{
-    font-size: 25px;
-}
-
-
-.third-container{
-    display: flex;
-    background-color: lightgray;
-    width: 100%;
-  
-}
-
-.third-content-para .button {
-    display: block;
-    position: absolute;
-    ;
-}
-
-.third-container .third-content{
-    display: flex;
-    flex-direction: row;
-}
-
-.third-content .third-content-pic .pic1{
-    width: 1000px;
-    margin-left: 15%;
-    padding: 50px;
-    filter: drop-shadow(.75em .75em .5em);
-}
-.third-content-pic h1 {
-    
-    padding: 0 20px 20px 20px ;
-    font-family:  'Montserrat', sans-serif;
-    font-size: 25px;
-    text-align: justify;
-    margin-left: 2%;
-}
-a.button {
-    margin-left: 92.8%;
-       color: whitesmoke;
-       padding: 10px;
-       background-color: maroon;
-}
-
-.third-content .third-content-para{
-    padding-right: 30px;
-    margin-top: 50px;
-    font-family:  'Montserrat', sans-serif;
-    font-size: 13px;
-    text-align: justify;
-
-}
-
-.footer-container {
-
-    background-color: lightgray;
-    padding: 50px;
-    height: 250px;
-}
-
-.footer {
-    width: 80%;
-    height: 20vh;
-    background-color: lightgray;
-    color: red;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    font-size: 20px;
-
-}
-
-.footer-heading {
-    display: flex;
-    flex-direction: column;
-    margin-right: 4rem;
-    
-}
-
-.footer-heading h2{
-    margin-bottom: 2rem;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.footer-heading a{
-    color: red;
-    text-decoration: none;
-    margin-bottom: 0.5rem;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.footer-heading p{
-    color: red;
-    text-decoration: none;
-    margin-bottom: 0.5rem;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.footer-heading a:hover {
-    color:black;
-    transition: 0.3s ease-out;
-}
-
-.footer-email-form h2 {
-    margin-bottom: 2rem;
-    font-family: 'Montserrat', sans-serif;
-}
-
-#footer-email {
-    width: 250px;
-    height: 40px;
-    border-radius: 4px;
-    outline: none;
-    border: none;
-    padding-left: 0.5rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-
-}
-
-#footer-email::placeholder {
-    color: lightgray;
-}
-
-#footer-email-btn{
-    width: 100px;
-    height: 40px;
-    border-radius: 4px;
-    background-color: #F9423D;
-    outline: none;
-    border: none;
-    color: #fff;
-}
-
-#footer-email-btn:hover{
-    cursor: pointer;
-    background-color: #337AF1;
-    transition: all 0.4s ease-out;
-}
-
-.team h2 {
-
-    font-size: 30px;
-    text-align: center;
-    letter-spacing: 9px;
-    padding: 10px;
-    font-family: 'Montserrat', sans-serif;
-    color: red ;
-}
-.team h3 {
-    font-size: 70px;
-    letter-spacing: 8px;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    color: red ;
-    padding: 10px;
-    font-weight: 30px;
-}
-.about-item li {
-   
-    text-align: center;
-
-    color:rgb(255, 255, 255);
-    margin: 2% 40% 0 40%;
-    padding: 15px 15px 15px 15px;
-    background-color: rgb(104, 0, 0);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3 ease 0s;
-    list-style: none;
-    text-decoration: none;
-}
-  
-  #wrapper_team {
-    display: block;
-    margin: 0 auto;
-    width: 90%;
-    top: 0;
-    bottom: 0;
-    padding: 0rem 0rem 1rem 0rem;
-    background-color: #ddd;
-    font-family: 'Lora', serif;
-    height: 100%;
-  }
-  
-  
-  
-  #teamcontent {
-    display: none;
-    margin-bottom: 15px;
-  }
-  
-  .team_box {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: inherit;
-    align-items: inherit;
-    width: 100%;
-  }
-  
-  .container-left {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-content: center;
-    float: left;
-    width: 30%;
-  }
-  
-  .container-right {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-content: center;
-    width: 50%;
-  }
-  
-  .team {
-    display: block;
-    max-width: unset;
-  }
-  
-  ul li:before {
-    display: none;
-  }
-  
-  .team li {
-    display: block;
-    float: left;
-    width: 16%;
-    margin-right: 0px;
-    padding-left: unset;
-  }
-  .team li:hover {
-    cursor: pointer;
-  }
-  
-  .team li:last-child {
-    margin-right: 0;
-  }
-  
-  .team .hcontent {
-    display: none;
-  }
-  
-  #teamcontent .bigimg {
-
-    display: block;
-    float: right;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top center;
-    border-radius: 50%;
-    width: 220px;
-    height: 220px;
-    margin: 4rem;
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.5);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.5);
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.5);
-  }
-  
-  .bigimg-overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: 0.5s ease-in-out;
-    border-radius: 50%;
-  background-image: linear-gradient(15deg, rgba(122, 26, 19, 0.7) 0%, rgba(208, 157, 128, 0.7) 100%);
-  }
-  
-  .profile_container::after {
-    content: "";
-    display: block;
-    width: 70%;
-    background: rgba(255, 255, 255, 0.2);
-    background: linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.2)50%,
-      rgba(255, 255, 255, 0.7)100%
-    );
-    background: -o-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.2)50%,
-      rgba(255, 255, 255, 0.7)100%
-    );
-    background: -moz-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.2)50%,
-      rgba(255, 255, 255, 0.7)100%
-    );
-    background: linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.2)50%,
-      rgba(255, 255, 255, 0.7)100%
-    );
-    left: -100%;
-    top: 0;
-    height: 100%;
-    position: absolute;
-    transition: none;
-    -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
-    -ms-transition: none;
-    -ms-transform: skewX(-20deg);
-    -webkit-transform: skewX(-20deg);
-    transform: skewX(-20deg);
-  }
-  
-  .profile_container:hover::after {
-    left: 150%;
-    transition: all 1s;
-    -webkit-transition: all 0.75s;
-    -moz-transition: all 0.75s;
-    -o-transition: all 0.75s;
-    -ms-transition: all 0.75s;
-  }
-  
-  .profile_container:hover .bigimg-overlay {
-    opacity: 1;
-  }
-  
-  .bigimg-text {
-    color: #ffffff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  
-  .profile_container {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .profilepic {
-    width: 100% !important;
-    height: auto;
-    display: block;
-    border-radius: 50%;
-  }
-  
-  #teamdetails {
-    display: block;
-    float: left;
-    width: 600px;
-    padding-left: 15px;
-  }
-  
-  .clearfix:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
-  }
-  
-  .clearfix {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-  
-  }
-  
-
-  
- 
-  
-
-  
-  @media only screen and (max-width: 900px) {
-   
-    
-    li {
-      padding-left: unset;
-    }
-    .profile_container {
-      width: 150px
-      
-    }
-    #teamcontent .bigimg {
-      margin: 2rem 0;
-     
-    }
-    .bigimg-overlay {
-      opacity: 1;
-    }
-    .team li {
-      margin-right: unset;
-      width: 100%;
-      flex-direction: row;
-    }
-    #wrapper_team {
-      padding: 0;
-    }
-    .clearfix {
-      flex-flow: nowrap;
-    }
-  }
-  
-
-@media screen and (max-width: 1050px) {
-    .motora-container h1{
-        margin: 25px 50px 25px 50px;
-    }
-   .motora-container p {
-        text-align: end;
-    
-    }
-    .container {
-      flex-wrap: nowrap;
-      padding: 50px;
-  
-    }
-     .container .box .imgbox img{
-    width: 250px;
-    height: 200px ;
-    padding: 0 0 0 0;
-    
-    }
-    .container .box:hover .content h2{
-        color: black;
-        text-align: left;
-        font-size: 15px;
-        padding-left: 15px;
-      
-    }
-    
-    .container .box .content p
-    {
-        color: grey;
-        text-align: left;
-        padding: 0 15px 10px 0;
-        transition: 0.5s;
-        font-size: 10px;
-        ;
-        
-    
-    }
-    .third-content-pic{
-        height: 700px;
-    }
-    a.button {
-        margin-left: 50%;
-       color: whitesmoke;
-       padding: 5px;
-       background-color: maroon;
-
-    }
-    .third-content .third-content-pic .pic1{
-    width: 900px;
-    margin-left: 60px;
-    padding:50px 50px 0 50px;
-    filter: drop-shadow(.75em .75em .5em);
-    }
-    .third-content .third-content-para h1{
-    
-        padding: 20px;
-        font-family:  'Montserrat', sans-serif;
-        font-size: 15px;
-        text-align: justify;
-        margin-left: 2%;
-   
-  
-    }
-    .about-item a{
-        text-decoration: none;
-    }
-    .footer-container {
-        height: 70vh;
-        padding: 20px;
-    }
-    .footer-email-form {
-       margin-left: 8rem;
-    }
-    
-    
-   
-}
-@media screen and (max-width: 934px) {
-    .third-content .third-content-pic .pic1{
-        width: 800px;
-        margin-left: 30px;
-        padding:50px 50px 0 50px;
-        filter: drop-shadow(.75em .75em .5em);
-    }
-    .footer {
-        padding-top: 2rem;
-    }
-}
-
-@media screen and (max-width: 720px) {
-    .footer-3 {
-        display: none;
-    }
-    .footer-email-form{
-        margin-top: 2rem;
-    }
-}
-
-
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-
-
-
-
-
-
-
+.card-img4{
+  width: 100%;
+  height: 15.8rem;
+  background-image: url('../../../assets/images/Fritz.jpg');
+  background-size: cover;
+  background-position: center center;
+} 
