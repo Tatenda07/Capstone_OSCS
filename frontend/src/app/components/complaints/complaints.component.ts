@@ -60,7 +60,7 @@ export class ComplaintsComponent implements OnInit {
       next: (res) => {
         this.resetcomplaintForm(form);
         this.notificationService.showSuccess("Complaint has been submitted successfully", "Complaint Management");
-        this.router.navigateByUrl('/compl-status');
+        this.router.navigateByUrl('/my-complaints');
       },
       error: (err) => {
         if (err.status === 0) {

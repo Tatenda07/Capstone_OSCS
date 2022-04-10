@@ -91,6 +91,12 @@
   </div>
 
   <div class="table-div">
+    <p class="profile">
+      <b>Name: </b> <i>{{ studentProfile?.first_name }} {{ studentProfile?.last_name }}</i> <br/>
+      <b>Student ID: </b> <i>{{ studentProfile?.student_id }}</i> <br/>
+      <b>Email: </b> <i>{{ studentProfile?.email }}</i> <br/>
+      <b>College: </b> <i>College of {{ studentProfile?.college }}</i> <br/>
+    </p>
     <h5>My Complaints</h5>
     <h3 class="empty-list-text" *ngIf="complaintService.allComplaints?.length === 0">
       There are no complaints from any students currently. If you have any complaints let us know <a routerLink="/complaints">here</a>
@@ -103,8 +109,6 @@
           <th>Complaint</th>
           <th>Status</th>
           <th>Resolution</th>
-          <th>Student ID</th>
-          <th>Student Name</th>
           <th>Posted On</th>
           <th>Last Updated</th>
           <th></th>
@@ -125,8 +129,6 @@
           <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 4">
             <button class="view-resolution-btn" (click)="viewComplaint(complaint);viewResolution(complaint.resolution_id)">View Resolution</button>
           </td>
-          <td *ngIf="complaint.student_id === studentProfile?.student_id">{{ complaint.student_id }}</td>
-          <td *ngIf="complaint.student_id === studentProfile?.student_id">{{ complaint.student_name }}</td>
           <td *ngIf="complaint.student_id === studentProfile?.student_id">{{ complaint.createdAt | date:'medium' }}</td>
           <td *ngIf="complaint.student_id === studentProfile?.student_id">{{ complaint.updatedAt | date:'medium' }}</td>
           <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status < 2">

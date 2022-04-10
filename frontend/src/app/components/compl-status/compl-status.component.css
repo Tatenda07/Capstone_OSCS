@@ -82,6 +82,14 @@ main{
   color: #b1afaf;
 }
 
+.profile {
+  letter-spacing: 1px;
+  background-color: #2a2b38;
+  color: #12f8ad;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .table-div {
   flex: 6;
   padding: 9px;
