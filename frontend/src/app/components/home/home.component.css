@@ -20,21 +20,21 @@
   text-align: center;
   display: block;
 }
-.title{
+.title1{
   color: #fff;
   text-align: center;
   padding: 5%;
   font-size: 50px;
   font-weight: 500;
 }
-.sub_title{
+.title2{
   color: #fff;
   padding: 0%;
   text-align: center;
   font-size: 30px;
   font-weight: 400;
 }
-.bottom_title{
+.title3{
   color: #fff;
   padding: 3%;
   text-align: center;
