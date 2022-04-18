@@ -97,3 +97,11 @@
 .btn.block {
   display: block !important;
 }
+
+/* mobile responsiveness */
+@media only screen and (max-width: 390px) {
+
+  .btn {
+    padding: 0 20px;
+  }
+}
