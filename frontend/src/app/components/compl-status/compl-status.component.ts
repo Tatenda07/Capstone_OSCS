@@ -76,7 +76,7 @@ export class ComplStatusComponent implements OnInit {
       this.complaintService.editComplaint(form.value).subscribe((res) => {
         this.resetComplaintForm(form);
         this.refreshComplaintsList();
-        this.notificationService.showSuccess("Complaint has been updated successfully", "Complaint Management");
+        this.notificationService.showSuccess("Concern has been updated successfully", "Concerns Management");
       });
 
     }
@@ -111,11 +111,11 @@ export class ComplStatusComponent implements OnInit {
 
     //delete complaint
     onDeleteComplaint(_id : string) {
-      if(confirm('Are you sure you want to delete this complaint?') == true) {
+      if(confirm('Are you sure you want to delete this concern?') == true) {
         this.complaintService.deleteComplaint(_id).subscribe((res) => {
           this.refreshComplaintsList();
           this.viewComplaintResolution = false;
-          this.notificationService.showInfo("Complaint has been deleted", "Complaints Management");
+          this.notificationService.showInfo("Concern has been deleted", "Concerns Management");
         });
       }
     }

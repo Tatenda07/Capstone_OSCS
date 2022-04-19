@@ -72,7 +72,7 @@ export class ManageComplaintsComponent implements OnInit {
     this.complaintService.moderateComplaint(form.value).subscribe((res) => {
       this.resetComplaintForm(form);
       this.refreshComplaintsList();
-      this.notificationService.showSuccess("Complaint has been moderated successfully.", "Complaint Management");
+      this.notificationService.showSuccess("Concern has been moderated successfully.", "Concerns Management");
     });
 
   }
@@ -92,11 +92,11 @@ export class ManageComplaintsComponent implements OnInit {
 
   //delete complaint
   onDeleteComplaint(_id : string) {
-    if(confirm('Are you sure you want to delete this complaint?') == true) {
+    if(confirm('Are you sure you want to delete this concern?') == true) {
       this.complaintService.deleteComplaint(_id).subscribe((res) => {
         this.refreshComplaintsList();
         this.viewComplaintResolution = false;
-        this.notificationService.showInfo("Complaint has been deleted", "Complaint Management");
+        this.notificationService.showInfo("Concern has been deleted", "Concerns Management");
       });
     }
   }
@@ -120,7 +120,7 @@ export class ManageComplaintsComponent implements OnInit {
   sendToSSO(complaint : Complaint) {
     this.complaintService.sendComplaintToSSO(complaint).subscribe((res) => {
       this.refreshComplaintsList();
-      this.notificationService.showInfo("Complaint has been sent to SSO dashboard.","Complaint Management");
+      this.notificationService.showInfo("Concern has been sent to SSO dashboard.","Concerns Management");
     })
   }
 
@@ -128,7 +128,7 @@ export class ManageComplaintsComponent implements OnInit {
   addToFAQ(complaint : Complaint) {
     this.complaintService.addToFAQ(complaint).subscribe(() => {
       this.refreshComplaintsList();
-      this.notificationService.showInfo("Complaint has been added to FAQ list.","Complaint Management");
+      this.notificationService.showInfo("Concern has been added to FAQ list.","Concerns Management");
     })
   }
 
@@ -136,7 +136,7 @@ export class ManageComplaintsComponent implements OnInit {
   removeFromFAQ(complaint : Complaint) {
     this.complaintService.removeFromFAQ(complaint).subscribe(() => {
       this.refreshComplaintsList();
-      this.notificationService.showWarning("Complaint has been removed to FAQ list.","Complaint Management");
+      this.notificationService.showWarning("Concern has been removed to FAQ list.","Concerns Management");
     })
   }
 

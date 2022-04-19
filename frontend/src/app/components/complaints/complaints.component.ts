@@ -59,8 +59,8 @@ export class ComplaintsComponent implements OnInit {
     this.complaintService.postComplaint(form.value).subscribe({
       next: (res) => {
         this.resetcomplaintForm(form);
-        this.notificationService.showSuccess("Complaint has been submitted successfully", "Complaint Management");
-        this.router.navigateByUrl('/my-complaints');
+        this.notificationService.showSuccess("Concern has been submitted successfully", "Concerns Management");
+        this.router.navigateByUrl('/my-concerns');
       },
       error: (err) => {
         if (err.status === 0) {
@@ -68,7 +68,7 @@ export class ComplaintsComponent implements OnInit {
         } else {
           this.serverErrorMessages = err.error.message;
         }
-        this.notificationService.showError(this.serverErrorMessages, "Complaint Management Error")
+        this.notificationService.showError(this.serverErrorMessages, "Concerns Management Error")
       }
     });
 

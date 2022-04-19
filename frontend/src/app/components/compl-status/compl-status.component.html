@@ -2,14 +2,14 @@
 
 <main>
   <div class="header">
-    <h4> Complaints List </h4>
+    <h4> Concerns List </h4>
   </div>
 
 <div class="complaint-wrapper">
   <div class="form-div" *ngIf='viewComplaintsForm'>
     <div class="col s7 custom">
       <form #manageComplaintsForm="ngForm" (ngSubmit)="onSubmitComplaint(manageComplaintsForm)" autocomplete="off">
-          <p class="title">Moderate Complaint</p>
+          <p class="title">Edit Concern</p>
           <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="complaintService.selectedComplaint._id">
           <div class="row">
             <div class="col s12">
@@ -27,14 +27,14 @@
                 </div>
               </div>
 
-              <label class="display-label">Complaint Header</label>
+              <label class="display-label">Concern Header</label>
               <div class="row">
                 <div class="input-field col s12">
                   <input id="complaint_header" type="text" name="complaint_header" #complaint_header="ngModel" [(ngModel)]="complaintService.selectedComplaint.complaint_header" required>
                 </div>
               </div>
 
-              <label class="display-label">Complaint</label>
+              <label class="display-label">Concern</label>
               <div class="row">
                 <div class="input-field col s12">
                   <input id="complaint_body" type="text" name="complaint_body" #complaint_body="ngModel" [(ngModel)]="complaintService.selectedComplaint.complaint_body" required>
@@ -58,12 +58,12 @@
 
   <div class="view-complaint-and-resolution" *ngIf="viewComplaintResolution">
     <div class="complaint">
-      <h5>Complaint:</h5>
+      <h5>Concern:</h5>
       <h6>{{complaintService.selectedComplaint.complaint_header}}</h6>
       <p class="body-text">
         {{complaintService.selectedComplaint.complaint_body}} <br/>
-        <i class="body-datestamp">Complaint posted by {{complaintService.selectedComplaint.student_name}} on {{complaintService.selectedComplaint.createdAt | date:'medium'}}</i> <br/>
-        <i class="body-datestamp" *ngIf="complaintService.selectedComplaint.moderated_by !== undefined">Complaint moderated by {{complaintService.selectedComplaint.moderated_by}} on {{complaintService.selectedComplaint.updatedAt | date:'medium'}}</i>
+        <i class="body-datestamp">Concern posted by {{complaintService.selectedComplaint.student_name}} on {{complaintService.selectedComplaint.createdAt | date:'medium'}}</i> <br/>
+        <i class="body-datestamp" *ngIf="complaintService.selectedComplaint.moderated_by !== undefined">Concern moderated by {{complaintService.selectedComplaint.moderated_by}} on {{complaintService.selectedComplaint.updatedAt | date:'medium'}}</i>
       </p>
     </div>
 
@@ -80,11 +80,11 @@
     <div class="action-buttons">
       <button class="close-btn" (click)="viewComplaintResolution = false">Close</button>
       <!-- edit button -->
-      <a class="action-btn edit" title="Edit Complaint" *ngIf="complaintService.selectedComplaint.complaint_status < 2">
+      <a class="action-btn edit" title="Edit Concern" *ngIf="complaintService.selectedComplaint.complaint_status < 2">
         <i class="material-icons" (click)="onEditComplaint(complaintService.selectedComplaint);viewComplaintResolution = false">edit</i>
       </a>
       <!-- delete button -->
-      <a class="action-btn delete" title="Delete Complaint" *ngIf="complaintService.selectedComplaint.complaint_status < 2">
+      <a class="action-btn delete" title="Delete Concern" *ngIf="complaintService.selectedComplaint.complaint_status < 2">
         <i class="material-icons" (click)="onDeleteComplaint(complaintService.selectedComplaint._id)">delete</i>
       </a>
     </div>
@@ -97,16 +97,16 @@
       <b>Email: </b> <i>{{ studentProfile?.email }}</i> <br/>
       <b>College: </b> <i>College of {{ studentProfile?.college }}</i> <br/>
     </p>
-    <h5>My Complaints</h5>
+    <h5>My Concerns</h5>
     <h3 class="empty-list-text" *ngIf="complaintService.allComplaints?.length === 0">
-      There are no complaints from any students currently. If you have any complaints let us know <a routerLink="/complaints">here</a>
+      You have no submitted concerns at the moment. If you have any concerns let us know <a routerLink="/submit-concern">here</a>
     </h3>
 
     <table class="responsive-table highlight" *ngIf="complaintService.allComplaints?.length !== 0">
       <thead>
         <tr>
-          <th>Complaint Header</th>
-          <th>Complaint</th>
+          <th>Concern Header</th>
+          <th>Concern</th>
           <th>Status</th>
           <th>Resolution</th>
           <th>Posted On</th>
@@ -124,7 +124,7 @@
           <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 3">Pending SSO response</td>
           <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 4">Resolved</td>
           <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status <= 3">
-            <button class="view-complaint-btn" (click)="viewComplaint(complaint); viewResolutionDiv = false">View Complaint</button>
+            <button class="view-complaint-btn" (click)="viewComplaint(complaint); viewResolutionDiv = false">View Concern</button>
           </td>
           <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status === 4">
             <button class="view-resolution-btn" (click)="viewComplaint(complaint);viewResolution(complaint.resolution_id)">View Resolution</button>
@@ -133,11 +133,11 @@
           <td *ngIf="complaint.student_id === studentProfile?.student_id">{{ complaint.updatedAt | date:'medium' }}</td>
           <td *ngIf="complaint.student_id === studentProfile?.student_id && complaint.complaint_status < 2">
             <!-- edit button -->
-            <a class="action-btn edit" title="Edit Complaint">
+            <a class="action-btn edit" title="Edit Concern">
               <i class="material-icons" (click)="onEditComplaint(complaint)">edit</i>
             </a>
             <!-- delete button -->
-            <a class="action-btn delete" title="Delete Complaint">
+            <a class="action-btn delete" title="Delete Concern">
               <i class="material-icons" (click)="onDeleteComplaint(complaint._id)">delete</i>
             </a>
           </td>

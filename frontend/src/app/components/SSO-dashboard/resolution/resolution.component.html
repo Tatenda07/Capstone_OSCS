@@ -15,7 +15,7 @@
 
     <div class="col s7 custom">
       <form #manageResolutionsForm="ngForm" (ngSubmit)="onSubmitResolution(manageResolutionsForm)" autocomplete="off">
-          <p class="title" *ngIf="resolutionService.selectedResolution._id === ''">Add Resolution to the Complaint</p>
+          <p class="title" *ngIf="resolutionService.selectedResolution._id === ''">Add Resolution to the Concern</p>
           <p class="title" *ngIf="resolutionService.selectedResolution._id !== ''">Update Resolution</p>
           <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="resolutionService.selectedResolution._id">
           <input id="respondent_username" type="hidden" name="respondent_username" #respondent_username="ngModel" [(ngModel)]="resolutionService.selectedResolution.respondent_username">
@@ -55,12 +55,12 @@
 
   <div class="view-complaint-and-resolution" *ngIf="viewComplaintResolution">
     <div class="complaint">
-      <h5>Complaint:</h5>
+      <h5>Concern:</h5>
       <h6>{{complaintService.selectedComplaint.complaint_header}}</h6>
       <p class="body-text">
         {{complaintService.selectedComplaint.complaint_body}} <br/>
-        <i class="body-datestamp">Complaint posted by {{complaintService.selectedComplaint.student_name}} on {{complaintService.selectedComplaint.createdAt | date:'medium'}}</i> <br/>
-        <i class="body-datestamp" *ngIf="complaintService.selectedComplaint.moderated_by !== undefined">Complaint moderated by {{complaintService.selectedComplaint.moderated_by}} on {{complaintService.selectedComplaint.updatedAt | date:'medium'}}</i>
+        <i class="body-datestamp">Concern posted by {{complaintService.selectedComplaint.student_name}} on {{complaintService.selectedComplaint.createdAt | date:'medium'}}</i> <br/>
+        <i class="body-datestamp" *ngIf="complaintService.selectedComplaint.moderated_by !== undefined">Concern moderated by {{complaintService.selectedComplaint.moderated_by}} on {{complaintService.selectedComplaint.updatedAt | date:'medium'}}</i>
       </p>
     </div>
 
@@ -88,12 +88,12 @@
 
   <div class="view-complaint-and-resolution" *ngIf="viewResolutionComplaint">
     <div class="complaint">
-      <h5>Complaint:</h5>
+      <h5>Concern:</h5>
       <h6>{{specificComplaint.complaint_header}}</h6>
       <p class="body-text">
         {{specificComplaint.complaint_body}} <br/>
-        <i class="body-datestamp">Complaint posted by {{specificComplaint.student_name}} on {{specificComplaint.createdAt | date:'medium'}}</i> <br/>
-        <i class="body-datestamp" *ngIf="specificComplaint.moderated_by !== undefined">Complaint moderated by {{specificComplaint.moderated_by}} on {{specificComplaint.updatedAt | date:'medium'}}</i>
+        <i class="body-datestamp">Concern posted by {{specificComplaint.student_name}} on {{specificComplaint.createdAt | date:'medium'}}</i> <br/>
+        <i class="body-datestamp" *ngIf="specificComplaint.moderated_by !== undefined">Concern moderated by {{specificComplaint.moderated_by}} on {{specificComplaint.updatedAt | date:'medium'}}</i>
       </p>
     </div>
 
@@ -127,8 +127,8 @@
     <table class="responsive-table highlight" *ngIf="complaintService.allComplaints?.length !== 0">
       <thead>
         <tr>
-          <th>Complaint Header</th>
-          <th>Complaint</th>
+          <th>Concern Header</th>
+          <th>Concern</th>
           <th>Status</th>
           <th>Student ID</th>
           <th>Student Name</th>
@@ -165,7 +165,7 @@
     <table class="responsive-table highlight" *ngIf="resolutionService.allResolutions?.length !== 0">
       <thead>
         <tr>
-          <th>Complaint</th>
+          <th>Concern</th>
           <th>Respondent</th>
           <th>Resolution Header</th>
           <th>Resolution</th>
@@ -177,7 +177,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let resolution of resolutionService.allResolutions">
-          <td><button class="view-resolution-btn" (click)="viewResolution(resolution);viewSpecificComplaint(resolution.complaint_id)">View Complaint</button></td>
+          <td><button class="view-resolution-btn" (click)="viewResolution(resolution);viewSpecificComplaint(resolution.complaint_id)">View Concern</button></td>
           <td>{{ resolution.respondent_username }}</td>
           <td>{{ resolution.resolution_header }}</td>
           <td>{{ resolution.resolution_body }}</td>

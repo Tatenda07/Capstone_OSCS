@@ -2,14 +2,14 @@
 
 <main>
   <div class="header">
-    <h4> Manage Complaints </h4>
+    <h4> Manage Concerns </h4>
   </div>
 
   <div class="complaint-wrapper">
     <div class="form-div" *ngIf='viewComplaintsForm'>
       <div class="col s7 custom">
         <form #manageComplaintsForm="ngForm" (ngSubmit)="onSubmitComplaint(manageComplaintsForm)" autocomplete="off">
-            <p class="title">Moderate Complaint</p>
+            <p class="title">Moderate Concern</p>
             <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="complaintService.selectedComplaint._id">
             <input type="hidden" name="moderated_by" #moderated_by="ngModel" [(ngModel)]="complaintService.selectedComplaint.moderated_by">
             <div class="row">
@@ -28,14 +28,14 @@
                   </div>
                 </div>
 
-                <label class="display-label">Complaint Header</label>
+                <label class="display-label">Concern Header</label>
                 <div class="row">
                   <div class="input-field col s12">
                     <input id="complaint_header" type="text" name="complaint_header" #complaint_header="ngModel" [(ngModel)]="complaintService.selectedComplaint.complaint_header" required>
                   </div>
                 </div>
 
-                <label class="display-label">Complaint</label>
+                <label class="display-label">Concern</label>
                 <div class="row">
                   <div class="input-field col s12">
                     <input id="complaint_body" type="text" name="complaint_body" #complaint_body="ngModel" [(ngModel)]="complaintService.selectedComplaint.complaint_body" required>
@@ -60,12 +60,12 @@
 
     <div class="view-complaint-and-resolution" *ngIf="viewComplaintResolution">
       <div class="complaint">
-        <h5>Complaint:</h5>
+        <h5>Concern:</h5>
         <h6>{{complaintService.selectedComplaint.complaint_header}}</h6>
         <p class="body-text">
           {{complaintService.selectedComplaint.complaint_body}} <br/>
-          <i class="body-datestamp">Complaint posted by {{complaintService.selectedComplaint.student_name}} on {{complaintService.selectedComplaint.createdAt | date:'medium'}}</i> <br/>
-          <i class="body-datestamp" *ngIf="complaintService.selectedComplaint.moderated_by !== undefined">Complaint moderated by {{complaintService.selectedComplaint.moderated_by}} on {{complaintService.selectedComplaint.updatedAt | date:'medium'}}</i>
+          <i class="body-datestamp">Concern posted by {{complaintService.selectedComplaint.student_name}} on {{complaintService.selectedComplaint.createdAt | date:'medium'}}</i> <br/>
+          <i class="body-datestamp" *ngIf="complaintService.selectedComplaint.moderated_by !== undefined">Concern moderated by {{complaintService.selectedComplaint.moderated_by}} on {{complaintService.selectedComplaint.updatedAt | date:'medium'}}</i>
         </p>
       </div>
 
@@ -82,11 +82,11 @@
       <div class="action-buttons">
         <button class="close-btn" (click)="viewComplaintResolution = false">Close</button>
         <!-- edit button -->
-        <a class="action-btn edit" title="Moderate Complaint" *ngIf="complaintService.selectedComplaint.complaint_status < 3">
+        <a class="action-btn edit" title="Moderate Concern" *ngIf="complaintService.selectedComplaint.complaint_status < 3">
           <i class="material-icons" (click)="onEditComplaint(complaintService.selectedComplaint);viewComplaintResolution = false">edit</i>
         </a>
         <!-- delete button -->
-        <a class="action-btn delete" title="Delete Complaint" *ngIf="complaintService.selectedComplaint.complaint_status < 3">
+        <a class="action-btn delete" title="Delete Concern" *ngIf="complaintService.selectedComplaint.complaint_status < 3">
           <i class="material-icons" (click)="onDeleteComplaint(complaintService.selectedComplaint._id)">delete</i>
         </a>
         <button class="view-resolution-btn send-btn" (click)="sendToSSO(complaintService.selectedComplaint)" *ngIf="complaintService.selectedComplaint.complaint_status < 3">Send to SSO</button>
@@ -97,14 +97,14 @@
 
     <div class="table-div">
       <h3 class="empty-list-text" *ngIf="complaintService.allComplaints?.length === 0">
-        There are no complaints from the students currently.
+        There are no concerns from the students currently.
       </h3>
 
       <table class="responsive-table highlight" *ngIf="complaintService.allComplaints?.length !== 0">
         <thead>
           <tr>
-            <th>Complaint Header</th>
-            <th>Complaint</th>
+            <th>Concern Header</th>
+            <th>Concern</th>
             <th>Status</th>
             <th>Resolution</th>
             <th>Student ID</th>
@@ -120,11 +120,11 @@
             <td>{{ complaint.complaint_body }}</td>
             <td *ngIf="complaint.complaint_status === 0">In queue</td>
             <td *ngIf="complaint.complaint_status === 1">Received by CSC personnel</td>
-            <td *ngIf="complaint.complaint_status === 2">Moderated {{complaint.moderated_by}}</td>
+            <td *ngIf="complaint.complaint_status === 2">Moderated by {{complaint.moderated_by}}</td>
             <td *ngIf="complaint.complaint_status === 3">Pending SSO response</td>
             <td *ngIf="complaint.complaint_status === 4">Resolved</td>
             <td *ngIf="complaint.complaint_status !== 4">
-              <button class="view-resolution-btn" style="color: orange;" (click)="viewComplaint(complaint);viewResolutionDiv = false;viewComplaintResolution = true">View Complaint</button>
+              <button class="view-resolution-btn" style="color: orange;" (click)="viewComplaint(complaint);viewResolutionDiv = false;viewComplaintResolution = true">View Concern</button>
             </td>
             <td *ngIf="complaint.complaint_status === 4">
               <button class="view-resolution-btn" (click)="viewComplaint(complaint);viewResolution(complaint.resolution_id)">View Resolution</button>
@@ -140,11 +140,11 @@
             </td>
             <td *ngIf="complaint.complaint_status < 3">
               <!-- edit button -->
-              <a class="action-btn edit" title="Moderate Complaint">
+              <a class="action-btn edit" title="Moderate Concern">
                 <i class="material-icons" (click)="onEditComplaint(complaint);viewComplaintResolution = false">edit</i>
               </a>
               <!-- delete button -->
-              <a class="action-btn delete" title="Delete Complaint">
+              <a class="action-btn delete" title="Delete Concern">
                 <i class="material-icons" (click)="onDeleteComplaint(complaint._id)">delete</i>
               </a>
             </td>

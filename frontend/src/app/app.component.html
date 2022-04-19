@@ -1,7 +1,7 @@
 
 <nav class="sticky">
   <button id='hideshow-menu-button' (click)="toogleMenu()" *ngIf="studentService.isLoggedIn() || userService.isLoggedIn()"><i class="uil uil-bars"></i> Menu</button>
-  <h3 class="nav-bar-text">AUP Online Student Complaint Management System</h3>
+  <h3 class="nav-bar-text">AUP Online Student Concern Management System</h3>
 </nav>
 
 <div class="w-100 position-absolute top-0" *ngIf="modalVersion">
@@ -39,8 +39,8 @@
      <!-- Student menu items -->
       <ul *ngIf="studentService.roleStudent() === 'Student'">
         <li (click)="toogleMenu()" routerLink="/home"><i class="menu-icon uil uil-estate"></i> Home</li>
-        <li (click)="toogleMenu()" routerLink="/submit-complaint"><i class="menu-icon uil uil-comment-alt-plus"></i> Submit Complaint</li>
-        <li (click)="toogleMenu()" routerLink="/my-complaints"><i class="menu-icon uil uil-comment-alt-lines"></i> My Complaints</li>
+        <li (click)="toogleMenu()" routerLink="/submit-concern"><i class="menu-icon uil uil-comment-alt-plus"></i> Submit Concern</li>
+        <li (click)="toogleMenu()" routerLink="/my-concerns"><i class="menu-icon uil uil-comment-alt-lines"></i> My Concerns</li>
         <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-comment-alt-question"></i> FAQ</li>
         <!--<li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li>-->
         <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-question-circle"></i> Help</li>
@@ -50,7 +50,7 @@
 
       <!-- SSO Personnel menu items -->
       <ul *ngIf="userService.userRole() === 'SSO Personnel'">
-        <li (click)="toogleMenu()" routerLink="/resolutions"><i class="menu-icon uil uil-comment-alt-verify"></i> Resolve Complaints</li>
+        <li (click)="toogleMenu()" routerLink="/resolutions"><i class="menu-icon uil uil-comment-alt-verify"></i> Resolve Concerns</li>
         <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-comment-alt-question"></i> FAQ</li>
         <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
         <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-question-circle"></i> Help</li>
@@ -60,7 +60,7 @@
 
       <!-- CSC Personnel menu items -->
       <ul *ngIf="userService.userRole() === 'CSC Personnel'">
-        <li (click)="toogleMenu()" routerLink="/manage-complaints"><i class="menu-icon uil uil-comments-alt"></i> Manage Complaints</li>
+        <li (click)="toogleMenu()" routerLink="/manage-concerns"><i class="menu-icon uil uil-comments-alt"></i> Manage Concerns</li>
         <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-comment-alt-question"></i> FAQ</li>
         <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
         <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-question-circle"></i> Help</li>
@@ -72,7 +72,7 @@
       <ul *ngIf="userService.userRole() === 'Admin'">
         <li (click)="toogleMenu()" routerLink="/manage-users"><i class="menu-icon uil uil-user"></i> Manage Users </li>
         <li (click)="toogleMenu()" routerLink="/manage-students"><i class="menu-icon uil uil-book-reader"></i> Manage Students </li>
-        <li (click)="toogleMenu()" routerLink="/manage-complaints"><i class="menu-icon uil uil-comments-alt"></i> Manage Complaints </li>
+        <li (click)="toogleMenu()" routerLink="/manage-concerns"><i class="menu-icon uil uil-comments-alt"></i> Manage Concerns </li>
         <li (click)="toogleMenu()" routerLink="/resolutions"><i class="menu-icon uil uil-comment-alt-verify"></i> Resolutions </li>
         <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-comment-alt-question"></i> FAQ</li>
         <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
@@ -90,5 +90,5 @@
 </div>
 
 <footer>
-  AUP Online Student Complaint Management System &copy;
+  AUP Online Student Concern Management System &copy;
 </footer>
