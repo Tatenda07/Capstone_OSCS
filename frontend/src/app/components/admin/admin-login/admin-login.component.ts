@@ -41,7 +41,7 @@ export class AdminLoginComponent implements OnInit {
     }
     if (this.userService.isLoggedIn() && this.userService.userRole() === 'CSC Personnel') {
       this.notificationService.showInfo('You you are already logged in.','Account Status');
-      this.router.navigateByUrl('/manage-complaints');
+      this.router.navigateByUrl('/manage-concerns');
     }
   }
 
@@ -68,8 +68,8 @@ export class AdminLoginComponent implements OnInit {
           this.router.navigateByUrl('/resolutions');
         // CSC dashboard
         if (this.userService.userRole() === 'CSC Personnel')
-          this.router.navigateByUrl('/manage-complaints');
-        this.notificationService.showInfo("Account login success!", "AUP-Online Student Complaint Management System");
+          this.router.navigateByUrl('/manage-concerns');
+        this.notificationService.showInfo("Account login success!", "AUP-Online Student Concern Management System");
       },
       error: (err) => {
         if (err.status === 0) {
