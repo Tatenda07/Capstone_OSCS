@@ -69,7 +69,7 @@
   color: #fbdedb;
   background-color: #fbdedb;
   display: inline-block;
-  background: grey;
+  background:#2a2b38;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   -o-transition: 0.3s;
@@ -86,7 +86,13 @@
   position: relative;
 }
 .btn:hover, .btn:focus {
+  background-color: #fff;
+  color: #12f8ad;
+  box-shadow: 0 8px 24px 0 rgba(255,255,255,.2);
   opacity: 0.8;
+  background-color: #fff;
+  color:#2a2b38;
+  box-shadow: 0 8px 24px 0 rgba(255,255,255,.2);
 }
 .btn:active {
   -webkit-transform: scale(0.80);
