@@ -15,22 +15,21 @@
 
     </div>
   </nav> -->
-  <div class="text-block">
-    <div class="title1">Hi, {{ studentProfile.first_name}} {{studentProfile.last_name}}</div>
+  <main>
+  <div class="content">
+    <h1>Hi, <br> </h1>
+      <h2>{{ studentProfile.first_name}} {{studentProfile.last_name}}</h2>
 
-    <div class="title2">Welcome to the AUP's Online Student Concern Management System. In this website we would like to know your Concern
-      to the School's facility and the School's learning system.
+    <h4>Welcome to the AUP's Online Student Concern Management System.</h4>
 
-      <div class="title3">Please keep in mind when submitting a Concern please type in English form so that other students and the Officers
-        can understand it and use appropriate sentence so that the people who will read your concerns can understand it and help you resolve it.
+      <p>Please keep in mind that when submitting a Concern, typing in English
+         will help us understand your concern better and resolve it quicker.</p>
 
-        <div class="title4">If you want to submit a Concern click the Submit Concern Button and you will be directed to the Submit Concern
-          page, If you want to explore the website click the menu in the top left corner of the screen.
-        </div>
-        <a routerLink="/submit-concern" class="btn gray block">Submit Concern</a>
+        <br>
+        <a routerLink="/submit-concern" class="btn">Submit Concern</a>
+        <a routerLink="/my-concerns" class="btn2">My Concerns</a>
       </div>
-    </div>
-  </div>
+  </main>
 
 <!-- </body> -->
 <!-- </html> -->
