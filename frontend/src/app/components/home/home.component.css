@@ -256,19 +256,6 @@ html, body {
   flex-grow: 2;
   position: relative;
 }
-span[class*=quot-osquot] {
-  font-size: 14px;
-  font-weight: 300;
-  font-size: 14px;
-  color: #c3c6e4;  
-}
-span[class*=quot-osquot] span {
-  width: 9px;
-  height: 9px;
-  display: inline-block;
-  border-radius: 50%;
-  margin-right: 9px;
-} 
 .operating-systems {
   display: flex;
   justify-content: space-between;
@@ -284,4 +271,12 @@ span[class*=quot-osquot] span {
 }
 .windows-os span {
   background: #F8E71C;
+}
+
+/* mobile responsiveness */
+@media only screen and (max-width: 390px) {
+
+  .btn {
+    padding: 0 20px;
+  }
 }
