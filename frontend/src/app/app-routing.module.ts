@@ -17,6 +17,7 @@ import { ComplaintsComponent } from './components/complaints/complaints.componen
 import { ResolutionComponent } from './components/SSO-dashboard/resolution/resolution.component';
 import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { AnalyticsComponent } from './components/analytics/analytics.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'submit-concern', component: ComplaintsComponent, canActivate: [AuthGuard, StudentRoleGuard] },
   { path: 'resolutions', component: ResolutionComponent, canActivate: [UserAuthGuard, RoleGuard], data: {allowedRoles: ['Admin', 'SSO Personnel']} },
   { path: 'admin-login', component: AdminLoginComponent },
+  { path: 'analytics', component: AnalyticsComponent, canActivate: [UserAuthGuard, RoleGuard], data: {allowedRoles: ['Admin', 'SSO Personnel', 'CSC Personnel']} },
   { path: '**', component: ErrorPageComponent }
 ];
 

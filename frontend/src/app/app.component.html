@@ -51,6 +51,7 @@
       <!-- SSO Personnel menu items -->
       <ul *ngIf="userService.userRole() === 'SSO Personnel'">
         <li (click)="toogleMenu()" routerLink="/resolutions"><i class="menu-icon uil uil-comment-alt-verify"></i> Resolve Concerns</li>
+        <li (click)="toogleMenu()" routerLink="/analytics"><i class="menu-icon uil uil-analytics"></i> Analytics </li>
         <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-comment-alt-question"></i> FAQ</li>
         <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
         <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-question-circle"></i> Help</li>
@@ -61,6 +62,7 @@
       <!-- CSC Personnel menu items -->
       <ul *ngIf="userService.userRole() === 'CSC Personnel'">
         <li (click)="toogleMenu()" routerLink="/manage-concerns"><i class="menu-icon uil uil-comments-alt"></i> Manage Concerns</li>
+        <li (click)="toogleMenu()" routerLink="/analytics"><i class="menu-icon uil uil-analytics"></i> Analytics </li>
         <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-comment-alt-question"></i> FAQ</li>
         <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
         <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-question-circle"></i> Help</li>
@@ -74,6 +76,7 @@
         <li (click)="toogleMenu()" routerLink="/manage-students"><i class="menu-icon uil uil-book-reader"></i> Manage Students </li>
         <li (click)="toogleMenu()" routerLink="/manage-concerns"><i class="menu-icon uil uil-comments-alt"></i> Manage Concerns </li>
         <li (click)="toogleMenu()" routerLink="/resolutions"><i class="menu-icon uil uil-comment-alt-verify"></i> Resolutions </li>
+        <li (click)="toogleMenu()" routerLink="/analytics"><i class="menu-icon uil uil-analytics"></i> Analytics </li>
         <li (click)="toogleMenu()" routerLink="/faq"><i class="menu-icon uil uil-comment-alt-question"></i> FAQ</li>
         <!-- <li (click)="toogleMenu()" routerLink="/profile"><i class="menu-icon uil uil-user"></i> Profile</li> -->
         <li (click)="toogleMenu()" routerLink="/help"><i class="menu-icon uil uil-question-circle"></i> Help</li>

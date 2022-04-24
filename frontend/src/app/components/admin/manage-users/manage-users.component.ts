@@ -37,7 +37,7 @@ export class ManageUsersComponent implements OnInit {
     this.userService.getUsers()
       .subscribe((data: any) => this.users = data
       );
-    console.log(this.users);
+    //console.log(this.users);
   }
 
     //reset users form (this is the method for the cancel button on the form)

@@ -9,6 +9,7 @@ import { Complaint } from '../models/complaint.model';
   providedIn: 'root'
 })
 export class ComplaintService {
+  //readonly baseURL = 'http://localhost:5000/complaint';
   readonly baseURL = 'https://aup-oscms.herokuapp.com/complaint';
   selectedComplaint!: Complaint;
 
@@ -31,6 +32,26 @@ export class ComplaintService {
   //get all complaints from a specific student
   getStudentComplaints(student_id: string) {
     return this.http.get(this.baseURL + `/studentComplaints/${student_id}`);
+  }
+
+  //get resolved complaints
+  getResolvedComplaints() {
+    return this.http.get(this.baseURL + `/resolved`);
+  }
+
+  //get pending SSO response complaints
+  getPendingSSOResponse() {
+    return this.http.get(this.baseURL + `/pending`);
+  }
+
+  //get moderated complaints
+  getModeratedComplaints() {
+    return this.http.get(this.baseURL + `/moderated`);
+  }
+
+  //get in queue complaints
+  getInQueueComplaints() {
+    return this.http.get(this.baseURL + `/inQueue`);
   }
 
   //delete complaint

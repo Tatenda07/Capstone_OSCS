@@ -7,6 +7,7 @@ import { Resolution } from '../models/resolution.model';
   providedIn: 'root'
 })
 export class ResolutionService {
+  //readonly baseURL = 'http://localhost:5000/resolution';
   readonly baseURL = 'https://aup-oscms.herokuapp.com/resolution';
   selectedResolution!: Resolution;
 

@@ -7,6 +7,7 @@ import { User } from '../models/user.model'
   providedIn: 'root'
 })
 export class UserService {
+  //readonly baseURL = 'http://localhost:5000/user';
   readonly baseURL = 'https://aup-oscms.herokuapp.com/user';
   selectedUser: User = {
     _id: '',

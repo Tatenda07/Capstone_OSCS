@@ -78,6 +78,7 @@ main{
   url("../../../assets/images/Aup.jpg");
   background-size:cover;
   background-position: center center;
+  border-radius: 10px;
   position: relative;
 }
 
@@ -104,7 +105,7 @@ main{
   color: #fff;
 }
 
-.about-description p{
+.about-description p {
   display: inline-block;
   line-height: 30px !important;
   font-size: 1.2rem;
@@ -123,11 +124,11 @@ main{
   hr{
     width: 265px !important;
   }
-  
+
 }
 
 @media screen and (max-width:576px) {
-  
+
   .about-head-text{
     font-size: 3rem !important;
     margin-top: 68px !important;
@@ -142,8 +143,24 @@ main{
   hr{
     width: 115px !important;
     margin-top: 30px !important;
-  }  
+  }
 
+}
+
+@media only screen and (max-width: 414px) {
+  .about-description {
+    margin: 4% 5%;
+  }
+
+  .about-description h1 {
+    font-size: 45px;
+  }
+
+  .about-description p {
+    line-height: 25px !important;
+    font-size: 1rem;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width:340px) {

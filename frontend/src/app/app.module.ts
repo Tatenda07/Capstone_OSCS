@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-
-
+//import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +30,8 @@ import { UserAuthGuard } from './auth/user-auth.guard';
 import { AuthInterceptor, UserAuthInterceptor } from './auth/auth.interceptor';
 import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { AnalyticsComponent } from './components/analytics/analytics.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     ResolutionComponent,
     AdminLoginComponent,
     ErrorPageComponent,
+    AnalyticsComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,8 +65,9 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
-
+    }),
+    //MDBBootstrapModule.forRoot(),
+    ChartsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

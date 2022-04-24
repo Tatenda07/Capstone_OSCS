@@ -11,6 +11,18 @@ router.post('/', complaintController.addComplaint);
 // HTTP Request Route: GET - http://localhost:5000/complaint
 router.get('/', complaintController.getAllComplaints);
 
+// HTTP Request Route: GET - http://localhost:5000/complaint/resolved
+router.get('/resolved', complaintController.getResolvedComplaints);
+
+// HTTP Request Route: GET - http://localhost:5000/complaint/pending
+router.get('/pending', complaintController.getPendingSSOResponse);
+
+// HTTP Request Route: GET - http://localhost:5000/complaint/moderated
+router.get('/moderated', complaintController.getModeratedComplaints);
+
+// HTTP Request Route: GET - http://localhost:5000/complaint/inQueue
+router.get('/inQueue', complaintController.getInQueueComplaints);
+
 // HTTP Request Route: GET - http://localhost:5000/complaint/id
 router.get('/:id', complaintController.getSingleComplaint);
 

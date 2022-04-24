@@ -62,6 +62,86 @@ exports.getStudentComplaints = async (req, res, next) => {
     }
 }
 
+// get in queue complaints
+exports.getInQueueComplaints = async (req, res, next) => {
+    try {
+        let getInQueueComplaints = await Complaint.find({ complaint_status: 0 }).sort({ _id: -1 });
+
+        if (getInQueueComplaints.length === 0) {
+            res.status(200).send({
+                message: `There are no complaints in queue at the moment.`
+            })
+        } else {
+            res.status(200).send(
+                getInQueueComplaints
+            )
+        }
+    } catch (err) {
+        err.statusCode === undefined ? err.statusCode = 500 : '';
+        return next(err);
+    }
+}
+
+// get moderated complaints
+exports.getModeratedComplaints = async (req, res, next) => {
+    try {
+        let getModeratedComplaints = await Complaint.find({ complaint_status: 2 }).sort({ _id: -1 });
+
+        if (getModeratedComplaints.length === 0) {
+            res.status(200).send({
+                message: `There are no moderated complaints at the moment.`
+            })
+        } else {
+            res.status(200).send(
+                getModeratedComplaints
+            )
+        }
+    } catch (err) {
+        err.statusCode === undefined ? err.statusCode = 500 : '';
+        return next(err);
+    }
+}
+
+// get pending SSO response complaints complaints
+exports.getPendingSSOResponse = async (req, res, next) => {
+    try {
+        let getPendingSSOResponse = await Complaint.find({ complaint_status: 3 }).sort({ _id: -1 });
+
+        if (getPendingSSOResponse.length === 0) {
+            res.status(200).send({
+                message: `There are no complaints pending SSO response at the moment.`
+            })
+        } else {
+            res.status(200).send(
+                getPendingSSOResponse
+            )
+        }
+    } catch (err) {
+        err.statusCode === undefined ? err.statusCode = 500 : '';
+        return next(err);
+    }
+}
+
+// get resolved complaints
+exports.getResolvedComplaints = async (req, res, next) => {
+    try {
+        let getResolvedComplaints = await Complaint.find({ complaint_status: 4 }).sort({ _id: -1 });
+
+        if (getResolvedComplaints.length === 0) {
+            res.status(200).send({
+                message: `There are no resolved complaints at the moment.`
+            })
+        } else {
+            res.status(200).send(
+                getResolvedComplaints
+            )
+        }
+    } catch (err) {
+        err.statusCode === undefined ? err.statusCode = 500 : '';
+        return next(err);
+    }
+}
+
 // get single complaint
 exports.getSingleComplaint = async (req, res, next) => {
     try {

@@ -15,21 +15,23 @@
 
     </div>
   </nav> -->
-  <main>
-  <div class="content">
-    <h1>Hi, <br> </h1>
-      <h2>{{ studentProfile.first_name}} {{studentProfile.last_name}}</h2>
+  <div class="main-div">
+    <div class="content">
+      <h1>Hi, <br> </h1>
+        <h2>{{ studentProfile?.first_name}} {{studentProfile?.last_name}}</h2>
 
-    <h4>Welcome to the AUP's Online Student Concern Management System.</h4>
+      <h4>Welcome to the AUP's Online Student Concern Management System.</h4>
 
-      <p>Please keep in mind that when submitting a Concern, typing in English
-         will help us understand your concern better and resolve it quicker.</p>
+        <p>Please keep in mind that when submitting a Concern, typing in English
+          will help us understand your concern better and resolve it quicker.</p>
 
-        <br>
-        <a routerLink="/submit-concern" class="btn">Submit Concern</a>
-        <a routerLink="/my-concerns" class="btn2">My Concerns</a>
-      </div>
-  </main>
+        <div class="links">
+          <a routerLink="/submit-concern" class="btn">Submit Concern</a>
+          <a routerLink="/my-concerns" class="btn2">My Concerns</a>
+        </div>
+
+    </div>
+  </div>
 
   <div class="wrapper">
     <div class="panel">
