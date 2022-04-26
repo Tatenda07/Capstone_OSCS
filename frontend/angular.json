@@ -49,19 +49,25 @@
               "node_modules/chart.js/dist/Chart.min.js",
               "node_modules/hammerjs/hammer.min.js"
             ],
-            "allowedCommonJsDependencies": [
-              "chart.js"
-            ],
             "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json"
+            "ngswConfigPath": "ngsw-config.json",
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "rxjs-compat",
+              "devextreme-angular",
+              "devextreme",
+              "@firebase",
+              "@angular/fire",
+              "chart.js"
+           ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "4mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "2.05mb",
+                  "maximumError": "50mb"
                 },
                 {
                   "type": "anyComponentStyle",
