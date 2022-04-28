@@ -203,7 +203,7 @@ body{
 .glass {
   width: 500px;
   height: 400px;
-  background-color: rgba(107, 221, 139, 0.1);
+  background-color: rgba(170, 230, 187, 0.1);
   padding: 50px;
   color: #000;
   border-radius: 9px;
@@ -235,10 +235,6 @@ body{
 .glass h1{
   font-size: 1.5rem;
   text-align: center;
-}
-.glass h2 {
-  font-size: 1rem;
-  margin-top: 20px;
 }
 .input{
   width: 100%;
