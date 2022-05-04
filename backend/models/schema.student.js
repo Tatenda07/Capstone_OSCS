@@ -147,7 +147,7 @@ studentSchema.methods.verifyPassword = function (password) {
 };
 
 studentSchema.methods.generateJwt = function () {
-    return jwt.sign({ _id: this._id, role: this.role },
+    return jwt.sign({ _id: this._id, role: this.role, student_id: this.student_id },
         process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXP
         }
