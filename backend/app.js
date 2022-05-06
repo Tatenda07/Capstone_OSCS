@@ -55,3 +55,5 @@ app.use('/user', require('./routes/user'));
 app.use('/student', require('./routes/student'));
 // http://localhost:5000/resolution
 app.use('/resolution', require('./routes/resolution'));
+// http://localhost:5000/api/nlp
+app.use('/api/nlp', require('./routes/nlp'));
