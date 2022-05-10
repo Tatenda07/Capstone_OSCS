@@ -14,7 +14,7 @@ exports.sentimentAnalyzer = (req, res, next) => {
   const lexedReview = aposToLexForm(review);
   // convert text data to lowercase
   const casedReview = lexedReview.toLowerCase();
-  // remove non-alphobetical and special characters
+  // remove non-alphabetical and special characters
   const alphaOnlyReview = casedReview.replace(/[^a-zA-Z\s]+/g, '');
 
   // Tokenization - splitting a text into its individual meaningful units
