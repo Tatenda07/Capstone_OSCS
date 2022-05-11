@@ -26,6 +26,23 @@ const complaintSchema = new Schema({
         type: String,
         required: true
     },
+    category: {
+        type: String,
+        required: true,
+        enum: [
+            'Cafeteria',
+            'Dormitory',
+            'Communication',
+            'Apartment',
+            'Recreational Activities',
+            'Off-Campus Request',
+            'Student Parks',
+            'Work Education',
+            'Student Convocation',
+            'Infractions',
+            'Other'
+        ]
+    },
     complaint_status: {
         type: Number,
         min: 0,
